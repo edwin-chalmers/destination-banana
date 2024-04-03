@@ -1,19 +1,21 @@
+
 import './App.css';
 import { fetchPage } from '../../ApiCalls';
-import { useEffect, useState } from "react" 
+import { useEffect, useState } from 'react'
 
 function App() {
   const parser = new DOMParser()
   const [currentPage, setCurrentPage] = useState('')
-  
   useEffect(() => {
-    fetchPage('gene%20wilder')
+    fetchPage('banana')
       .then(response => {
-        const pageCode = parser.parseFromString(response, 'text/html')
-        setCurrentPage(pageCode)
+        response.text()
+        .then(html => {
+          const pageCode = parser.parseFromString(html, 'text/html')
+          setCurrentPage(pageCode)
+        })
       })
   }, [])
-
   return (
     <div>
       {currentPage}

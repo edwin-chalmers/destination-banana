@@ -4,11 +4,11 @@ function fetchPage(endpoint) {
         if (!response.ok) {
             throw new Error(`Failed to fetch ${endpoint}`)
         }
+        console.log(response)
         return response
     })
     .catch(error => {
-        console.log(`Error fetching ${endpoint}:`, error);
-        throw error; 
+        console.log(`Error fetching ${endpoint}:`, error); 
     });
 }
 
