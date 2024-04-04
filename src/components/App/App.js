@@ -1,7 +1,10 @@
 
 import './App.css';
+import WikiPage from '../WikiPage/WikiPage'
 import { fetchPage } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
+
+
 
 function App() {
   const parser = new DOMParser()
@@ -9,17 +12,18 @@ function App() {
   useEffect(() => {
     fetchPage('banana')
       .then(response => {
-        response.text()
-        .then(html => {
-          const pageCode = parser.parseFromString(html, 'text/html')
-          setCurrentPage(pageCode)
-        })
+        return response.text()
+      })
+      .then(html => {
+        
+        const pageCode = parser.parseFromString(html, 'text/html')
+        console.log('pageCode.body.innerHTML', pageCode.body.innerHTML)
+        setCurrentPage(pageCode.body.innerHTML)
       })
   }, [])
+
   return (
-    <div>
-      {currentPage}
-    </div>
+    <WikiPage pageHTML={currentPage} />
   );
 }
 
