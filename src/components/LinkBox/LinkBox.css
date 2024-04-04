@@ -1,0 +1,8 @@
+.link-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border: 1px solid black;
+    width: 300px;
+    text-wrap: wrap;
+}
