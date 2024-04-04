@@ -35,13 +35,38 @@ function App() {
   function createLinkList (htmlString) {
     const wikiLinks = []
     const linkNodes = htmlString.querySelectorAll('a')
-    const wikiNodes = linkNodes.forEach((linkNode) => {
+    linkNodes.forEach((linkNode) => {
       if (linkNode.href.includes('wikipedia')) {
-        wikiLinks.push(linkNode.href)
+        wikiLinks.push(linkNode.href.split('/').slice(-1).toString())
       }
     })
+    const filterArray = ['(identifier)','FOOTNOTE','File','#', 'cite_note', '-', '%', 'FOOTNOTES', '.', ':', 'jpg']
+    const filteredWikiLinks = []
+    filterArray.forEach(filter => {
+        wikiLinks.forEach((link) => {
+            
+            if(link.includes(filter)){
+              const linkIndex = wikiLinks.indexOf(link)
+              console.log(wikiLinks[linkIndex])
+              wikiLinks.splice(linkIndex, 1)
+            }
+        })
+    })
+    filterArray.forEach(filter => {
+      wikiLinks.forEach((link) => {
+          
+          if(link.includes(filter)){
+            const linkIndex = wikiLinks.indexOf(link)
+            console.log(wikiLinks[linkIndex])
+            wikiLinks.splice(linkIndex, 1)
+          }
+      })
+  })
+    window.filteredLinks = filteredWikiLinks
+  console.log('filteredwikilinks',filteredWikiLinks)
     setLinkList(wikiLinks)
   }
+  
 
   return (
     <main>
@@ -52,3 +77,5 @@ function App() {
 }
 
 export default App;
+
+// Filter - #, cite_note, dashes, %, FOOTNOTES, (dot), :, jpg, 
