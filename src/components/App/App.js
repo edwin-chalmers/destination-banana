@@ -10,21 +10,32 @@ import parse from 'html-react-parser';
 function App() {
   const [currentPage, setCurrentPage] = useState({})
   const [linkList, setLinkList] = useState([])
+  // const [infoBox, setInfoBox] = useState('')
 
   useEffect(() => {
+    updateCurrentPage('banana')
+  }, [])
+
+  function updateCurrentPage(endpointText) {
     const parser = new DOMParser()
-    fetchPage('banana')
+    const endpoint = endpointText.replaceAll(' ', '_')
+    fetchPage(endpoint)
       .then(response => {
         return response.text()
       })
       .then(html => {
+        
         const parsedHTMLforLinks = parser.parseFromString(html, 'text/html')
+        // const newBox = parsedHTMLforLinks.querySelector('.infobox').innerHTML.toString()
+        // const parsedHTMLforDOM = parse(newBox)  
         const parsedHTMLforDOM = parse(html)  
+        
         // console.log("parsedHTML", parsedHTML)
+        // setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         createLinkList(parsedHTMLforLinks)
       })
-  }, [])
+  }
 
   // useEffect(() => {
   //   if(currentPage.stringForLinks) {
@@ -37,7 +48,7 @@ function App() {
     const linkNodes = htmlString.querySelectorAll('a')
     linkNodes.forEach((linkNode) => {
       if (linkNode.href.includes('wikipedia')) {
-        wikiLinks.push(linkNode.href.split('/').slice(-1).toString())
+        wikiLinks.push(linkNode.href.split('/').slice(-1).toString().replaceAll('_', ' '))
       }
     })
     const filterArray = ['(identifier)','FOOTNOTE','File','#', 'cite_note', '-', '%', 'FOOTNOTES', '.', ':', 'jpg']
@@ -47,7 +58,6 @@ function App() {
             
             if(link.includes(filter)){
               const linkIndex = wikiLinks.indexOf(link)
-              console.log(wikiLinks[linkIndex])
               wikiLinks.splice(linkIndex, 1)
             }
         })
@@ -57,13 +67,21 @@ function App() {
           
           if(link.includes(filter)){
             const linkIndex = wikiLinks.indexOf(link)
-            console.log(wikiLinks[linkIndex])
             wikiLinks.splice(linkIndex, 1)
           }
       })
-  })
+    })
+
+ 
+
     window.filteredLinks = filteredWikiLinks
-  console.log('filteredwikilinks',filteredWikiLinks)
+    console.log('filteredwikilinks',filteredWikiLinks)
+
+    wikiLinks.forEach((link) => {
+
+      link.replace('_', ' ')
+    })
+
     setLinkList(wikiLinks)
   }
   
@@ -71,11 +89,12 @@ function App() {
   return (
     <main>
       <WikiPage pageHTML={currentPage.stringForDOM} />
-      <LinkBox linkList={linkList}/>
+      <LinkBox linkList={linkList} updateCurrentPage={updateCurrentPage}/>
     </main>
   );
 }
 
 export default App;
 
-// Filter - #, cite_note, dashes, %, FOOTNOTES, (dot), :, jpg, 
+
+
