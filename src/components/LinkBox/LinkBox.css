@@ -6,3 +6,8 @@
     width: 300px;
     text-wrap: wrap;
 }
+
+.link-container p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
