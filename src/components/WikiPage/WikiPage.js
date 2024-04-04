@@ -1,6 +1,9 @@
-import parse from 'html-react-parser';
+import './WikiPage.css'
 
-export default function MyComponent( { pageHTML }) {
-    const myHTMLString = pageHTML
-    return <div>{parse(myHTMLString)}</div>
+export default function WikiPage ( { pageHTML }) {
+    return (
+        <div className="wiki-page">
+            {pageHTML}
+        </div>
+    )
   }
