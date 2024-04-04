@@ -10,4 +10,8 @@
 .link-container p {
     margin-top: 1px;
     margin-bottom: 1px;
+    color: rgb(53,98,201);
+    &:hover{
+        cursor: pointer;
+    }
 }
