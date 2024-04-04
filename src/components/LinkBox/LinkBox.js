@@ -19,5 +19,4 @@ export default function LinkBox( {linkList, updateCurrentPage} ) {
             {linkTails}
         </div>
     )
-
 }

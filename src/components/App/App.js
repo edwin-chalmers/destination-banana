@@ -10,6 +10,7 @@ import parse from 'html-react-parser';
 function App() {
   const [currentPage, setCurrentPage] = useState({})
   const [linkList, setLinkList] = useState([])
+  // const [infoBox, setInfoBox] = useState('')
 
   useEffect(() => {
     updateCurrentPage('banana')
@@ -23,9 +24,14 @@ function App() {
         return response.text()
       })
       .then(html => {
+        
         const parsedHTMLforLinks = parser.parseFromString(html, 'text/html')
+        // const newBox = parsedHTMLforLinks.querySelector('.infobox').innerHTML.toString()
+        // const parsedHTMLforDOM = parse(newBox)  
         const parsedHTMLforDOM = parse(html)  
+        
         // console.log("parsedHTML", parsedHTML)
+        // setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         createLinkList(parsedHTMLforLinks)
       })
@@ -52,7 +58,6 @@ function App() {
             
             if(link.includes(filter)){
               const linkIndex = wikiLinks.indexOf(link)
-              console.log(wikiLinks[linkIndex])
               wikiLinks.splice(linkIndex, 1)
             }
         })
@@ -62,7 +67,6 @@ function App() {
           
           if(link.includes(filter)){
             const linkIndex = wikiLinks.indexOf(link)
-            console.log(wikiLinks[linkIndex])
             wikiLinks.splice(linkIndex, 1)
           }
       })
