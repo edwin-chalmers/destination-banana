@@ -1,5 +1,18 @@
 .wiki-page {
-    width: 30%;
+    width: 300px;
     border: 1px solid black;
     padding: 10px;
+}
+
+.infobox {
+    float: right;
+    width: 100%;
+    height: auto;
+    max-width: 22em;
+        img{
+            border: 0;
+            vertical-align: middle;
+            height: auto;
+            width: 100%;
+        }
 }

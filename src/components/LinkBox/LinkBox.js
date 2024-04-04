@@ -1,10 +1,10 @@
 import './LinkBox.css'
 
-export default function LinkBox( {linkList, updateCurrentPage} ) {
+export default function LinkBox( {linkList, updatePages} ) {
     console.log('linkList', linkList)
 
     function handleClick(event) {
-        updateCurrentPage(event.target.innerText)
+        updatePages(event.target.innerText)
     }
     
     const linkTails = linkList.map((link) => {

@@ -1,6 +1,6 @@
-
 import './App.css';
-import WikiPage from '../WikiPage/WikiPage'
+// import WikiPage from '../WikiPage/WikiPage'
+import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import { fetchPage } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
@@ -8,15 +8,25 @@ import parse from 'html-react-parser';
 
 
 function App() {
-  const [currentPage, setCurrentPage] = useState({})
+  const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
+  const [id, setId] = useState(1)
   // const [infoBox, setInfoBox] = useState('')
+  
+  // { id: 4,
+  //   stringForLinks: parsedHTMLforLinks,
+  //   stringForDOM: parsedHTMLforDOM,
+  //   isDisplayed: false,
+  //   isCurrent: true,
+  //   title: 'Tom Cruise'
+  // }
+
 
   useEffect(() => {
-    updateCurrentPage('banana')
+    updatePages('banana')
   }, [])
 
-  function updateCurrentPage(endpointText) {
+  function updatePages(endpointText) {
     const parser = new DOMParser()
     const endpoint = endpointText.replaceAll(' ', '_')
     fetchPage(endpoint)
@@ -29,19 +39,28 @@ function App() {
         // const newBox = parsedHTMLforLinks.querySelector('.infobox').innerHTML.toString()
         // const parsedHTMLforDOM = parse(newBox)  
         const parsedHTMLforDOM = parse(html)  
-        
+
         // console.log("parsedHTML", parsedHTML)
-        // setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
-        setCurrentPage({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
+        // setPages({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
+        const newPage = {
+          id: id,
+          stringForLinks: parsedHTMLforLinks,
+          stringForDOM: 'parsedHTMLforDOM',
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpoint
+        }
+        setPages(prev => [newPage, ...prev])
+        setId(prev => prev += 1)
         createLinkList(parsedHTMLforLinks)
       })
   }
 
   // useEffect(() => {
-  //   if(currentPage.stringForLinks) {
-  //     createLinkList(currentPage.stringForLinks)
+  //   if(pages.stringForLinks) {
+  //     createLinkList(pages.stringForLinks)
   //   }
-  // }, [currentPage])
+  // }, [pages])
 
   function createLinkList (htmlString) {
     const wikiLinks = []
@@ -72,8 +91,6 @@ function App() {
       })
     })
 
- 
-
     window.filteredLinks = filteredWikiLinks
     console.log('filteredwikilinks',filteredWikiLinks)
 
@@ -88,8 +105,8 @@ function App() {
 
   return (
     <main>
-      <WikiPage pageHTML={currentPage.stringForDOM} />
-      <LinkBox linkList={linkList} updateCurrentPage={updateCurrentPage}/>
+      <LinkBox linkList={linkList} updatePages={updatePages}/>
+      <PagesContainer pages={pages} />
     </main>
   );
 }

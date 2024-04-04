@@ -1,9 +1,15 @@
 import './WikiPage.css'
 
-export default function WikiPage ( { pageHTML }) {
+export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title }) {
+
+    console.log('stringfordom', stringForDOM)
     return (
         <div className="wiki-page">
-            {pageHTML}
+            {stringForDOM}
         </div>
     )
   }
+
+
+//   <div className="wiki-page" onClick={() => {
+//     removePage(id)
