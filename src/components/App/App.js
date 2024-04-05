@@ -34,6 +34,7 @@ function App() {
 
         
         // setPages({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
+        console.log({nextId})
         const newPage = {
           id: nextId,
           stringForLinks: parsedHTMLforLinks,
@@ -43,8 +44,14 @@ function App() {
           title: endpoint
         }
 
+        setNextId((prev) => {
+          console.log('in here now in setNextId')
+          const newId = prev + 1
+
+          console.log({newId})
+          return newId
+        })
         setPages(prev => [...prev, newPage])
-        setNextId(prev => prev += 1)
         createLinkList(parsedHTMLforLinks)
       })
   }
@@ -96,11 +103,14 @@ function App() {
   }
 
   function focusPage(id) {
+    console.log('pages in focus', pages)
+    console.log('id', id)
     const selectedPage = pages.find((page) => {
       return page.id = id
     })
 
     const updatedPages = pages.map((page) => {
+      console.log('page.id', page.id)
       if(page.id < id) {
         page.isDisplayed = false
       }
@@ -109,7 +119,7 @@ function App() {
     })
 
 
-    setLinkList(selectedPage.stringForLinks)
+    createLinkList(selectedPage.stringForLinks)
     setPages(updatedPages)
   }
   

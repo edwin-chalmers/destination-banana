@@ -2,6 +2,7 @@ import './LinkBox.css'
 
 export default function LinkBox( {linkList, updatePages} ) {
     console.log('linkList', linkList)
+    // const nowKey = Date.now()
 
     function handleClick(event) {
         updatePages(event.target.innerText)
@@ -9,7 +10,7 @@ export default function LinkBox( {linkList, updatePages} ) {
     
     const linkTails = linkList.map((link) => {
 
-        return <p key={Date.now} onClick={(event) => {
+        return <p onClick={(event) => {
             handleClick(event)
         }}>{link}</p>
     })
