@@ -3,9 +3,9 @@ import './PagesContainer.css'
 
 export default function PagesContainer({ pages, focusPage }) {
 
-    const filteredPages = pages.filter(page => page.isCurrent === true)
-    console.log('FP look here', filteredPages)
-    const pagesDisplay = filteredPages.map((page) => {
+    // const filteredPages = pages.filter(page => page.isCurrent === true)
+    // console.log('FP look here', filteredPages)
+    const pagesDisplay = pages.map((page) => {
         return (
             <WikiPage
                 key={page.id}

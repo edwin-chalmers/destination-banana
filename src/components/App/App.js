@@ -45,10 +45,8 @@ function App() {
         }
 
         setNextId((prev) => {
-          console.log('in here now in setNextId')
           const newId = prev + 1
 
-          console.log({newId})
           return newId
         })
         setPages(prev => [...prev, newPage])
@@ -91,19 +89,13 @@ function App() {
       })
     })
 
-    window.filteredLinks = filteredWikiLinks
-    console.log('filteredwikilinks',filteredWikiLinks)
-
-    wikiLinks.forEach((link) => {
-
-      link.replace('_', ' ')
-    })
+    wikiLinks.forEach(link =>  link.replace('_', ' ') )
 
     setLinkList(wikiLinks)
   }
 
   function focusPage(id) {
-    console.log('pages in focus', pages)
+    console.log('pages inside focusPages', pages)
     console.log('id', id)
     const selectedPage = pages.find((page) => {
       return page.id = id
@@ -111,7 +103,7 @@ function App() {
 
     const updatedPages = pages.map((page) => {
       console.log('page.id', page.id)
-      if(page.id < id) {
+      if(page.id > id) {
         page.isDisplayed = false
       }
 
@@ -120,6 +112,7 @@ function App() {
 
 
     createLinkList(selectedPage.stringForLinks)
+    // console.log("updatedPages", updatedPages)
     setPages(updatedPages)
   }
   

@@ -1,9 +1,7 @@
 import './LinkBox.css'
 
 export default function LinkBox( {linkList, updatePages} ) {
-    console.log('linkList', linkList)
     // const nowKey = Date.now()
-
     function handleClick(event) {
         updatePages(event.target.innerText)
     }
