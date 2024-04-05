@@ -2,7 +2,7 @@ import WikiPage from '../WikiPage/WikiPage'
 import './PagesContainer.css'
 
 export default function PagesContainer({ pages }) {
-
+console.log('pages in PC', pages)
     const pagesDisplay = pages.map((page) => {
         return (
             <WikiPage

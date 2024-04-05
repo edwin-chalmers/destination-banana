@@ -32,6 +32,8 @@ function App() {
     const endpoint = endpointText.replaceAll(' ', '_')
     fetchPage(endpoint)
       .then(response => {
+        console.log('inside here')
+        console.log('pages here', pages)
         return response.text()
       })
       .then(html => {
@@ -52,7 +54,7 @@ function App() {
           title: endpoint
         }
 
-        console.log("parsedHTML", newPage)
+        console.log("right freaking here")
         setPages(prev => [newPage, ...prev])
         setId(prev => prev += 1)
         createLinkList(parsedHTMLforLinks)
