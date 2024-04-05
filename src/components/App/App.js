@@ -10,18 +10,9 @@ import parse from 'html-react-parser';
 function App() {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
-  const [id, setId] = useState(1)
+  const [nextId, setNextId] = useState(1)
   
   // const [infoBox, setInfoBox] = useState('')
-  
-  // { id: 4,
-  //   stringForLinks: parsedHTMLforLinks,
-  //   stringForDOM: parsedHTMLforDOM,
-  //   isDisplayed: false,
-  //   isCurrent: true,
-  //   title: 'Tom Cruise'
-  // }
-
 
   useEffect(() => {
     updatePages('banana')
@@ -32,8 +23,6 @@ function App() {
     const endpoint = endpointText.replaceAll(' ', '_')
     fetchPage(endpoint)
       .then(response => {
-        console.log('inside here')
-        console.log('pages here', pages)
         return response.text()
       })
       .then(html => {
@@ -46,7 +35,7 @@ function App() {
         
         // setPages({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         const newPage = {
-          id: id,
+          id: nextId,
           stringForLinks: parsedHTMLforLinks,
           stringForDOM: parsedHTMLforDOM,
           isCurrent: true,
@@ -54,9 +43,8 @@ function App() {
           title: endpoint
         }
 
-        console.log("right freaking here")
-        setPages(prev => [newPage, ...prev])
-        setId(prev => prev += 1)
+        setPages(prev => [...prev, newPage])
+        setNextId(prev => prev += 1)
         createLinkList(parsedHTMLforLinks)
       })
   }
@@ -106,12 +94,30 @@ function App() {
 
     setLinkList(wikiLinks)
   }
+
+  function focusPage(id) {
+    const selectedPage = pages.find((page) => {
+      return page.id = id
+    })
+
+    const updatedPages = pages.map((page) => {
+      if(page.id < id) {
+        page.isDisplayed = false
+      }
+
+      return page;
+    })
+
+
+    setLinkList(selectedPage.stringForLinks)
+    setPages(updatedPages)
+  }
   
 
   return (
     <main>
       <LinkBox linkList={linkList} updatePages={updatePages}/>
-      <PagesContainer pages={pages} />
+      <PagesContainer pages={pages} focusPage={focusPage} />
     </main>
   );
 }

@@ -9,7 +9,7 @@ export default function LinkBox( {linkList, updatePages} ) {
     
     const linkTails = linkList.map((link) => {
 
-        return <p onClick={(event) => {
+        return <p key={Date.now} onClick={(event) => {
             handleClick(event)
         }}>{link}</p>
     })

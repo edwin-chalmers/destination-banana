@@ -1,12 +1,14 @@
 import './WikiPage.css'
 
-export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title }) {
+export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
 
-    console.log('stringfordom', stringForDOM)
     return (
-        <div className="wiki-page">
-            {stringForDOM}
-        </div>
+        {isCurrent} && 
+            <div className="wiki-page" onClick={((id) => {
+                focusPage(id)
+            })}>
+                {stringForDOM}
+            </div>
     )
   }
 
