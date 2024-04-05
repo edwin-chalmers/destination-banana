@@ -11,6 +11,7 @@ function App() {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
   const [id, setId] = useState(1)
+  
   // const [infoBox, setInfoBox] = useState('')
   
   // { id: 4,
@@ -40,16 +41,18 @@ function App() {
         // const parsedHTMLforDOM = parse(newBox)  
         const parsedHTMLforDOM = parse(html)  
 
-        // console.log("parsedHTML", parsedHTML)
+        
         // setPages({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
         const newPage = {
           id: id,
           stringForLinks: parsedHTMLforLinks,
-          stringForDOM: 'parsedHTMLforDOM',
+          stringForDOM: parsedHTMLforDOM,
           isCurrent: true,
           isDisplayed: true,
           title: endpoint
         }
+
+        console.log("parsedHTML", newPage)
         setPages(prev => [newPage, ...prev])
         setId(prev => prev += 1)
         createLinkList(parsedHTMLforLinks)

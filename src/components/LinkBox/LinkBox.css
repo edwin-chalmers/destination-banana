@@ -1,10 +1,11 @@
 .link-container {
+    background: white;
+    max-width: 322px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    border: 1px solid black;
-    width: 300px;
-    text-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .link-container p {

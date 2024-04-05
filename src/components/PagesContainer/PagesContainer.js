@@ -1,14 +1,14 @@
 import WikiPage from '../WikiPage/WikiPage'
+import './PagesContainer.css'
 
 export default function PagesContainer({ pages }) {
 
     const pagesDisplay = pages.map((page) => {
-        console.log({page})
         return (
             <WikiPage
                 id={page.id}
                 stringForLinks={page.stringforLinks}
-                stringForDOM={page.stringforDOM}
+                stringForDOM={page.stringForDOM}
                 isCurrent={true}
                 isDisplayed={true}
                 title={page.endpoint}
