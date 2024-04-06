@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { InfoBox, WikiPageContainer } from './WikiPage.styled'
 
 export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
-    console.log('id on creation', id)
 
     return isDisplayed && (
         <WikiPageContainer >

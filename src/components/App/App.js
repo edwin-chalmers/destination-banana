@@ -2,6 +2,7 @@ import './App.css';
 // import WikiPage from '../WikiPage/WikiPage'
 import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
+import Toolbar from '../Toolbar/Toolbar'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
@@ -10,10 +11,7 @@ import parse from 'html-react-parser';
 function App() {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
-
-  // const [nextId, setNextId] = useState(1)
-  // const [infoBox, setInfoBox] = useState('')
-
+  const [nextId, setNextId] = useState(1)
 
 
   useEffect(() => {
@@ -30,73 +28,90 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-
-  }, [])
-
   function updatePages(endpointText) {
-    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
-    let filteredWikiLinks
-      fetchPage(endpointText).then(linksArray => {
-        filteredWikiLinks = linksArray.filter(link => {
-          return !charactersToRemove.some(character => link.title.includes(character));
+    createLinkList(endpointText)
+
+    const parser = new DOMParser()
+    fetchHTML(endpointText).then(html => {
+      const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
+      const parsedHTML = parse(htmlFilter)
+      const newPage = {
+        id: nextId,
+        stringForDOM: parsedHTML,
+        isCurrent: true,
+        isDisplayed: true,
+        title: endpointText
+      }
+      setNextId(prev => prev += 1)
+      setPages((prev) => {
+        const updatedPages = prev.map((page) => {
+          page.isCurrent = false
+
+          return page
         })
-        setLinkList(filteredWikiLinks)
-
-      })
-
-      const parser = new DOMParser()
-      
-      const html = fetchHTML(endpointText).then(html => {
-        const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
-        const parsedHTML = parse(htmlFilter)
-        const newPage = {
-          id: Date.now(),
-          stringForDOM: parsedHTML,
-          isCurrent: true,
-          isDisplayed: true,
-          title: endpointText
-        }
-        setPages(prev => [...prev, newPage])
         
-        })
+        return [...updatedPages, newPage]
+      })
+    })
   }
 
-  // useEffect(() => {
-  //   if(pages.stringForLinks) {
-  //     createLinkList(pages.stringForLinks)
-  //   }
-  // }, [pages])
-
+  function createLinkList(endpointText) {
+    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
+    let filteredWikiLinks
+    fetchPage(endpointText).then(linksArray => {
+      filteredWikiLinks = linksArray.filter(link => {
+        return !charactersToRemove.some(character => link.title.includes(character));
+      })
+      setLinkList(filteredWikiLinks)
+    })
+  }
 
   function focusPage(id) {
-    console.log('pages inside focusPages', pages)
-    console.log('id', id)
-    const selectedPage = pages.find((page) => {
-      return page.id = id
+    let selectedPage;
+
+    if(!id) {
+      const currentPage = pages.find(page => page.isCurrent)
+      const previousPage = pages.reduce((prevPage, page) => {
+        if(page.id < currentPage.id && page.isDisplayed) {
+          prevPage = page
+        }
+
+        return prevPage
+      }, {})
+
+        selectedPage = previousPage
+      } else {
+          selectedPage = pages.find((page) => {
+            return page.id === id
+          })
+      }
+
+    const updatedPages = pages.map((page) => {
+      if(page.id > selectedPage.id) {
+        page.isDisplayed = false
+      }
+      page.isCurrent = false
+      if(page.id === selectedPage.id) {
+        page.isCurrent = true
+      }
+
+      return page;
     })
-
-    // const updatedPages = pages.map((page) => {
-    //   console.log('page.id', page.id)
-    //   if(page.id > id) {
-    //     page.isDisplayed = false
-    //   }
-
-    //   return page;
-    // })
-
-
-    // createLinkList(selectedPage.stringForLinks)
-    // console.log("updatedPages", updatedPages)
-    // setPages(updatedPages)
+ 
+    createLinkList(selectedPage.stringForLinks)
+    setPages(updatedPages)
   }
   
 
   return (
-    <main>
-      <LinkBox linkList={linkList} updatePages={updatePages}/>
-      <PagesContainer pages={pages} focusPage={focusPage} />
-    </main>
+    <>
+      <Toolbar focusPage={focusPage}/>
+      <main>
+        <LinkBox linkList={linkList} updatePages={updatePages}/>
+        <PagesContainer pages={pages} focusPage={focusPage} />
+      </main>
+    </>
+
   );
 }
 
