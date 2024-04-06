@@ -2,11 +2,12 @@ import styled from 'styled-components'
 
 export const StyledHeader = styled.header`
     display: flex;
-    justify-content: center;
     flex-direction: row;
+    border-bottom: 1px solid gray;
 
     img{
-        width: 270px;
+        margin: 15px 0 15px 50px;
+        width: 150px;
     }
 
 `

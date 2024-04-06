@@ -123,8 +123,8 @@ function HomePage({}) {
           <div>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
           </div>
-          <div id='pages'>
-            <PagesContainer pages={pages} focusPage={focusPage} />
+          <div >
+            <PagesContainer id='pages' pages={pages} focusPage={focusPage} />
           </div>
         </main>
       </>
