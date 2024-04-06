@@ -1,17 +1,16 @@
 import './LinkBox.css'
 
-export default function LinkBox( {linkList, updateCurrentPage} ) {
-    console.log('linkList', linkList)
-
+export default function LinkBox( {linkList, updatePages} ) {
+    // const nowKey = Date.now()
     function handleClick(event) {
-        updateCurrentPage(event.target.innerText)
+        updatePages(event.target.textContent)
     }
     
     const linkTails = linkList.map((link) => {
-
-        return <p onClick={(event) => {
+        return <a onClick={(event) => {
+            event.preventDefault()
             handleClick(event)
-        }}>{link}</p>
+        }} href={link.url}>{link.title}</a>
     })
 
     return (
