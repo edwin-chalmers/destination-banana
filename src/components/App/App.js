@@ -10,7 +10,7 @@ import parse from 'html-react-parser';
 function App() {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
-
+console.log('pages', pages)
   // const [nextId, setNextId] = useState(1)
   // const [infoBox, setInfoBox] = useState('')
 
@@ -48,9 +48,16 @@ function App() {
         isDisplayed: true,
         title: endpointText
       }
-      setPages(prev => [...prev, newPage])
-      
+      setPages((prev) => {
+        const updatedPages = prev.map((page) => {
+          page.isCurrent = false
+
+          return page
+        })
+        
+        return [...updatedPages, newPage]
       })
+    })
   }
 
 
@@ -83,7 +90,10 @@ function App() {
     const updatedPages = pages.map((page) => {
       if(page.id > id) {
         page.isDisplayed = false
-        return page
+      }
+      page.isCurrent = false
+      if(page.id === id) {
+        page.isCurrent = true
       }
 
       return page;

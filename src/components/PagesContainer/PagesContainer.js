@@ -7,8 +7,6 @@ export default function PagesContainer({ pages, focusPage }) {
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
     const pagesDisplay = filteredPages.map((page) => {
-        console.log('page.id on creation', page.id)
-        console.log('pages on creation', pages)
         return (
             <WikiPage
                 key={page.id}
