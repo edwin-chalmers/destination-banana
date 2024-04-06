@@ -2,7 +2,7 @@ import './App.css';
 // import WikiPage from '../WikiPage/WikiPage'
 import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
-import { fetchPage } from '../../ApiCalls';
+import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
 
@@ -10,48 +10,56 @@ import parse from 'html-react-parser';
 function App() {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
-  const [nextId, setNextId] = useState(1)
-  
+
+  // const [nextId, setNextId] = useState(1)
   // const [infoBox, setInfoBox] = useState('')
 
+
+
   useEffect(() => {
-    updatePages('banana')
+    let endpointAPI
+    if(!endpointAPI){
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+        return rando.json()
+      }).then(data => {
+        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(endpointAPI)
+      })
+    } else {
+      updatePages(endpointAPI)
+    }
+  }, [])
+
+  useEffect(() => {
+
   }, [])
 
   function updatePages(endpointText) {
-    const parser = new DOMParser()
-    const endpoint = endpointText.replaceAll(' ', '_')
-    fetchPage(endpoint)
-      .then(response => {
-        return response.text()
-      })
-      .then(html => {
-        
-        const parsedHTMLforLinks = parser.parseFromString(html, 'text/html')
-        // const newBox = parsedHTMLforLinks.querySelector('.infobox').innerHTML.toString()
-        // const parsedHTMLforDOM = parse(newBox)  
-        const parsedHTMLforDOM = parse(html)  
+    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
+    let filteredWikiLinks
+      fetchPage(endpointText).then(linksArray => {
+        filteredWikiLinks = linksArray.filter(link => {
+          return !charactersToRemove.some(character => link.title.includes(character));
+        })
+        setLinkList(filteredWikiLinks)
 
-        
-        // setPages({stringForLinks: parsedHTMLforLinks, stringForDOM: parsedHTMLforDOM})
-        console.log({nextId})
+      })
+
+      const parser = new DOMParser()
+      
+      const html = fetchHTML(endpointText).then(html => {
+        const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
+        const parsedHTML = parse(htmlFilter)
         const newPage = {
-          id: nextId,
-          stringForLinks: parsedHTMLforLinks,
-          stringForDOM: parsedHTMLforDOM,
+          id: Date.now(),
+          stringForDOM: parsedHTML,
           isCurrent: true,
           isDisplayed: true,
-          title: endpoint
+          title: endpointText
         }
-
-        setNextId((prev) => {
-          const newId = prev + 1
-
-          return newId
-        })
         setPages(prev => [...prev, newPage])
-        createLinkList(parsedHTMLforLinks)
-      })
+        
+        })
   }
 
   // useEffect(() => {
@@ -60,39 +68,6 @@ function App() {
   //   }
   // }, [pages])
 
-  function createLinkList (htmlString) {
-    const wikiLinks = []
-    const linkNodes = htmlString.querySelectorAll('a')
-    linkNodes.forEach((linkNode) => {
-      if (linkNode.href.includes('wikipedia')) {
-        wikiLinks.push(linkNode.href.split('/').slice(-1).toString().replaceAll('_', ' '))
-      }
-    })
-    const filterArray = ['(identifier)','FOOTNOTE','File','#', 'cite_note', '-', '%', 'FOOTNOTES', '.', ':', 'jpg']
-    const filteredWikiLinks = []
-    filterArray.forEach(filter => {
-        wikiLinks.forEach((link) => {
-            
-            if(link.includes(filter)){
-              const linkIndex = wikiLinks.indexOf(link)
-              wikiLinks.splice(linkIndex, 1)
-            }
-        })
-    })
-    filterArray.forEach(filter => {
-      wikiLinks.forEach((link) => {
-          
-          if(link.includes(filter)){
-            const linkIndex = wikiLinks.indexOf(link)
-            wikiLinks.splice(linkIndex, 1)
-          }
-      })
-    })
-
-    wikiLinks.forEach(link =>  link.replace('_', ' ') )
-
-    setLinkList(wikiLinks)
-  }
 
   function focusPage(id) {
     console.log('pages inside focusPages', pages)
@@ -101,19 +76,19 @@ function App() {
       return page.id = id
     })
 
-    const updatedPages = pages.map((page) => {
-      console.log('page.id', page.id)
-      if(page.id > id) {
-        page.isDisplayed = false
-      }
+    // const updatedPages = pages.map((page) => {
+    //   console.log('page.id', page.id)
+    //   if(page.id > id) {
+    //     page.isDisplayed = false
+    //   }
 
-      return page;
-    })
+    //   return page;
+    // })
 
 
-    createLinkList(selectedPage.stringForLinks)
+    // createLinkList(selectedPage.stringForLinks)
     // console.log("updatedPages", updatedPages)
-    setPages(updatedPages)
+    // setPages(updatedPages)
   }
   
 

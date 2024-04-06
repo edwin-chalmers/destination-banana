@@ -5,6 +5,8 @@ export default function PagesContainer({ pages, focusPage }) {
 
     // const filteredPages = pages.filter(page => page.isCurrent === true)
     // console.log('FP look here', filteredPages)
+
+    console.log(pages)
     const pagesDisplay = pages.map((page) => {
         return (
             <WikiPage
