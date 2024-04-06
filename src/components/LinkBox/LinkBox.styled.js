@@ -24,6 +24,7 @@ export const StyledLinkContainer = styled.div`
       cursor: pointer;
       text-decoration: underline;
       color: rgb(53,98,201);
+      font-weight: bold;
       
       /* &::after {
         content: '->';

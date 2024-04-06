@@ -21,7 +21,15 @@ export const WikiPageContainer = styled.div`
         font-size: x-large;
     }
 
-    box-Third-party {
+    a {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        text-decoration: none;
+        color: rgb(53,98,201);
+        pointer-events: none;
+    }
+
+    .metadata {
         display: none;
     }
 `

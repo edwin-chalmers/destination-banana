@@ -6,6 +6,8 @@ import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
+import { StyledHeader } from './HomePage.styled';
+import wikilinkslogo from '../../assets/wikilinks-logo.png'
 
 function HomePage({}) {
 
@@ -27,6 +29,7 @@ function HomePage({}) {
       } else {
         updatePages(endpointAPI)
       }
+
     }, [])
   
     function updatePages(endpointText) {
@@ -47,12 +50,20 @@ function HomePage({}) {
         setPages((prev) => {
           const updatedPages = prev.map((page) => {
             page.isCurrent = false
-  
+            
             return page
           })
           
           return [...updatedPages, newPage]
         })
+      })
+    }
+
+    function cleanupHTML() {
+      document.querySelectorAll('img').forEach((img) => {
+        if(img.src.includes('Red_pog')){
+            img.remove()
+        }
       })
     }
   
@@ -98,21 +109,25 @@ function HomePage({}) {
   
         return page;
       })
-   
+      cleanupHTML()
       createLinkList(selectedPage.stringForLinks)
       setPages(updatedPages)
     }
 
     return (
-        <>
-            <Toolbar focusPage={focusPage}/>
-            <main>
-                <LinkBox linkList={linkList} updatePages={updatePages}/>
-                <PagesContainer pages={pages} focusPage={focusPage} />
-            </main>
-        </>
+      <>
+        <StyledHeader >
+          {/* {wikilinkslogo} */}
+          <h1>WikiLinks</h1>
+        </StyledHeader>
+        <Toolbar focusPage={focusPage}/>
+        <main>
+          <LinkBox linkList={linkList} updatePages={updatePages}/>
+          <PagesContainer pages={pages} focusPage={focusPage} />
+        </main>
+      </>
     )
-
+    
 }
 
 export { HomePage }
