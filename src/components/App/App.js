@@ -67,12 +67,9 @@ function App() {
   }
 
   function focusPage(id) {
-    console.log('pages inside focusPages', pages)
-    console.log('id', id)
     let selectedPage;
 
     if(!id) {
-      console.log('here now')
       const currentPage = pages.find(page => page.isCurrent)
       const previousPage = pages.reduce((prevPage, page) => {
         if(page.id < currentPage.id && page.isDisplayed) {
@@ -89,8 +86,6 @@ function App() {
           })
       }
 
-      console.log('selectedPage', selectedPage)
-
     const updatedPages = pages.map((page) => {
       if(page.id > selectedPage.id) {
         page.isDisplayed = false
@@ -102,9 +97,7 @@ function App() {
 
       return page;
     })
-    console.log('updatedPages', updatedPages)
-
-
+ 
     createLinkList(selectedPage.stringForLinks)
     setPages(updatedPages)
   }
