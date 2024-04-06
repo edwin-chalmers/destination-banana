@@ -35,32 +35,36 @@ function App() {
   }, [])
 
   function updatePages(endpointText) {
+    createLinkList(endpointText)
+
+    const parser = new DOMParser()
+    const html = fetchHTML(endpointText).then(html => {
+      const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
+      const parsedHTML = parse(htmlFilter)
+      const newPage = {
+        id: Date.now(),
+        stringForDOM: parsedHTML,
+        isCurrent: true,
+        isDisplayed: true,
+        title: endpointText
+      }
+      setPages(prev => [...prev, newPage])
+      
+      })
+  }
+
+
+  function createLinkList(endpointText) {
     let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
     let filteredWikiLinks
-      fetchPage(endpointText).then(linksArray => {
-        filteredWikiLinks = linksArray.filter(link => {
-          return !charactersToRemove.some(character => link.title.includes(character));
-        })
-        setLinkList(filteredWikiLinks)
-
+    fetchPage(endpointText).then(linksArray => {
+      filteredWikiLinks = linksArray.filter(link => {
+        return !charactersToRemove.some(character => link.title.includes(character));
       })
-
-      const parser = new DOMParser()
-      
-      const html = fetchHTML(endpointText).then(html => {
-        const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
-        const parsedHTML = parse(htmlFilter)
-        const newPage = {
-          id: Date.now(),
-          stringForDOM: parsedHTML,
-          isCurrent: true,
-          isDisplayed: true,
-          title: endpointText
-        }
-        setPages(prev => [...prev, newPage])
-        
-        })
+      setLinkList(filteredWikiLinks)
+    })
   }
+
 
   // useEffect(() => {
   //   if(pages.stringForLinks) {
@@ -73,22 +77,22 @@ function App() {
     console.log('pages inside focusPages', pages)
     console.log('id', id)
     const selectedPage = pages.find((page) => {
-      return page.id = id
+      return page.id === id
     })
 
-    // const updatedPages = pages.map((page) => {
-    //   console.log('page.id', page.id)
-    //   if(page.id > id) {
-    //     page.isDisplayed = false
-    //   }
+    const updatedPages = pages.map((page) => {
+      if(page.id > id) {
+        page.isDisplayed = false
+        return page
+      }
 
-    //   return page;
-    // })
+      return page;
+    })
+    console.log('updatedPages', updatedPages)
 
 
-    // createLinkList(selectedPage.stringForLinks)
-    // console.log("updatedPages", updatedPages)
-    // setPages(updatedPages)
+    createLinkList(selectedPage.stringForLinks)
+    setPages(updatedPages)
   }
   
 
