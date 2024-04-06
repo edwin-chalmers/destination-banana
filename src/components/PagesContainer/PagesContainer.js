@@ -1,5 +1,6 @@
 import WikiPage from '../WikiPage/WikiPage'
 import './PagesContainer.css'
+import { StyledPagesContainer } from './PagesContainer.styled'
 
 export default function PagesContainer({ pages, focusPage }) {
 
@@ -23,8 +24,14 @@ export default function PagesContainer({ pages, focusPage }) {
     })
 
     return (
-        <div className="pages-container">
+        <StyledPagesContainer>
             {pagesDisplay}
-        </div>
+        </StyledPagesContainer>
     )
+
+    // return (
+    //     <div className="pages-container">
+    //         {pagesDisplay}
+    //     </div>
+    // )
 }

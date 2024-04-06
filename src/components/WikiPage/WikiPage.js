@@ -1,18 +1,22 @@
 import './WikiPage.css'
 import LinkIcon from '../LinkIcon/LinkIcon'
+import styled from 'styled-components'
+import { InfoBox, WikiPageContainer } from './WikiPage.styled'
 
 export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
     console.log('id on creation', id)
 
     return isDisplayed && (
-        <div className="wiki-page">
+        <WikiPageContainer >
             <LinkIcon id={id} focusPage={focusPage} />
-            {/* <img src={linkIcon} alt="chain link icon" onClick={() => focusPage(id)} /> */}
             {stringForDOM}
-        </div>
+        </WikiPageContainer>
     )
+
+    // return isDisplayed && (
+    //     <div className="wiki-page">
+    //         <LinkIcon id={id} focusPage={focusPage} />
+    //         {stringForDOM}
+    //     </div>
+    // )
 }
-
-
-//   <div className="wiki-page" onClick={() => {
-//     removePage(id)
