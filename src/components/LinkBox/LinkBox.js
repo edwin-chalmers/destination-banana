@@ -1,4 +1,5 @@
 import './LinkBox.css'
+import { StyledLinkContainer } from './LinkBox.styled'
 
 export default function LinkBox( {linkList, updatePages} ) {
     let keyTicker = 0
@@ -9,15 +10,15 @@ export default function LinkBox( {linkList, updatePages} ) {
     
     const linkTails = linkList.map((link) => {
         keyTicker += 1;
-        return <a key={keyTicker} onClick={(event) => {
-            event.preventDefault()
-            handleClick(event)
-        }} href={link.url}>{link.title}</a>
+        return<a key={keyTicker} onClick={(event) => {
+                event.preventDefault()
+                handleClick(event)
+            }} href={link.url}>{link.title}</a>
     })
 
     return (
-        <div className='link-container'>
+        <StyledLinkContainer>
             {linkTails}
-        </div>
+        </StyledLinkContainer>
     )
 }
