@@ -1,10 +1,7 @@
-// LinkBox.js (or wherever your LinkBox component is defined)
-
-import React from 'react';
 import styled from 'styled-components';
 
 // Styled components
-const LinkContainer = styled.div`
+export const StyledLinkContainer = styled.div`
   background: white;
   max-width: 322px;
   text-align: center;
@@ -13,30 +10,26 @@ const LinkContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   min-width: 322px;
+  height: 100vh;
+  overflow: scroll;
+  margin-top: 5px;
 
-  p {
+  a {
     margin-top: 1px;
     margin-bottom: 1px;
-    color: rgb(53,98,201);
+    text-decoration: none;
+    color: black;
     
     &:hover {
       cursor: pointer;
+      text-decoration: underline;
+      color: rgb(53,98,201);
+      
+      /* &::after {
+        content: '->';
+      } */
     }
   }
 `;
 
-// Assuming LinkBox is something like this:
-const LinkBox = ({ linkList, updatePages }) => {
-  return (
-    <LinkContainer>
-      {/* Assuming you're rendering links here */}
-      {linkList.map((link, index) => (
-        <p key={index} onClick={() => updatePages(link)}>
-          {link.name} {/* Example property */}
-        </p>
-      ))}
-    </LinkContainer>
-  );
-};
 
-export default LinkBox;

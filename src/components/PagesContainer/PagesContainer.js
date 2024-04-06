@@ -15,7 +15,7 @@ export default function PagesContainer({ pages, focusPage }) {
                 stringForDOM={page.stringForDOM}
                 isCurrent={true}
                 isDisplayed={true}
-                title={page.endpoint}
+                title={page.title}
                 focusPage={focusPage}
             />
         )
@@ -26,10 +26,4 @@ export default function PagesContainer({ pages, focusPage }) {
             {pagesDisplay}
         </StyledPagesContainer>
     )
-
-    // return (
-    //     <div className="pages-container">
-    //         {pagesDisplay}
-    //     </div>
-    // )
 }

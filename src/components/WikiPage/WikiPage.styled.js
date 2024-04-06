@@ -2,16 +2,27 @@ import styled from 'styled-components';
 
 export const WikiPageContainer = styled.div`
     width: 300px;
-    height: 500px;
+    height: 88vh;
     border: 1px solid black;
-    padding: 10px;
+    padding: 25px;
     overflow: hidden;
     margin: 20px;
     min-width: 300px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    
+    h3 {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        margin: 0 0 20px 0;
+        text-align: center;
+        font-size: x-large;
+    }
 
-    & body {
-        scale: 0.75;
+    box-Third-party {
+        display: none;
     }
 `
 

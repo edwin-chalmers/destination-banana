@@ -22,6 +22,7 @@ function HomePage({}) {
         }).then(data => {
           endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
           updatePages(endpointAPI)
+          
         })
       } else {
         updatePages(endpointAPI)
@@ -33,7 +34,7 @@ function HomePage({}) {
   
       const parser = new DOMParser()
       fetchHTML(endpointText).then(html => {
-        const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body').outerHTML
+        const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
         const parsedHTML = parse(htmlFilter)
         const newPage = {
           id: nextId,

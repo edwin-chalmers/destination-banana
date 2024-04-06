@@ -1,4 +1,5 @@
 import './LinkBox.css'
+import { StyledLinkContainer } from './LinkBox.styled'
 
 export default function LinkBox( {linkList, updatePages} ) {
     let keyTicker = 0
@@ -16,8 +17,8 @@ export default function LinkBox( {linkList, updatePages} ) {
     })
 
     return (
-        <div className='link-container'>
+        <StyledLinkContainer>
             {linkTails}
-        </div>
+        </StyledLinkContainer>
     )
 }
