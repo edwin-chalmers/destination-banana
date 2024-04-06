@@ -1,13 +1,15 @@
 import './LinkBox.css'
 
 export default function LinkBox( {linkList, updatePages} ) {
-    // const nowKey = Date.now()
+    let keyTicker = 0
+
     function handleClick(event) {
         updatePages(event.target.textContent)
     }
     
     const linkTails = linkList.map((link) => {
-        return <a onClick={(event) => {
+        keyTicker += 1;
+        return <a key={keyTicker} onClick={(event) => {
             event.preventDefault()
             handleClick(event)
         }} href={link.url}>{link.title}</a>
