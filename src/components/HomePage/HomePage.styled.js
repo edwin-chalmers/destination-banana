@@ -5,4 +5,8 @@ export const StyledHeader = styled.header`
     justify-content: center;
     flex-direction: row;
 
+    img{
+        width: 270px;
+    }
+
 `

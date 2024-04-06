@@ -10,10 +10,10 @@ export default function LinkBox( {linkList, updatePages} ) {
     
     const linkTails = linkList.map((link) => {
         keyTicker += 1;
-        return <a key={keyTicker} onClick={(event) => {
-            event.preventDefault()
-            handleClick(event)
-        }} href={link.url}>{link.title}</a>
+        return<a key={keyTicker} onClick={(event) => {
+                event.preventDefault()
+                handleClick(event)
+            }} href={link.url}>{link.title}</a>
     })
 
     return (

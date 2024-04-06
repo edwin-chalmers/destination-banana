@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
 import { StyledHeader } from './HomePage.styled';
-import wikilinkslogo from '../../assets/wikilinks-logo.png'
 
 function HomePage({}) {
 
@@ -117,13 +116,16 @@ function HomePage({}) {
     return (
       <>
         <StyledHeader >
-          {/* {wikilinkslogo} */}
-          <h1>WikiLinks</h1>
+          <img src='/assets/wikilinks-logo.svg' className='siteLogo' alt='wikiLinks site logo'/>
         </StyledHeader>
         <Toolbar focusPage={focusPage}/>
-        <main>
-          <LinkBox linkList={linkList} updatePages={updatePages}/>
-          <PagesContainer pages={pages} focusPage={focusPage} />
+        <main id='mainContent'>
+          <div>
+            <LinkBox linkList={linkList} updatePages={updatePages}/>
+          </div>
+          <div id='pages'>
+            <PagesContainer pages={pages} focusPage={focusPage} />
+          </div>
         </main>
       </>
     )
