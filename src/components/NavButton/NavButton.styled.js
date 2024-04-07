@@ -12,19 +12,7 @@ export const StyledNavButton = styled.div`
 
     ${centerElements};
     flex-direction: column;
-
-    &:hover {
-
-        p {
-            color: var(--hover-color);
-            cursor: pointer;
-        }
-
-        div {
-            cursor: pointer;
-            background-color: var(--hover-color);
-        }
-    }
+    margin: 0 10px 0 10px;
     
     div {
         width: 40px;
@@ -44,6 +32,19 @@ export const StyledNavButton = styled.div`
         font-weight: bold;
         font-size: small;
     }
+    
+        &:hover {
+    
+            p {
+                color: var(--hover-color);
+                cursor: pointer;
+            }
+    
+            div {
+                cursor: pointer;
+                background-color: var(--hover-color);
+            }
+        }
 `
 
 const boxMixin = (size = '100px', backgroundColor = 'lightblue') => `
@@ -54,4 +55,14 @@ const boxMixin = (size = '100px', backgroundColor = 'lightblue') => `
   justify-content: center;
   align-items: center;
   margin: 10px;
-`;
+`
+
+const Box = styled.div`
+  ${boxMixin('150px', 'tomato')};
+  border: 2px solid black;
+`
+
+const AnotherBox = styled.div`
+  ${boxMixin('200px', 'peachpuff')};
+  border-radius: 10px;
+`

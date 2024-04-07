@@ -1,13 +1,13 @@
 import { StyledNavButton } from './NavButton.styled'
 
-export default function NavButton() {
+export default function NavButton({ buttonText, buttonImage }) {
 
     return (
         <>
         <StyledNavButton>
-            <p>back</p>
+            <p>{buttonText}</p>
             <div>
-                <img src='/assets/history_white_48dp.svg' alt='undo icon'/>
+                <img src={buttonImage} alt='undo icon'/>
             </div>
         </StyledNavButton>
         </>
