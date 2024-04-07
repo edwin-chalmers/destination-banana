@@ -5,7 +5,7 @@ import { useRef } from 'react'
 
 export default function LinkBox( {linkList, updatePages} ) {
     const linksRef = useRef()
-    gsap.fromTo(linksRef.current, {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
+    // gsap.fromTo(linksRef.current, {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
 
 
     let keyTicker = 0

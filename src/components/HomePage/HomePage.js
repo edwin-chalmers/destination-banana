@@ -38,13 +38,16 @@ function HomePage({}) {
 
     }, [])
 
-    // gsap.config({trialWarn: false})
-    //       // gsap.to('#links-container', {duration:1, width: "200px"})
-    // function animateLoad() {
-    //   let tl = gsap.timeline()
-    //   tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
-    //   tl.from('#page-container', {left: '-300'}, {duration: 1, left: '0'}, '+=1')
-    // }
+    
+    gsap.config({trialWarn: false})
+          // gsap.to('#links-container', {duration:1, width: "200px"})
+    function animateLoad() {
+      if(pages.length === 0) {
+        let tl = gsap.timeline()
+        tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
+        // tl.from('#page-container', {left: '-300'}, {duration: 1, left: '0'}, '+=1')
+      }
+    }
 
   //   gsap.config({trialWarn: false})
   //   // gsap.to('#links-container', {duration:1, width: "200px"})
@@ -54,9 +57,30 @@ function HomePage({}) {
   //     tl.from('#page-container', {left: '-300'}, {duration: 1, left: '0'}, '+=1')
   // }
 
+  function animatePages(ref) {
+    if(pages.length === 1) {
+      let tl = gsap.timeline()
+      tl.fromTo(ref.current, {opacity: 0}, {duration: .2, delay: .5, opacity: 1})
+      tl.fromTo(ref.current, {x: '-500'}, {duration: 1, x: '0'})
+    // } else {
+      // gsap.to(ref.current, {x: '+=500'}, {duration: 1, left: '0'})
+    }
+  }
+
+  function slidePage(ref) {
+    if(pages.length === 1) {
+      // let tl = gsap.timeline()
+      // tl.fromTo(ref.current, {opacity: 0}, {duration: .5, delay: .5, opacity: 1})
+      
+    } else {
+      gsap.fromTo(ref.current, {x: '-318'}, {duration: 1, x: '0'})
+      // gsap.to(ref.current, {x: '+=500'}, {duration: 1, left: '0'})
+    }
+  }
+
   
     function updatePages(endpointText) {
-      createLinkList(endpointText)
+      // createLinkList(endpointText)
       const parser = new DOMParser()
       fetchHTML(endpointText).then(html => {
         const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
@@ -78,7 +102,8 @@ function HomePage({}) {
           
           return [...updatedPages, newPage]
         })
-        // animateLoad();
+        animateLoad();
+        createLinkList(endpointText)
 
       })
     }
@@ -146,7 +171,7 @@ function HomePage({}) {
         <Toolbar focusPage={focusPage}/>
         <main id='mainContent'>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
-            <PagesContainer pages={pages} focusPage={focusPage} />
+            <PagesContainer pages={pages} focusPage={focusPage} animatePages={animatePages} slidePage={slidePage}/>
         </main>
       </>
     )

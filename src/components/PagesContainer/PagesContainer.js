@@ -4,7 +4,7 @@ import { StyledPagesContainer } from './PagesContainer.styled'
 import { gsap } from 'gsap';
 import { useRef } from 'react'
 
-export default function PagesContainer({ pages, focusPage }) {
+export default function PagesContainer({ pages, focusPage, animatePages, slidePage }) {
 
     // Draggable.create("#pages", {
     //     type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
@@ -15,9 +15,8 @@ export default function PagesContainer({ pages, focusPage }) {
     //   });
 
     const pagesRef = useRef()
-    let tl = gsap.timeline()
-    tl.fromTo(pagesRef.current, {opacity: 0}, {duration: .5, delay: .5, opacity: 1})
-    tl.fromTo(pagesRef.current, {left: '-500'}, {duration: 1, left: '0'})
+    animatePages(pagesRef)
+
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
@@ -33,12 +32,13 @@ export default function PagesContainer({ pages, focusPage }) {
                     isDisplayed={true}
                     title={page.title}
                     focusPage={focusPage}
+                    slidePage={slidePage}
                 />
         )
     })
 
     return (
-        <StyledPagesContainer ref={pagesRef} id="page-container">
+        <StyledPagesContainer ref={pagesRef}>
             {pagesDisplay}
         </StyledPagesContainer>
     )
