@@ -16,7 +16,7 @@ import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 
 gsap.registerPlugin(Draggable, InertiaPlugin);
 
-function HomePage({}) {
+function HomePage() {
 
     const [pages, setPages] = useState([])
     const [linkList, setLinkList] = useState([])
@@ -36,7 +36,7 @@ function HomePage({}) {
 
           gsap.config({trialWarn: false})
           // gsap.to('#links-container', {duration:1, width: "200px"})
-          let tl = gsap.timeline({repeat: 3})
+          let tl = gsap.timeline()
           tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
           tl.fromTo('#pages-container', {left: '-300'}, {duration: 1, left: '0'}, 1);
       
@@ -138,7 +138,7 @@ function HomePage({}) {
         {/* <StyledHeader >
           <img src='/assets/wikilinks-logo.svg' className='siteLogo' alt='wikiLinks site logo'/>
         </StyledHeader> */}
-        <Toolbar focusPage={focusPage}/>
+        <Toolbar pages={pages} focusPage={focusPage}/>
         <main id='mainContent'>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
             <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 export const StyledToolbar = styled.nav`
     background-color: rgba(0,0,0,0);
     display: flex;
@@ -32,4 +34,8 @@ export const NavButton = styled.div`
     img {
         width: 30px;
     }
+`
+
+export const StyledEndpoint = styled.div`
+    padding: 1px;
 `

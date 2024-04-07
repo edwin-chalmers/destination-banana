@@ -18,6 +18,7 @@ export default function LinkBox( {linkList, updatePages} ) {
 
     return (
         <StyledLinkContainer id="links-container">
+            <h1>Links</h1>
             {linkTails}
         </StyledLinkContainer>
     )
