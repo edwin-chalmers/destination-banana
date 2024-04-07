@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
+import Win from '../Win/Win'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
@@ -21,10 +22,14 @@ function HomePage() {
     const [pages, setPages] = useState([])
     const [linkList, setLinkList] = useState([])
     const [nextId, setNextId] = useState(1)
+    const [targetTitle, setTargetTitle] = useState('banana')
+    const [win, setWin] = useState(false)
   
   
     useEffect(() => {
       let endpointAPI
+
+      // ** RANDOM START TOPIC **//
       if(!endpointAPI){
         fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
           return rando.json()
@@ -32,6 +37,12 @@ function HomePage() {
           endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
           updatePages(endpointAPI)
 
+      // if(!endpointAPI){
+      //   fetch('https://en.wikipedia.org/w/rest.php/v1/page/Musa_(genus)/title').then(rando => {
+      //     return rando.json()
+      //   }).then(data => {
+      //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+      //     updatePages(endpointAPI)
 
 
           gsap.config({trialWarn: false})
@@ -41,9 +52,6 @@ function HomePage() {
           tl.fromTo('#pages-container', {left: '-300'}, {duration: 1, left: '0'}, 1);
       
           // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
-          
-
-
         })
       } else {
         updatePages(endpointAPI)
@@ -96,6 +104,22 @@ function HomePage() {
         setLinkList(filteredWikiLinks)
       })
     }
+
+    function checkForWin(text) {
+      console.log('text', text)
+      if(text === targetTitle) {
+        handleWin()
+      }
+    }
+
+    function handleWin() {
+      setWin(true)
+    }
+
+    function animateWin(ref) {
+      let tl = gsap.globalTimeline({repeat: 5})
+      tl.to(ref.current, {opacity: 0, delay: 1})
+    }
   
     function focusPage(id) {
       let selectedPage;
@@ -140,7 +164,9 @@ function HomePage() {
         </StyledHeader> */}
         <Toolbar pages={pages} focusPage={focusPage}/>
         <main id='mainContent'>
-            <LinkBox linkList={linkList} updatePages={updatePages}/>
+            <Win animateWin={animateWin}/>
+            { win && <Win animateWin={animateWin}/>}
+            <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages}/>
             <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
         </main>
       </>

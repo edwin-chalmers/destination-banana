@@ -1,6 +1,6 @@
 import './WikiPage.css'
 import LinkIcon from '../LinkIcon/LinkIcon'
-import { WikiPageContainer } from './WikiPage.styled'
+import { WikiPageContainer} from './WikiPage.styled'
 
 export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
 

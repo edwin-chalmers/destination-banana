@@ -18,7 +18,7 @@ export const StyledButton = styled.button`
 `
 
 export const StyledLogo = styled.img`
-    margin: 25px 0 15px 0;
+    margin: 25px 0 15px 20px;
     width: 150px;
 `
 
@@ -38,4 +38,19 @@ export const NavButton = styled.div`
 
 export const StyledEndpoint = styled.div`
     padding: 1px;
+    margin: 0px 20px 0px 20px;
+    text-align: center;
+    
+    h2 {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin-top: 2px;
+    }
+`
+
+export const StyledCounter = styled.p `
+    color: rgb(53, 98, 201);
+    margin-left: 5px;
 `

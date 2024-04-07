@@ -11,7 +11,6 @@ export default function NavButton({ buttonText, buttonImage }) {
             </div>
         </StyledNavButton>
         </>
-        
     )
 
 }

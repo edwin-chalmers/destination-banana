@@ -1,10 +1,11 @@
 import './LinkBox.css'
 import { StyledLinkContainer } from './LinkBox.styled'
 
-export default function LinkBox( {linkList, updatePages} ) {
+export default function LinkBox( {linkList, updatePages, checkForWin} ) {
     let keyTicker = 0
 
     function handleClick(event) {
+        checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
     }
     
