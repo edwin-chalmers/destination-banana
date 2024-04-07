@@ -7,8 +7,21 @@ import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
 import { StyledHeader } from './HomePage.styled';
+import { gsap } from 'gsap';
+import Draggable from 'gsap/Draggable';
+import InertiaPlugin from 'gsap-trial/InertiaPlugin'
+gsap.registerPlugin(Draggable, InertiaPlugin);
+gsap.config({trialWarn: false})
 
 function HomePage({}) {
+
+  // Draggable.create("#pages", {
+  //   type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
+  //   bounds: "#pages", // Specify the ID or class of the container to constrain dragging
+  //   edgeResistance: 0.65, // How much resistance when dragging past the bounds (0-1)
+  //   inertia: true, // Apply inertia to the dragging motion
+  //   zIndexBoost: false
+  // });
 
     const [pages, setPages] = useState([])
     const [linkList, setLinkList] = useState([])
@@ -28,7 +41,7 @@ function HomePage({}) {
       } else {
         updatePages(endpointAPI)
       }
-
+      gsap.fromTo('#links-container', {left: '-318px'}, {duration: 1, left: '0px'});
     }, [])
   
     function updatePages(endpointText) {
@@ -56,6 +69,7 @@ function HomePage({}) {
           return [...updatedPages, newPage]
         })
       })
+      
     }
 
     function cleanupHTML() {
@@ -74,6 +88,7 @@ function HomePage({}) {
           return !charactersToRemove.some(character => link.title.includes(character));
         })
         setLinkList(filteredWikiLinks)
+        gsap.fromTo('#pages-container', {left: '-318px'}, {duration: 1, left: '0px', ease:"bounce"});
       })
     }
   
@@ -120,12 +135,8 @@ function HomePage({}) {
         </StyledHeader>
         <Toolbar focusPage={focusPage}/>
         <main id='mainContent'>
-          <div>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
-          </div>
-          <div id='pages'>
             <PagesContainer pages={pages} focusPage={focusPage} />
-          </div>
         </main>
       </>
     )

@@ -1,19 +1,8 @@
 import WikiPage from '../WikiPage/WikiPage'
 import './PagesContainer.css'
 import { StyledPagesContainer } from './PagesContainer.styled'
-import { gsap } from 'gsap';
-import Draggable from 'gsap/Draggable';
-import InertiaPlugin from 'gsap-trial/InertiaPlugin'
-gsap.registerPlugin(Draggable, InertiaPlugin);
 
 export default function PagesContainer({ pages, focusPage }) {
-
-    Draggable.create("#pages", {
-        type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
-        bounds: "#pages", // Specify the ID or class of the container to constrain dragging
-        edgeResistance: 0.65, // How much resistance when dragging past the bounds (0-1)
-        inertia: true // Apply inertia to the dragging motion
-      });
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
@@ -33,7 +22,7 @@ export default function PagesContainer({ pages, focusPage }) {
     })
 
     return (
-        <StyledPagesContainer>
+        <StyledPagesContainer id='pages-container'>
             {pagesDisplay}
         </StyledPagesContainer>
     )
