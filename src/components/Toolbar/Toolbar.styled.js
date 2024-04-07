@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledToolbar = styled.nav`
-    background-color: black;
+    background-color: rgba(0,0,0,0);
     display: flex;
     justify-content: center;
     padding: 1px;
@@ -9,7 +9,12 @@ export const StyledToolbar = styled.nav`
 
 export const StyledButton = styled.button`
     border: none;
-    background-color: black;
-    color: white;
+    background-color: rgba(0,0,0,0);
+    color: gray;
     font-weight: bold;
+`
+
+export const StyledLogo = styled.img`
+    margin: 15px 0 15px 50px;
+    width: 150px;
 `

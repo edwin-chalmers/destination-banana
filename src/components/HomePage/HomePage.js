@@ -7,6 +7,14 @@ import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
 import { StyledHeader } from './HomePage.styled';
+import { gsap } from 'gsap';
+import Draggable from 'gsap/Draggable';
+import InertiaPlugin from 'gsap-trial/InertiaPlugin'
+// import { useGSAP } from 'gsap'
+
+
+
+gsap.registerPlugin(Draggable, InertiaPlugin);
 
 function HomePage({}) {
 
@@ -23,7 +31,19 @@ function HomePage({}) {
         }).then(data => {
           endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
           updatePages(endpointAPI)
+
+
+
+          gsap.config({trialWarn: false})
+          // gsap.to('#links-container', {duration:1, width: "200px"})
+          let tl = gsap.timeline({repeat: 3})
+          tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
+          tl.fromTo('#pages-container', {left: '-300'}, {duration: 1, left: '0'}, 1);
+      
+          // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
           
+
+
         })
       } else {
         updatePages(endpointAPI)
@@ -115,17 +135,13 @@ function HomePage({}) {
 
     return (
       <>
-        <StyledHeader >
+        {/* <StyledHeader >
           <img src='/assets/wikilinks-logo.svg' className='siteLogo' alt='wikiLinks site logo'/>
-        </StyledHeader>
+        </StyledHeader> */}
         <Toolbar focusPage={focusPage}/>
         <main id='mainContent'>
-          <div>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
-          </div>
-          <div >
-            <PagesContainer id='pages' pages={pages} focusPage={focusPage} />
-          </div>
+            <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
         </main>
       </>
     )

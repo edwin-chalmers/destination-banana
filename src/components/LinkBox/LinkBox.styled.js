@@ -15,7 +15,8 @@ export const StyledLinkContainer = styled.div`
   margin-top: 15px;
   position: relative;
   z-index: 3;
-  
+  scrollbar-color: rgb(53,98,201);
+
   a {
     margin-top: 1px;
     margin-bottom: 1px;
@@ -33,6 +34,6 @@ export const StyledLinkContainer = styled.div`
       } */
     }
   }
-`;
+`
 
 

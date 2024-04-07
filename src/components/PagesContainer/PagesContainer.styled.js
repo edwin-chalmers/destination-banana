@@ -6,7 +6,5 @@ export const StyledPagesContainer = styled.div`
     justify-content: flex-end;
     align-items: flex-start;
     flex-wrap: nowrap;
-    cVRvtc {
-        
-    }
+    position: relative;
 `
