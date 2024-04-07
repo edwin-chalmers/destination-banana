@@ -7,12 +7,12 @@ const centerElements = () => `
 `
 
 export const StyledNavButton = styled.div`
-    --button-color: gray;
+    --button-color: #bababa;
     --hover-color: rgb(53, 98, 201);
 
     ${centerElements};
     flex-direction: column;
-    margin: 0 10px 0 10px;
+    margin: 0 15px 0 15px;
     
     div {
         width: 40px;
@@ -28,7 +28,7 @@ export const StyledNavButton = styled.div`
     
     p {
         margin: 0;
-        color: var(--button-color); 
+        color: rgb(0,0,0,0); 
         font-weight: bold;
         font-size: small;
     }

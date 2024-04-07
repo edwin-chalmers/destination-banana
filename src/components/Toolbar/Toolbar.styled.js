@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
 `
 
 export const StyledLogo = styled.img`
-    margin: 15px 0 15px 50px;
+    margin: 25px 0 15px 0;
     width: 150px;
 `
 
