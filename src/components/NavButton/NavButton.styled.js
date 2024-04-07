@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+// import { accentColor } from '/assets/Global.styled'
 
 const centerElements = () => `
     display: flex;

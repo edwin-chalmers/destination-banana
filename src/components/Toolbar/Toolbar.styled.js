@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-
-
 export const StyledToolbar = styled.nav`
     background-color: rgba(0,0,0,0);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1px;
+    background-color: aquamarine;
 `
 
 export const StyledButton = styled.button`
@@ -22,19 +21,19 @@ export const StyledLogo = styled.img`
     width: 150px;
 `
 
-export const NavButton = styled.div`
-    width: 40px;
-    height: 40px;
-    background-color: gray;
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// export const NavButton = styled.div`
+//     width: 40px;
+//     height: 40px;
+//     background-color: gray;
+//     border-radius: 3px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
 
-    img {
-        width: 30px;
-    }
-`
+//     img {
+//         width: 30px;
+//     }
+// `
 
 export const StyledEndpoint = styled.div`
     padding: 1px;

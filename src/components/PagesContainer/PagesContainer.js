@@ -30,7 +30,7 @@ export default function PagesContainer({ pages, focusPage }) {
     })
 
     return (
-        <StyledPagesContainer>
+        <StyledPagesContainer id='main-page'>
             {pagesDisplay}
         </StyledPagesContainer>
     )

@@ -8,7 +8,11 @@ export default function Win({ animateWin }){
 
     return (
         <StyledWin ref={winRef}>
-            YOU WIN!!!
+            <div id="win-container">
+                <p>
+                YOU WIN!!!
+                </p>
+            </div>
         </StyledWin>
     )
 }
