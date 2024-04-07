@@ -10,7 +10,7 @@ import { StyledHeader } from './HomePage.styled';
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
-// import { useGSAP } from 'gsap'
+// import { useGSAP } from "@gsap/react";
 
 
 
@@ -31,29 +31,32 @@ function HomePage({}) {
         }).then(data => {
           endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
           updatePages(endpointAPI)
-
-
-
-          gsap.config({trialWarn: false})
-          // gsap.to('#links-container', {duration:1, width: "200px"})
-          let tl = gsap.timeline({repeat: 3})
-          tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
-          tl.fromTo('#pages-container', {left: '-300'}, {duration: 1, left: '0'}, 1);
-      
-          // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
-          
-
-
         })
       } else {
         updatePages(endpointAPI)
       }
 
     }, [])
+
+    // gsap.config({trialWarn: false})
+    //       // gsap.to('#links-container', {duration:1, width: "200px"})
+    // function animateLoad() {
+    //   let tl = gsap.timeline()
+    //   tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
+    //   tl.from('#page-container', {left: '-300'}, {duration: 1, left: '0'}, '+=1')
+    // }
+
+  //   gsap.config({trialWarn: false})
+  //   // gsap.to('#links-container', {duration:1, width: "200px"})
+  //   function animateLoad() {
+  //     let tl = gsap.timeline()
+  //     tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'})
+  //     tl.from('#page-container', {left: '-300'}, {duration: 1, left: '0'}, '+=1')
+  // }
+
   
     function updatePages(endpointText) {
       createLinkList(endpointText)
-  
       const parser = new DOMParser()
       fetchHTML(endpointText).then(html => {
         const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
@@ -75,6 +78,8 @@ function HomePage({}) {
           
           return [...updatedPages, newPage]
         })
+        // animateLoad();
+
       })
     }
 
@@ -141,7 +146,7 @@ function HomePage({}) {
         <Toolbar focusPage={focusPage}/>
         <main id='mainContent'>
             <LinkBox linkList={linkList} updatePages={updatePages}/>
-            <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
+            <PagesContainer pages={pages} focusPage={focusPage} />
         </main>
       </>
     )

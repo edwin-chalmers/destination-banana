@@ -1,6 +1,8 @@
 import WikiPage from '../WikiPage/WikiPage'
 import './PagesContainer.css'
 import { StyledPagesContainer } from './PagesContainer.styled'
+import { gsap } from 'gsap';
+import { useRef } from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
 
@@ -12,25 +14,31 @@ export default function PagesContainer({ pages, focusPage }) {
     //     zIndexBoost: false
     //   });
 
+    const pagesRef = useRef()
+    let tl = gsap.timeline()
+    tl.fromTo(pagesRef.current, {opacity: 0}, {duration: .5, delay: .5, opacity: 1})
+    tl.fromTo(pagesRef.current, {left: '-500'}, {duration: 1, left: '0'})
+
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
     const pagesDisplay = filteredPages.map((page) => {
         return (
-            <WikiPage
-                key={page.id}
-                id={page.id}
-                stringForLinks={page.stringforLinks}
-                stringForDOM={page.stringForDOM}
-                isCurrent={true}
-                isDisplayed={true}
-                title={page.title}
-                focusPage={focusPage}
-            />
+            
+                <WikiPage
+                    key={page.id}
+                    id={page.id}
+                    stringForLinks={page.stringforLinks}
+                    stringForDOM={page.stringForDOM}
+                    isCurrent={true}
+                    isDisplayed={true}
+                    title={page.title}
+                    focusPage={focusPage}
+                />
         )
     })
 
     return (
-        <StyledPagesContainer>
+        <StyledPagesContainer ref={pagesRef} id="page-container">
             {pagesDisplay}
         </StyledPagesContainer>
     )
