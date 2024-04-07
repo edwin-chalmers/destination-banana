@@ -1,3 +1,5 @@
 import styled from 'styled-components'
 
-//    background-image: url('/assets/beach_backdrop1.svg');
+export default StyledHomepage = styled.main `
+       /* background-image: url('/assets/beach_backdrop1.svg'); */
+`

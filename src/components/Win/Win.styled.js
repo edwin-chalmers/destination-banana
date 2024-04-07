@@ -26,6 +26,15 @@ export const StyledWin = styled.div`
         font-size: 100px;
         font-weight: 800;
         color: black;
+        margin: 0;
     }
+
+    img {
+        display: none;
+    }
+
+`
+
+export const NewGameButton = styled.button`
 
 `

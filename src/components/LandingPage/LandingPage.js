@@ -9,7 +9,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin"
 import { MotionPathHelper } from "gsap-trial/dist/MotionPathHelper";
 import { ScrambleTextPlugin } from "gsap-trial/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react/dist";
-import { StyledLandingPage } from './LandingPage.styled';
+
 import {GSDevTools} from "gsap-trial/GSDevTools"
 gsap.registerPlugin(GSDevTools)
 gsap.registerPlugin(Draggable, MotionPathPlugin, MotionPathHelper, InertiaPlugin, useGSAP,DrawSVGPlugin,ScrambleTextPlugin,CustomEase, MotionPathPlugin, DrawSVGPlugin);

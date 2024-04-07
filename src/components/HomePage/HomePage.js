@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import StyledHomepage from './HomePage.styled'
 import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
+
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
@@ -11,7 +13,6 @@ import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
-// import { useGSAP } from 'gsap'
 
 
 
@@ -25,6 +26,7 @@ function HomePage() {
   const [targetTitle, setTargetTitle] = useState('banana')
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
+  const [delayForStats, setDelayForStats] = useState(true)
 
 
   useEffect(() => {
@@ -113,6 +115,7 @@ function HomePage() {
   }
 
   function handleWin() {
+    startOver()
     setWin(true)
   }
 
@@ -147,6 +150,15 @@ function HomePage() {
       },
       delay: "0"
     });
+  }
+
+  function startOver() {
+  //   setTimeOut(() => {setDelayForStats(false)}, 10000)
+  // }
+
+    setTimeout(() => {
+      {setDelayForStats(false)}
+    }, 10000);
   }
 
   function focusPage(id) {
@@ -192,14 +204,16 @@ function HomePage() {
   }
 
   return (
-    <>
-      {win && <Win pages={pages} animateWin={animateWin} />}
+    
+
+    <StyledHomepage>
+      {win && <Win pages={pages} animateWin={animateWin} delayForStats={delayForStats}/>}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <main id='main-content'>
         <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
         <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
       </main>
-    </>
+    </StyledHomepage>
   )
 
 }
