@@ -1,17 +1,17 @@
 import { StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, StyledCounter } from './Toolbar.styled'
 import NavButton from '../NavButton/NavButton'
 
-export default function Toolbar( { focusPage, pages }) {
-            
+
+export default function Toolbar( { focusPage, pages, backClicks }) {
     return (
         <StyledToolbar >
             <StyledEndpoint >
                 <h2>Start Point:</h2>
                 { pages.length > 0 && <p>{pages[0].title}</p> }
             </StyledEndpoint>
-                <NavButton buttonText="back" focusPage={focusPage}/>
+                <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
                 <StyledLogo src='/assets/wikilinks-logo.svg' alt='wikiLinks site logo'/>
-                <StyledCounter >{`[${pages.length}]`}</StyledCounter>
+                <StyledCounter >{`[${pages.length + backClicks}]`}</StyledCounter>
             <StyledEndpoint >
                 <h2>Destination:</h2>
                 <p>🍌 Banana 🍌</p>

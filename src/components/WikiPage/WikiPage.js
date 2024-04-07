@@ -4,8 +4,6 @@ import { WikiPageContainer} from './WikiPage.styled'
 
 export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
 
-    console.log(title)
-
     return isDisplayed && (
         <WikiPageContainer >
             <LinkIcon id={id} focusPage={focusPage} />

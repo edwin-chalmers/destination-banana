@@ -24,8 +24,9 @@ function HomePage() {
   const [nextId, setNextId] = useState(1)
   const [targetTitle, setTargetTitle] = useState('banana')
   const [win, setWin] = useState(false)
-  
-  
+  const [backClicks, setBackClicks] = useState(0)
+
+
   useEffect(() => {
     let endpointAPI
 
@@ -37,7 +38,7 @@ function HomePage() {
     //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
     //     updatePages(endpointAPI)
 
-    if(!endpointAPI){
+    if (!endpointAPI) {
       fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
         return rando.json()
       }).then(data => {
@@ -45,12 +46,12 @@ function HomePage() {
         updatePages(endpointAPI)
 
 
-        gsap.config({trialWarn: false})
+        gsap.config({ trialWarn: false })
         // gsap.to('#links-container', {duration:1, width: "200px"})
         let tl = gsap.timeline()
-        tl.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
-        tl.fromTo('#pages-container', {left: '-300'}, {duration: 1, left: '0'}, 1);
-    
+        tl.fromTo('#links-container', { left: '-300' }, { duration: .75, ease: 'bounce', left: '0' });
+        tl.fromTo('#pages-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
+
         // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
       })
     } else {
@@ -58,7 +59,7 @@ function HomePage() {
     }
 
   }, [])
-  
+
   function updatePages(endpointText) {
     createLinkList(endpointText)
 
@@ -77,10 +78,10 @@ function HomePage() {
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
           page.isCurrent = false
-          
+
           return page
         })
-        
+
         return [...updatedPages, newPage]
       })
     })
@@ -88,117 +89,119 @@ function HomePage() {
 
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {
-      if(img.src.includes('Red_pog')){
-          img.remove()
+      if (img.src.includes('Red_pog')) {
+        img.remove()
       }
     })
   }
-  
-    function createLinkList(endpointText) {
-      let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
-      let filteredWikiLinks
-      fetchPage(endpointText).then(linksArray => {
-        filteredWikiLinks = linksArray.filter(link => {
-          return !charactersToRemove.some(character => link.title.includes(character));
-        })
-        setLinkList(filteredWikiLinks)
+
+  function createLinkList(endpointText) {
+    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
+    let filteredWikiLinks
+    fetchPage(endpointText).then(linksArray => {
+      filteredWikiLinks = linksArray.filter(link => {
+        return !charactersToRemove.some(character => link.title.includes(character));
+      })
+      setLinkList(filteredWikiLinks)
+    })
+  }
+
+  function checkForWin(text) {
+    if (text.toLowerCase() === targetTitle.toLowerCase()) {
+      handleWin()
+    }
+  }
+
+  function handleWin() {
+    setWin(true)
+  }
+
+  function animateWin(ref) {
+    let dots = [],
+      bg = document.getElementById('main-content'),
+      i, dot;
+    for (i = 0; i < 200; i++) {
+      dot = document.createElement("div");
+      dot.setAttribute("class", "dot");
+      bg.appendChild(dot);
+      dot.textContent = "🍌"
+      dots.push(dot);
+    }
+    gsap.set(dots, {
+      scale: "random(2, 10)",
+      x: -2500,
+      y: 800,
+      rotate: "random(0,180)",
+      transform: 'translate(50%, 50%)'
+    });
+
+    let tl = gsap.timeline({ repeat: 100 })
+    tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
+
+    gsap.to(dots, {
+      duration: 8,
+      physics2D: {
+        velocity: "random(200, 1000)",
+        angle: "random(250, 290)",
+        gravity: 500
+      },
+      delay: "0"
+    });
+  }
+
+  function focusPage(id) {
+    setBackClicks((prev) => {
+      const newBacks = prev + 1
+
+      return newBacks
+    })
+
+    let selectedPage;
+
+    if (!id) {
+      const currentPage = pages.find(page => page.isCurrent)
+      const previousPage = pages.reduce((prevPage, page) => {
+        if (page.id < currentPage.id && page.isDisplayed) {
+          prevPage = page
+        }
+
+        return prevPage
+      }, {})
+      
+      selectedPage = previousPage
+    } else {
+      selectedPage = pages.find((page) => {
+        return page.id === id
       })
     }
 
-    function checkForWin(text) {
-      console.log('text', text)
-      if(text.toLowerCase() === targetTitle.toLowerCase()) {
-        handleWin()
-      }
-    }
-
-    function handleWin() {
-      setWin(true)
-    }
-
-    function animateWin(ref) {
-      let dots = [],
-      bg = document.getElementById('main-content'),
-      i, dot;
-      for (i = 0; i < 200; i++) {
-        dot = document.createElement("div");
-        dot.setAttribute("class", "dot");
-        bg.appendChild(dot);
-        dot.textContent = "🍌"
-        dots.push(dot);
-      }
-      gsap.set(dots, {
-        scale: "random(2, 10)",
-        x:-2500,
-        y:800,
-        rotate: "random(0,180)",
-        transform: 'translate(50%, 50%)'
-      });
-
-      let tl = gsap.timeline({repeat: 100})
-      tl.to(ref.current, 0.1, {alpha: 0, delay:1},0).to(ref.current, 0.1, {alpha: 1, delay:0})
-
-      gsap.to(dots, {
-        duration: 8,
-        physics2D: {
-          velocity: "random(200, 1000)",
-          angle: "random(250, 290)",
-          gravity: 500
-        },
-        delay: "0"
-      });
-    }
-  
-    function focusPage(id) {
-      console.log("in here id 0")
-      let selectedPage;
-  
-      if(!id) {
-      
-        const currentPage = pages.find(page => page.isCurrent)
-        const previousPage = pages.reduce((prevPage, page) => {
-          if(page.id < currentPage.id && page.isDisplayed) {
-            prevPage = page
-          }
-  
-          return prevPage
-        }, {})
-  
-          selectedPage = previousPage
-      } else {
-          selectedPage = pages.find((page) => {
-              return page.id === id
-        })
-      }
-  
     const updatedPages = pages.map((page) => {
-      if(page.id > selectedPage.id) {
+      if (page.id > selectedPage.id) {
         page.isDisplayed = false
       }
       page.isCurrent = false
-      if(page.id === selectedPage.id) {
+      if (page.id === selectedPage.id) {
         page.isCurrent = true
       }
 
       return page;
     })
     cleanupHTML()
-    createLinkList(selectedPage.stringForLinks)
+    createLinkList(selectedPage.title)
     setPages(updatedPages)
   }
 
-    return (
-      <>
-        {/* <Win animateWin={animateWin}/> */}
-        { win && <Win animateWin={animateWin}/>}
-        <Toolbar pages={pages} focusPage={focusPage}/>
-        <main id='main-content'>
-          <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages}/>
-          <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
-        </main>
-      </>
-    )
-    
+  return (
+    <>
+      {win && <Win pages={pages} animateWin={animateWin} />}
+      <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
+      <main id='main-content'>
+        <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
+        <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
+      </main>
+    </>
+  )
+
 }
 
 export { HomePage }
