@@ -1,10 +1,11 @@
 import WikiPage from '../WikiPage/WikiPage'
 import { StyledPagesContainer } from './PagesContainer.styled'
-import { gsap } from 'gsap';
+import { gsap } from 'gsap'
+import {useGSAP} from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
 
-    // tl.fromTo('#page-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
+    gsap.fromTo('.page-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
 
     // Draggable.create("#pages", {
     //     type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
@@ -27,6 +28,7 @@ export default function PagesContainer({ pages, focusPage }) {
                 isDisplayed={true}
                 title={page.title}
                 focusPage={focusPage}
+                className='page-container'
             />
         )
     })

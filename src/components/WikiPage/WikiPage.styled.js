@@ -13,6 +13,8 @@ export const WikiPageContainer = styled.div`
     align-items: center;
     padding-top: 5px;
     background-color: white;
+    position: relative;
+    left: -51px;
     
     h3 {
         border-top: 1px solid black;
