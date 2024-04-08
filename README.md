@@ -3,3 +3,4 @@
 `npm install react-router-dom`
 `npm install gsap`
 `npm install gsap-trial`
+`npm install @gsap/react`
