@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(254,255,255,0.8);
+    /* background: linear-gradient(to top, rgba(254,209,0,0), rgba(254,255,255,0.8)); */
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 1px;
-    background-color: aquamarine;
+    padding: 0 20px 0 20px;
+    /* background-color: aquamarine; */
 `
 
 export const StyledButton = styled.button`
@@ -17,8 +18,8 @@ export const StyledButton = styled.button`
 `
 
 export const StyledLogo = styled.img`
-    margin: 25px 0 15px 20px;
-    width: 150px;
+    /* margin: 0 0 0 20px; */
+    width: 300px;
 `
 
 // export const NavButton = styled.div`
@@ -39,17 +40,27 @@ export const StyledEndpoint = styled.div`
     padding: 1px;
     margin: 0px 20px 0px 20px;
     text-align: center;
+    display: flex;
+    align-items: center;
+
     
     h2 {
-        margin-bottom: 0;
+        margin: 0;
+        font-size: large;
     }
 
     p {
-        margin-top: 2px;
+        margin: 0 0 0 10px;
     }
 `
 
 export const StyledCounter = styled.p `
     color: rgb(53, 98, 201);
     margin-left: 5px;
+    display: flex;
+
+    h2 {
+        margin: 0;
+        color: black;
+    }
 `

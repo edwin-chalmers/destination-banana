@@ -11,11 +11,12 @@ function App() {
 
   return (
     <>
+      <Error />
       <Routes>
+        <Route path='/Error' element={<Error />} />
         <Route path='/' element={<LandingPage />} />
         <Route path='/HomePage' element={<HomePage />} />
         <Route path='/Stats' element={<Stats />} />
-        <Route path='/Error' element={<Error />} />
       </Routes>
     </>
 

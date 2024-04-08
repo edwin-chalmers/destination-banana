@@ -17,8 +17,8 @@ export default function NavButton({ buttonText, focusPage, pages, setClickCount 
                     && focusPage(0) 
 
             }}>
-                <p>{buttonText}</p>
                 <div>
+                    <p>Back</p>
                     <img src="/assets/future_white_48dp.svg" alt='undo icon'/>
                 </div>
             </StyledNavButton>
