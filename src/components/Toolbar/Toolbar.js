@@ -20,7 +20,7 @@ export default function Toolbar( { focusPage, pages, backClicks }) {
     )
 }
 
-Win.propTypes = {
+Toolbar.propTypes = {
     pages: PropTypes.shape({
        id: PropTypes.number.isRequired,
        isCurrent: PropTypes.bool.isRequired,
