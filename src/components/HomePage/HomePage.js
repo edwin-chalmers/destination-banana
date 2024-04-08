@@ -12,13 +12,14 @@ import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
 import { StyledHomepage } from './HomePage.styled'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 // import { useGSAP } from 'gsap'
 
 
 
 gsap.registerPlugin(Draggable, InertiaPlugin, Physics2DPlugin);
 
-function HomePage() {
+function HomePage({setError}) {
 
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
@@ -26,6 +27,7 @@ function HomePage() {
   const [targetTitle, setTargetTitle] = useState('banana')
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -48,26 +50,36 @@ function HomePage() {
 
 
         gsap.config({ trialWarn: false })
-        // gsap.to('#links-container', {duration:1, width: "200px"})
         let tl = gsap.timeline()
-        tl.fromTo('#links-container', { left: '-300' }, { duration: .75, ease: 'bounce', left: '0' });
-        tl.fromTo('#pages-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
+        tl.fromTo('#links-container', { left: '-300' }, { duration: 1, ease: 'bounce', left: '0' });
+        
 
         // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
-      })
+      }).catch(error => handleError(error))
     } else {
       updatePages(endpointAPI)
     }
 
   }, [])
+  
+  function handleError(error) {
+    console.log(error)
+    navigate('/error')
+  }
 
   function updatePages(endpointText) {
     createLinkList(endpointText)
-    console.log('endpointText', endpointText)
+
+    let htmlFilter
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
-      const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+      // html =''
+      if(!html){
+        throw new Error('Error fetching HTML')
+      }
+
+      htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
 
       const parsedHTML = parse(htmlFilter)
       const newPage = {
@@ -87,8 +99,9 @@ function HomePage() {
 
         return [...updatedPages, newPage]
       })
-    })
+    }).catch(error => handleError(error))
   }
+
 
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {
@@ -201,8 +214,8 @@ function HomePage() {
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <main id='main-content'>
-        <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
-        <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
+        <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
+        <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
       </main>
     </StyledHomepage>
   )

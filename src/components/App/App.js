@@ -5,17 +5,20 @@ import {HomePage} from '../HomePage/HomePage'
 import {Stats} from '../Stats/Stats'
 import {Error} from '../Error/Error'
 import {Route, Routes} from 'react-router-dom'
+import { useState } from 'react';
 
 
 function App() {
 
+  const [error, setError] = useState(false)
+
   return (
     <>
-      <Error />
+      {/* <Error /> */}
       <Routes>
         <Route path='/Error' element={<Error />} />
         <Route path='/' element={<LandingPage />} />
-        <Route path='/HomePage' element={<HomePage />} />
+        <Route path='/HomePage' element={<HomePage setError={setError}/>} />
         <Route path='/Stats' element={<Stats />} />
       </Routes>
     </>
