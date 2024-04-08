@@ -1,7 +1,10 @@
 import WikiPage from '../WikiPage/WikiPage'
 import { StyledPagesContainer } from './PagesContainer.styled'
+import { gsap } from 'gsap';
 
 export default function PagesContainer({ pages, focusPage }) {
+
+    // tl.fromTo('#page-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
 
     // Draggable.create("#pages", {
     //     type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
@@ -15,7 +18,7 @@ export default function PagesContainer({ pages, focusPage }) {
 
     const pagesDisplay = filteredPages.map((page) => {
         return (
-            <WikiPage
+            <WikiPage 
                 key={page.id}
                 id={page.id}
                 stringForLinks={page.stringforLinks}

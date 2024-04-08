@@ -1,5 +1,5 @@
 import { StyledError } from "./Error.styled"
-import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 function Error() {
 
@@ -7,12 +7,13 @@ function Error() {
 
         <StyledError>
                 <h1>Error🍌404</h1>
-                <h2>Destation not banana</h2>
+                <h2>Destination not banana</h2>
                 <p>The address could be misstyped or the page has been moved.</p>
+                <Link id='goHome' to='/'>Go Home</Link>
         </StyledError>
 
     )
-
+    
 }
 
 export {Error}
