@@ -22,16 +22,20 @@ export const StyledLinkContainer = styled.div`
     margin-bottom: 1px;
     text-decoration: none;
     color: black;
+
+    &::before {
+        content: '*';
+      }
+      
+      &::after {
+        content: '*';
+      }
     
     &:hover {
       cursor: pointer;
       text-decoration: underline;
       color: rgb(53,98,201);
       font-weight: bold;
-      
-      /* &::after {
-        content: '->';
-      } */
     }
   }
 `

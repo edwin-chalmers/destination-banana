@@ -1,12 +1,13 @@
+import { LinkButton } from "./LinkIcon.styled"
+
 
 function LinkIcon({ id, focusPage }) {
     return (
-        <div onClick={() => {
-            console.log('id in click', id)
+        <LinkButton onClick={() => {
             focusPage(id)
         }}>
             <img src='/assets/link-icon.svg' alt='time travel link icon'/>
-        </div>
+        </LinkButton>
     )
 }
 
