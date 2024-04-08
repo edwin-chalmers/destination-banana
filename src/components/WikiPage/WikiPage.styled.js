@@ -12,6 +12,7 @@ export const WikiPageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding-top: 5px;
+    background-color: white;
     
     h3 {
         border-top: 1px solid black;

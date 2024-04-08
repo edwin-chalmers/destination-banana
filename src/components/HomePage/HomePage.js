@@ -11,6 +11,7 @@ import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
+import { StyledHomepage } from './HomePage.styled'
 // import { useGSAP } from 'gsap'
 
 
@@ -196,14 +197,14 @@ function HomePage() {
   console.log('pages', pages)
 
   return (
-    <>
+    <StyledHomepage>
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <main id='main-content'>
         <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
         <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
       </main>
-    </>
+    </StyledHomepage>
   )
 
 }
