@@ -1,6 +1,6 @@
 import { StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, StyledCounter } from './Toolbar.styled'
 import NavButton from '../NavButton/NavButton'
-
+import PropTypes from 'prop-types'
 
 export default function Toolbar( { focusPage, pages, backClicks }) {
     return (
@@ -16,11 +16,17 @@ export default function Toolbar( { focusPage, pages, backClicks }) {
                 <h2>Destination:</h2>
                 <p>🍌 Banana 🍌</p>
             </StyledEndpoint>
-            {/* <NavButton >
-                <img src='/assets/history_white_48dp.svg' alt='undo icon'/>
-            </NavButton> */}
-            {/* <img src='/assets/undo_white.svg' className='undo-icon' alt='undo icon'/>
-            <StyledButton onClick={() => {focusPage(0)}}>back</StyledButton> */}
         </StyledToolbar>
     )
+}
+
+Win.propTypes = {
+    pages: PropTypes.shape({
+       id: PropTypes.number.isRequired,
+       isCurrent: PropTypes.bool.isRequired,
+       isDisplayed: PropTypes.bool.isRequired,
+       stringForDOM: PropTypes.object.isRequired,
+       title: PropTypes.string.isRequired
+    }).isRequired,
+    animateWin: PropTypes.func.isRequired
 }
