@@ -26,7 +26,7 @@ export default function NavButton({ buttonText, focusPage, pages, setClickCount 
     )
 }
 
-Win.propTypes = {
+NavButton.propTypes = {
     NavButton: PropTypes.shape({
        id: PropTypes.number.isRequired,
        isCurrent: PropTypes.bool.isRequired,

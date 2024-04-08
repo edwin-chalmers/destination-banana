@@ -25,7 +25,7 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
     )
 }
 
-Win.propTypes = {
+LinkBox.propTypes = {
     linkList: PropTypes.array.isRequired,
     updatePages: PropTypes.func.isRequired,
     checkForWin: PropTypes.func.isRequired,

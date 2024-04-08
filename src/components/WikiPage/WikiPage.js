@@ -1,5 +1,6 @@
 import LinkIcon from '../LinkIcon/LinkIcon'
 import { WikiPageContainer} from './WikiPage.styled'
+import PropTypes from 'prop-types'
 
 export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, title, focusPage }) {
 

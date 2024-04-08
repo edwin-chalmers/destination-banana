@@ -11,6 +11,7 @@ import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
+import { StyledHomepage } from './HomePage.styled'
 // import { useGSAP } from 'gsap'
 
 
@@ -62,10 +63,12 @@ function HomePage() {
 
   function updatePages(endpointText) {
     createLinkList(endpointText)
+    console.log('endpointText', endpointText)
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
       const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+
       const parsedHTML = parse(htmlFilter)
       const newPage = {
         id: nextId,
@@ -194,14 +197,14 @@ function HomePage() {
   console.log('pages', pages)
 
   return (
-    <>
+    <StyledHomepage>
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <main id='main-content'>
         <LinkBox linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
         <PagesContainer id="pages-container" pages={pages} focusPage={focusPage} />
       </main>
-    </>
+    </StyledHomepage>
   )
 
 }
