@@ -8,42 +8,45 @@ const centerElements = () => `
 `
 
 export const StyledNavButton = styled.div`
+    --transparent: rgba(0,0,0,0)
     --button-color: #bababa;
-    --hover-color: rgb(53, 98, 201);
+    --hover-color: rgb(254, 209, 0);
 
     ${centerElements};
     flex-direction: column;
     margin: 0 15px 0 15px;
     
     div {
-        width: 40px;
+        width: 120px;
         height: 40px;
-        background-color: var(--button-color);
+        background-color: var(--transparent);
+        border: 2px solid rgba(0,0,0,0.01);
         border-radius: 3px;
         ${centerElements}
     }
     
     img {
         width: 30px;
+        margin-left: 5px;
+        filter: invert();
     }
     
     p {
         margin: 0;
-        color: rgb(0,0,0,0); 
+        color: black; 
         font-weight: bold;
-        font-size: small;
+        font-size: large;
     }
     
         &:hover {
     
             p {
-                color: var(--hover-color);
                 cursor: pointer;
             }
     
             div {
                 cursor: pointer;
-                background-color: var(--hover-color);
+                border: 2px solid var(--hover-color);
             }
         }
 `

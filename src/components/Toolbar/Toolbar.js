@@ -5,17 +5,22 @@ import PropTypes from 'prop-types'
 export default function Toolbar( { focusPage, pages, backClicks }) {
     return (
         <StyledToolbar >
-            <StyledEndpoint >
-                <h2>Start Point:</h2>
-                { pages.length > 0 && <p>{pages[0].title}</p> }
-            </StyledEndpoint>
-                <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
-                <StyledLogo src='/assets/wikilinks-logo.svg' alt='wikiLinks site logo'/>
-                <StyledCounter >{`[${pages.length + backClicks}]`}</StyledCounter>
-            <StyledEndpoint >
-                <h2>Destination:</h2>
-                <p>🍌 Banana 🍌</p>
-            </StyledEndpoint>
+            <StyledLogo src='/assets/DB-horizontal-w-banana.svg' alt='wikiLinks site logo'/>
+            <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
+            <StyledCounter >
+                <h2>{`${pages.length + backClicks}`}</h2>
+                {`🍌`}
+            </StyledCounter>
+            <div>
+                <StyledEndpoint >
+                    <h2>Start Point:</h2>
+                    { pages.length > 0 && <p>{pages[0].title}</p> }
+                </StyledEndpoint>
+                <StyledEndpoint >
+                    <h2>Destination:</h2>
+                    <p>Banana</p>
+                </StyledEndpoint>
+            </div>
         </StyledToolbar>
     )
 }
