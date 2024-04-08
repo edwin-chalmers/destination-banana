@@ -17,7 +17,7 @@ function fetchPage(pageTitle) {
     const url = new URL('https://en.wikipedia.org/w/api.php');
     const params = {
         action: 'parse',
-        page: 'Mike Phipps',
+        page: pageTitle,
         prop: 'links',
         format: 'json',
         origin: '*' // Necessary for CORS
@@ -29,7 +29,6 @@ function fetchPage(pageTitle) {
     return fetch(url)
         .then(response => response.json()) 
         .then(data => {
-            console.log("data", data)
             if (data.parse && data.parse.links) {
                 
                 const linksArray = data.parse.links.map(link => {

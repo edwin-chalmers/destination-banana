@@ -62,10 +62,12 @@ function HomePage() {
 
   function updatePages(endpointText) {
     createLinkList(endpointText)
+    console.log('endpointText', endpointText)
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
       const htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+
       const parsedHTML = parse(htmlFilter)
       const newPage = {
         id: nextId,
