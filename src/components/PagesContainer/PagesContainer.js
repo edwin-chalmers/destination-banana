@@ -1,5 +1,4 @@
 import WikiPage from '../WikiPage/WikiPage'
-import './PagesContainer.css'
 import { StyledPagesContainer } from './PagesContainer.styled'
 
 export default function PagesContainer({ pages, focusPage }) {

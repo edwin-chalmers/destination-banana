@@ -1,7 +1,7 @@
-import './LinkBox.css'
 import { StyledLinkContainer } from './LinkBox.styled'
+import PropTypes from 'prop-types'
 
-export default function LinkBox( {linkList, updatePages, checkForWin} ) {
+export default function LinkBox({ linkList, updatePages, checkForWin }) {
     let keyTicker = 0
 
     function handleClick(event) {
@@ -23,4 +23,10 @@ export default function LinkBox( {linkList, updatePages, checkForWin} ) {
             {linkTails}
         </StyledLinkContainer>
     )
+}
+
+Win.propTypes = {
+    linkList: PropTypes.array.isRequired,
+    updatePages: PropTypes.func.isRequired,
+    checkForWin: PropTypes.func.isRequired,
 }

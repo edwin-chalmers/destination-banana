@@ -1,4 +1,3 @@
-import './WikiPage.css'
 import LinkIcon from '../LinkIcon/LinkIcon'
 import { WikiPageContainer} from './WikiPage.styled'
 
@@ -12,10 +11,10 @@ export default function WikiPage ( { id, stringForDOM, isCurrent, isDisplayed, t
         </WikiPageContainer>
     )
 
-    // return isDisplayed && (
-    //     <div className="wiki-page">
-    //         <LinkIcon id={id} focusPage={focusPage} />
-    //         {stringForDOM}
-    //     </div>
-    // )
+}
+
+WikiPage.propTypes = {
+    isDisplayed: PropTypes.bool.isRequired,
+    stringForDOM: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
 }

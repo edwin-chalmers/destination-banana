@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 
 function LinkIcon({ id, focusPage }) {
     return (
@@ -10,3 +11,8 @@ function LinkIcon({ id, focusPage }) {
 }
 
 export default LinkIcon
+
+LinkIcon.propTypes = {
+    id: PropTypes.number.isRequired,
+    focusPage: PropTypes.func.isRequired,
+}
