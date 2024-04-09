@@ -8,6 +8,11 @@ export const StyledToolbar = styled.nav`
     align-items: center;
     padding: 0 20px 0 20px;
     /* background-color: aquamarine; */
+    #banana {
+        position: absolute;
+        left: 925px;
+        top: 0; 
+    }
 `
 
 export const StyledButton = styled.button`

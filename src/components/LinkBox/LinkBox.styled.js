@@ -16,6 +16,7 @@ export const StyledLinkContainer = styled.div`
   position: relative;
   z-index: 3;
   scrollbar-color: rgb(53,98,201);
+  left: -330px;
 
   a {
     margin-top: 1px;

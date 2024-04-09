@@ -51,10 +51,7 @@ function HomePage({setError}) {
 
         gsap.config({ trialWarn: false })
         let tl = gsap.timeline()
-        tl.fromTo('#links-container', { left: '-300' }, { duration: 1, ease: 'bounce', left: '0' });
-        
-
-        // gsap.fromTo('#links-container', {left: '-300'}, {duration: .75, ease: 'bounce', left: '0'});
+        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
     } else {
       updatePages(endpointAPI)

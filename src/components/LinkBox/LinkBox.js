@@ -1,6 +1,7 @@
 import { StyledLinkContainer } from './LinkBox.styled'
 import PropTypes from 'prop-types'
 
+
 export default function LinkBox({ linkList, updatePages, checkForWin }) {
     let keyTicker = 0
 

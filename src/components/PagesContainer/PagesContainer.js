@@ -1,19 +1,62 @@
 import WikiPage from '../WikiPage/WikiPage'
 import { StyledPagesContainer } from './PagesContainer.styled'
 import { gsap } from 'gsap'
-import {useGSAP} from 'react'
+import {useGSAP, useRef, useEffect} from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
 
-    gsap.fromTo('.page-container', { left: '-300' }, { duration: 1, left: '0' }, 1);
+    const containerRef = useRef(null); // Ref for the container
+    const clickCount = document.querySelector('#click-counter');
 
-    // Draggable.create("#pages", {
-    //     type: "x,y", // Allows dragging on both x and y axis. Use "x" or "y" for one axis.
-    //     bounds: "#mainContent", // Specify the ID or class of the container to constrain dragging
-    //     edgeResistance: 0.65, // How much resistance when dragging past the bounds (0-1)
-    //     inertia: true, // Apply inertia to the dragging motion
-    //     zIndexBoost: false
-    //   });
+    let destTop, destLeft, bananaDest;
+
+    if (clickCount) {
+        bananaDest = clickCount.getBoundingClientRect();
+    
+        destTop = bananaDest.top;
+        destLeft = bananaDest.left;
+    } else {
+        console.error("Element with ID 'click-counter' not found.");
+    }
+
+    console.log(destLeft)
+
+const banana = useRef()
+
+    useEffect(() => {
+        const banana = document.createElement('p')
+        banana.textContent= '+🍌'
+        banana.id = 'banana'
+        containerRef.current.appendChild(banana)
+        const tl = gsap.timeline({
+            onComplete: () => {
+                // Remove the banana element from the DOM
+                containerRef.current.removeChild(banana);
+            }
+        });
+        tl.fromTo('#banana', {
+            scale: '5',
+            filter: 'drop-shadow(2px 4px 3px black)',
+            y: '32px',
+            x: '74px',
+        },
+        {
+            scale: '1',
+            y: '-60',
+            x: destLeft -250,
+            duration: '1.5',
+            ease: 'sine.inOut'
+        })
+    }, [pages.length])
+
+    useEffect(() => {
+        console.log(containerRef.length)
+        gsap.fromTo(
+            containerRef.current, // Reference to the container
+            { left: '-64' },
+            { duration: 1, left: '330', ease: 'power3.out' }
+        );
+    }, [pages.length]); 
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
@@ -34,7 +77,7 @@ export default function PagesContainer({ pages, focusPage }) {
     })
 
     return (
-        <StyledPagesContainer id='main-page'>
+        <StyledPagesContainer ref={containerRef} id='main-page'>
             {pagesDisplay}
         </StyledPagesContainer>
     )
