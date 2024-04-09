@@ -39,8 +39,9 @@ function HomePage({setError}) {
         return rando.json()
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        //change to endpointAPI
         updatePages(endpointAPI)
-
+        // window.endpointAPI = endpointAPI
     // if (!endpointAPI) {
     //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
     //     return rando.json()
@@ -71,7 +72,7 @@ function HomePage({setError}) {
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
-      // html =''
+      console.log('Monkees html', html)
       if(!html){
         throw new Error('Error fetching HTML')
       }
