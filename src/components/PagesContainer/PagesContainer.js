@@ -19,7 +19,6 @@ export default function PagesContainer({ pages, focusPage }) {
         console.error("Element with ID 'click-counter' not found.");
     }
 
-    console.log(destLeft)
 
 const banana = useRef()
 
@@ -30,7 +29,6 @@ const banana = useRef()
         containerRef.current.appendChild(banana)
         const tl = gsap.timeline({
             onComplete: () => {
-                // Remove the banana element from the DOM
                 containerRef.current.removeChild(banana);
             }
         });
@@ -50,9 +48,8 @@ const banana = useRef()
     }, [pages.length])
 
     useEffect(() => {
-        console.log(containerRef.length)
         gsap.fromTo(
-            containerRef.current, // Reference to the container
+            containerRef.current, 
             { left: '-64' },
             { duration: 1, left: '330', ease: 'power3.out' }
         );
