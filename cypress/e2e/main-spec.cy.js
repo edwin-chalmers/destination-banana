@@ -38,25 +38,26 @@ describe('destination: bananas', () => {
     })
 
     cy.visit('http://localhost:3000/HomePage')
-    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
+    cy.get('nav').find('img').should('have.attr', 'src').should('include', '/assets/DB-horizontal-w-banana.svg')
     cy.get('nav').contains('Back')
-    cy.get('nav').contains('1 Clicks')
-    cy.get('nav').contains('Start Point:')
-    cy.get('nav').contains('Monkees')
-    cy.get('nav').contains('Destination:')
-    cy.get('nav').contains('Banana')
-
-    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
-    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
-    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
+      .get('nav').contains('h2', '1 Clicks')
+      .get('nav').contains('h2', 'Start Point:')
+      .get('nav').contains('p', 'Monkees')
+      .get('nav').contains('h2', 'Destination:')
+      .get('nav').contains('p', 'Banana')
 
 
+    cy.get('#links-container').contains('h3', 'Links')
+      .get('#links-container').contains('a', 'gorilla')
+      .get('#links-container').contains('a', 'jungle')
+      .get('#links-container').contains('a', 'music')
+      .get('#links-container').contains('a', 'The Monkees')
 
-
-    cy.get('#links-container').contains('a', 'gorilla')
-    cy.get('#links-container').contains('a', 'jungle')
-    cy.get('#links-container').contains('a', 'music')
-    cy.get('#links-container').contains('a', 'The Monkees')
+      cy.get('#page-container').find('img').should('have.attr', 'src').should('include', '/assets/link-icon.svg')
+      .get('#page-container').contains('h3', 'The Monkees')
+      // .get('#page-container').contains('p', 'This article')
+      // .get('#page-container').contains('a', 'music')
+      // .get('#page-container').contains('a', 'The Monkees')
   })
 
   // it('should play the game, and use the back button to undo changes', () => {
