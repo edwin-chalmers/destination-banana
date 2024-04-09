@@ -6,7 +6,7 @@ describe('destination: bananas', () => {
   // console.log("tester", title)
 
   it('should go to main page and see game display on button click', () => {
-    cy.fixture('randomPage.json').then(randomPage => {
+    cy.fixture('monkees.json').then(randomPage => {
       cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/random/title', {
       status: 200,
       body: randomPage
@@ -66,14 +66,14 @@ describe('destination: bananas', () => {
   })
 
   it('should play the game, and use the back button to undo changes', () => {
-    cy.fixture('randomPage.json').then(randomPage => {
+    cy.fixture('banana.json').then(randomPage => {
       cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/random/title', {
       status: 200,
       body: randomPage
       })
     })
 
-    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=The+Monkees&prop=links&format=json&origin=*', {
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=banana&prop=links&format=json&origin=*', {
       status: 200,
       body: {
         parse: {
@@ -85,13 +85,13 @@ describe('destination: bananas', () => {
             {'*': 'banana', 'exists': '', ns: 0}
           ],
           pageid: 31417,
-          title: "The Monkees"
+          title: "banana"
         }
       }
     })
 
-    cy.fixture('monkeesHtmlString.txt').then(htmlString => {
-      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/The%20Monkees', {
+    cy.fixture('bananaHtmlString.txt').then(htmlString => {
+      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/banana', {
         status: 200,
         body: htmlString
       })
@@ -100,17 +100,8 @@ describe('destination: bananas', () => {
     cy.visit('http://localhost:3000/HomePage')
     cy.get('#links-container')
       .contains('a', 'banana')
-      .click()
-    
-    // cy.contains('a', 'fish')
-    // cy.contains('a', 'Immune system').click()
-    // cy.contains('a', 'Animal').click()
-    // cy.contains('a', 'Beef').click()
-    // cy.contains('a', 'Locust').click()
-    // cy.contains('a', 'Food chain').click()
-    // cy.contains('a', 'Algae').click()
-    // cy.contains('a', 'Plant').click()
-    // cy.get('p', 'back')
+      .click().get('h2').contains('YOU WIN!!!')
+      .get('#main-page').children().should("have.length", 2)
   })
 
 })

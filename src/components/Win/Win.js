@@ -13,9 +13,9 @@ export default function Win({ animateWin, pages }){
         <StyledWin ref={winRef}>
             <div id="win-container" >
                 <h2>
-                YOU WIN!!! 
-                <br/>
-                {` In ${pages.length} clicks`}
+                    YOU WIN!!! 
+                    <br/>
+                    {` In ${pages.length} clicks`}
                 </h2>
             </div>
         </StyledWin>
