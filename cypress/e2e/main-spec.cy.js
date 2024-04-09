@@ -38,7 +38,17 @@ describe('destination: bananas', () => {
     })
 
     cy.visit('http://localhost:3000/HomePage')
-    cy.get()
+    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
+    cy.get('nav').contains('Back')
+    cy.get('nav').contains('1 Clicks')
+    cy.get('nav').contains('Start Point:')
+    cy.get('nav').contains('Monkees')
+    cy.get('nav').contains('Destination:')
+    cy.get('nav').contains('Banana')
+
+    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
+    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
+    // cy.get('nav').contains('img', '/assets/DB-horizontal-w-banana.svg')
 
 
 
