@@ -3,12 +3,14 @@ import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
 
 export default function Toolbar( { focusPage, pages, backClicks }) {
+
+
     return (
         <StyledToolbar >
             <StyledLogo src='/assets/DB-horizontal-w-banana.svg' alt='wikiLinks site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter >
-                <h2>{`${pages.length + backClicks} Clicks`}</h2>
+                <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
                 {`🍌`}
             </StyledCounter>
             <div>
