@@ -4,7 +4,7 @@ import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap';
@@ -28,7 +28,11 @@ function HomePage({setError}) {
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
   const navigate = useNavigate()
-  
+
+  //////////////////////////////////////////
+  const homeAnimCont = useRef()
+  //////////////////////////////////////////
+
 
   useEffect(() => {
     let endpointAPI
@@ -42,6 +46,8 @@ function HomePage({setError}) {
         //change to endpointAPI
         updatePages(endpointAPI)
         // window.endpointAPI = endpointAPI
+
+    // ** BANANA START TOPIC **//    
     // if (!endpointAPI) {
     //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
     //     return rando.json()
@@ -61,8 +67,41 @@ function HomePage({setError}) {
   }, [])
   
   function handleError(error) {
-    console.log(error)
     navigate('/error')
+  }
+
+  function handleBrokenLink(){
+    let tl = gsap.timeline()
+    const monkeyContainer = document.createElement('div')
+    const monkeyBro = document.createElement('img')
+    const badLink = document.createElement('div')
+    const linkMsg = document.createElement('h3') 
+
+    monkeyContainer.id = 'monkey-container'
+    linkMsg.innerHTML = `Whoops! It looks like that banana won\'t banana <br/> Pick a new link`
+    badLink.id = 'bad-link'
+    monkeyBro.src = '/assets/confused_monkey.svg'
+    monkeyBro.id = "confused-monkey"
+
+    const homePage = document.querySelector('#main-content')
+    homePage.appendChild(monkeyContainer)
+    monkeyContainer.appendChild(monkeyBro)
+    monkeyContainer.appendChild(badLink)
+    badLink.appendChild(linkMsg)
+
+    tl.to(monkeyContainer, {
+      transform: 'translate(287px, 100px)',
+      duration: 0.5,
+      ease: 'bounce',
+    }).to(monkeyContainer, {
+      transform: 'translate(-1000px, 100px)',
+      duration: 0.5,
+      ease: 'bounce',
+      onComplete: () => {
+        homePage.removeChild(monkeyContainer)
+    }
+    }, '+=2')
+    
   }
 
   function updatePages(endpointText) {
@@ -74,7 +113,9 @@ function HomePage({setError}) {
     fetchHTML(endpointText).then(html => {
       console.log('Monkees html', html)
       if(!html){
-        throw new Error('Error fetching HTML')
+        handleBrokenLink()
+        focusPage(0)
+        return
       }
 
       htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
@@ -98,8 +139,11 @@ function HomePage({setError}) {
         return [...updatedPages, newPage]
       })
     }).catch(error => handleError(error))
-  }
 
+  //////////////////////////////////////////
+  }
+  //////////////////////////////////////////
+  
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {
       if (img.src.includes('Red_pog')) {
@@ -163,6 +207,14 @@ function HomePage({setError}) {
   }
 
   function focusPage(id) {
+
+    const tl = gsap.timeline()
+    // tl.fromTo(
+    //     '#main-page', 
+    //     { left: '64' },
+    //     { duration: 1, left: '-330', ease: 'power3.out' }
+    // )
+
     setBackClicks((prev) => {
       const newBacks = prev + 1
 
@@ -204,13 +256,11 @@ function HomePage({setError}) {
     setPages(updatedPages)
   }
 
-  console.log('pages', pages)
-
   return (
-    <StyledHomepage>
+    <StyledHomepage >
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
-      <main id='main-content'>
+      <main ref={homeAnimCont} id='main-content'>
         <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
         <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
       </main>

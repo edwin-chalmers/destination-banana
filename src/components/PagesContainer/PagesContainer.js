@@ -19,7 +19,6 @@ export default function PagesContainer({ pages, focusPage }) {
         console.error("Element with ID 'click-counter' not found.");
     }
 
-    console.log(destLeft)
 
     const banana = useRef()
 
@@ -27,6 +26,7 @@ export default function PagesContainer({ pages, focusPage }) {
         const banana = document.createElement('p')
         banana.textContent= '+🍌'
         banana.id = 'banana'
+        console.log(containerRef)
         containerRef.current.appendChild(banana)
         const tl = gsap.timeline({
             onComplete: () => {
@@ -56,6 +56,7 @@ export default function PagesContainer({ pages, focusPage }) {
             { duration: 1, left: '330', ease: 'power3.out', delay: 1.5 }
         )
     }, []); 
+
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 

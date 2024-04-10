@@ -17,16 +17,17 @@ describe('Error page', () => {
     cy.visit('http://localhost:3000/error')
     cy.get('a')
     .contains("Go Home").click()
-    cy.get('a')
-    // Not sure what to do after the click
+    cy.url().should('eq', 'http://localhost:3000/')
   })
   
-
-
-  // it('Should load error page from a bad route', () => {
-  //   cy.visit('http://localhost:3000/potatoes')
-  //   .get("div.error-505")
-  //   .contains("h1", "There was a glitch in the matrix..")
-  // })
+  it('Should load error page from a bad route', () => {
+    cy.visit('http://localhost:3000/potatoes')
+    cy.get('div')
+    .contains("h1", "Error🍌404")
+    cy.get('div')
+    .contains("h2", "Destination not banana")
+    cy.get('div')
+    .contains("p", "The address could be misstyped or the page has been moved")
+  })
 
 })
