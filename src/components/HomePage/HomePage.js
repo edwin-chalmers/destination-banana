@@ -158,12 +158,13 @@ function HomePage({setError}) {
 
 
       const bananaIndex = randomizedList.forEach((link) => {
-        if(link['title'] === 'Banana'){
+        console.log(link.title)
+        if(link.title === 'Banana'){
           return randomizedList.indexOf(link)
         }
       })
 
-      console.log(randomizedList)
+      console.log(bananaIndex)
 
       setLinkList(randomizedList)
    

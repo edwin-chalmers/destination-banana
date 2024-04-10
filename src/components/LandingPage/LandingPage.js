@@ -12,7 +12,7 @@ import { useGSAP } from "@gsap/react/dist";
 import { StyledLandingPage } from './LandingPage.styled';
 import {GSDevTools} from "gsap-trial/GSDevTools"
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 gsap.registerPlugin(GSDevTools)
 gsap.registerPlugin(Draggable, MotionPathPlugin, MotionPathHelper, InertiaPlugin, useGSAP,DrawSVGPlugin,ScrambleTextPlugin,CustomEase, MotionPathPlugin, DrawSVGPlugin);
@@ -20,23 +20,26 @@ gsap.config({trialWarn: false})
  
 function LandingPage() {
 
-   
-
-    const monkeyThiefRef = useRef()
-    const tl = gsap.timeline()
-    tl.to(
-        // monkeyThiefRef.current,
-        '#monkey-thief'.current,
-        { left: '500', duration: 3}
-    );
-
- console.log(monkeyThiefRef.current)
+    useEffect(() => {
+        const tl = gsap.timeline();
+        tl.to(
+            '#monkeyThief',
+            { left: '-500', delay: 1, duration: .5 }
+        )
+        tl.to(
+            '#monkeyThief',
+            { left: '-3000', top: '1500', scale: '15', duration: '.5s' }, "+=.5"
+        )
+        tl.to(
+            '#monkeyThief',
+            { left: '4000', duration: 3 }, "+=.5"
+        )
+    }, [])
 
     return (
-        <>
-            <MonkeyThief ref={monkeyThiefRef} id="#monkey-thief"/>
+        <main>
+            <MonkeyThief />
             <StyledLanding >
-
                     <section>
                         <p><span>1.</span> Click the <span>logo</span> to start your journey ☝️</p>
                         <p><span>2.</span> Each link will bring you closer to your destination: <span>banana</span>!</p>
@@ -47,7 +50,7 @@ function LandingPage() {
                     {/* <img id='beach' src='/assets/beach_light.svg' /> */}
                     <Link id='link' to='/HomePage'></Link>
             </StyledLanding >
-        </>
+        </main>
     )
 
 }

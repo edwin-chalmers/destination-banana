@@ -26,17 +26,10 @@ export const StyledLanding = styled.div `
         }
     }
 
-    #beach {
-        position: relative;
-        top: -50%;
-        left: 0;
-        scale: 1;
-    }
-
-    #logo {
+    /* #logo {
         position: absolute;
         scale: 0.90;
-    }
+    } */
 
     a {
         position: absolute;
@@ -49,11 +42,14 @@ export const StyledLanding = styled.div `
         background-image: url('/assets/DB-vertical-w-banana.svg');
         background-position: center; 
         background-repeat: no-repeat; 
-        background-size: cover; 
+        background-size: cover;
+        overflow: visible;
 
         &:hover {
             cursor: pointer;
             filter: drop-shadow(10px 10px 50px white);
+            width: 505px;
+            height: 320px;
         }
     }
 
