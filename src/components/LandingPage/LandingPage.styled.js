@@ -15,21 +15,19 @@ export const StyledLanding = styled.div `
         
         width: 500px;
         padding: 50px 80px 50px 100px ; 
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(255,255,255,0.7);
         border-radius: 1000px;
 
         span {
             font-weight: 800;
         }
-
     }
 
     #beach {
         position: relative;
-        top: 0;
+        top: -5%;
         left: 0;
         scale: 1;
-        margin-top: 120px;
     }
 
     #logo {

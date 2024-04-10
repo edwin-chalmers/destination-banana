@@ -8,8 +8,8 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
     let keyTicker = 0
 
     function handleClick(event) {
-        checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
+        checkForWin(event.target.textContent)
         gsap.fromTo(
             '#main-page',
             { left: '-65' },

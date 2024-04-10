@@ -1,6 +1,5 @@
 describe('Error page', () => {
   beforeEach(() => {
-
   })
   
   it('Should load error page', () => {
