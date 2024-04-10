@@ -42,6 +42,8 @@ function HomePage({setError}) {
         //change to endpointAPI
         updatePages(endpointAPI)
         // window.endpointAPI = endpointAPI
+
+    // ** BANANA START TOPIC **//    
     // if (!endpointAPI) {
     //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
     //     return rando.json()
