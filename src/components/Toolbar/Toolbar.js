@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 export default function Toolbar( { focusPage, pages, backClicks }) {
 
-
     return (
         <StyledToolbar >
             <StyledLogo src='/assets/DB-horizontal-w-banana.svg' alt='wikiLinks site logo'/>
@@ -28,12 +27,11 @@ export default function Toolbar( { focusPage, pages, backClicks }) {
 }
 
 Toolbar.propTypes = {
-    pages: PropTypes.shape({
-       id: PropTypes.number.isRequired,
-       isCurrent: PropTypes.bool.isRequired,
-       isDisplayed: PropTypes.bool.isRequired,
-       stringForDOM: PropTypes.object.isRequired,
-       title: PropTypes.string.isRequired
-    }).isRequired,
-    animateWin: PropTypes.func.isRequired
+    pages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        isCurrent: PropTypes.bool,
+        isDisplayed: PropTypes.bool,
+        stringForDOM: PropTypes.object,
+        title: PropTypes.string
+     })).isRequired,
 }

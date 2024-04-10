@@ -27,13 +27,13 @@ export default function NavButton({ buttonText, focusPage, pages, setClickCount 
 }
 
 NavButton.propTypes = {
-    NavButton: PropTypes.shape({
-       id: PropTypes.number.isRequired,
-       isCurrent: PropTypes.bool.isRequired,
-       isDisplayed: PropTypes.bool.isRequired,
-       stringForDOM: PropTypes.object.isRequired,
-       title: PropTypes.string.isRequired
-    }).isRequired,
+    pages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        isCurrent: PropTypes.bool,
+        isDisplayed: PropTypes.bool,
+        stringForDOM: PropTypes.object,
+        title: PropTypes.string
+    })).isRequired,
     setClickCount: PropTypes.func.isRequired,
     buttonText: PropTypes.string.isRequired,
     focusPage: PropTypes.func.isRequired,
