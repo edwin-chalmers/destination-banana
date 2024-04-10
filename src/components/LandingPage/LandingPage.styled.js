@@ -6,7 +6,7 @@ export const StyledLanding = styled.div `
     align-content: center;
     overflow: hidden;
 
-    div {
+    section {
         position: absolute;
         z-index: 1;
         top: 50%;

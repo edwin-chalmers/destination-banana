@@ -63,25 +63,25 @@ describe('destination: bananas', () => {
     })
 
 //MUSA INTERCEPTS
-    // cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=The+Monkees&prop=links&format=json&origin=*', {
-    //   status: 200,
-    //   body: {
-    //     parse: {
-    //       links: [
-    //         {'*': 'gorilla', 'exists': '', ns: 0},
-    //         {'*': 'jungle', 'exists': '', ns: 0},
-    //         {'*': 'music', 'exists': '', ns: 0},
-    //         {'*': 'genus', 'exists': '', ns: 0},
-    //         {'*': 'banana', 'exists': '', ns: 0}
-    //       ],
-    //       pageid: 31417,
-    //       title: "musa (genus)"
-    //     }
-    //   }
-    // })
+    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=musa&prop=links&format=json&origin=*', {
+      status: 200,
+      body: {
+        parse: {
+          links: [
+            {'*': 'gorilla', 'exists': '', ns: 0},
+            {'*': 'jungle', 'exists': '', ns: 0},
+            {'*': 'music', 'exists': '', ns: 0},
+            {'*': 'genus', 'exists': '', ns: 0},
+            {'*': 'banana', 'exists': '', ns: 0}
+          ],
+          pageid: 31417,
+          title: "musa (genus)"
+        }
+      }
+    })
 
     cy.fixture('musaHtmlString.txt').then(htmlString => {
-      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/The%20Monkees', {
+      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/musa', {
         status: 200,
         body: htmlString
       })
@@ -114,7 +114,13 @@ describe('destination: bananas', () => {
 
 
 // TESTS
-    cy.visit('http://localhost:3000/HomePage')
+    cy.visit('http://localhost:3000/')
+      .get('a').should('have.attr', 'href').should('include', '/HomePage')
+      .get('section').children().should("have.length", 4)
+      .get('a')
+      .click()
+      .url().should('eq', 'http://localhost:3000/HomePage')
+
     cy.get('nav').find('img').should('have.attr', 'src').should('include', '/assets/DB-horizontal-w-banana.svg')
     cy.get('nav').contains('Back')
       .get('nav').contains('h2', '1 Clicks')
@@ -131,17 +137,29 @@ describe('destination: bananas', () => {
       .get('#links-container').contains('a', 'musa')
       .get('#links-container').contains('a', 'banana')
 
-      cy.get('#page-container').find('img').should('have.attr', 'src').should('include', '/assets/link-icon.svg')
+    cy.get('#page-container').find('img').should('have.attr', 'src').should('include', '/assets/link-icon.svg')
       .get('#page-container').contains('h3', 'The Monkees')
 
+    cy.get('#links-container')
+      .contains('a', 'Daydream Believer')
+      .click()
+      .get('#main-page').children().should("have.length", 2)
+      .get('nav').contains('Back')
+      .click()
 
+    cy.get('#main-page').children().should("have.length", 1)
+      .get('#links-container')
+      .contains('a', 'musa')
+      .click()
 
+    cy.get('#main-page').children().should("have.length", 2)
+      .get('#links-container')
+      .contains('a', 'banana')
+      .click()
 
-      // cy.visit('http://localhost:3000/HomePage')
-      // cy.get('#links-container')
-      //   .contains('a', 'musa')
-      //   .click().get('h2').contains('YOU WIN!!!')
-      //   .get('#main-page').children().should("have.length", 2)
+    cy.get('h2').contains('YOU WIN!!!')
+      .get('h2').contains('In 4 clicks')
+
   })
 
 
@@ -155,7 +173,7 @@ describe('destination: bananas', () => {
 //       })
 //     })
 
-//     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=The+Monkees&prop=links&format=json&origin=*', {
+//     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=musa&prop=links&format=json&origin=*', {
 //       status: 200,
 //       body: {
 //         parse: {
