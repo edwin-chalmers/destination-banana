@@ -24,13 +24,13 @@ Destination: Banana is a web game built around the Wikipeida API. The goal of th
 
 
 ## Wins
---
+A significant accomplishment of our project was creating a game that leverages the Wikipedia API, where users navigate through hyperlinks to reach the goal page: "banana." This game demonstrated our ability to integrate and manipulate API data effectively, providing a user experience that is both engaging and educational. It showcased our technical skill, creativity, and problem-solving abilities. Successfully developing this game while exploring new technologies highlighted our commitment to learning and adaptation, fulfilling both the project's technical requirements and our personal growth objectives.
 
 ## Challenges
---
+Our team faced challenges integrating GSAP and Styled Components into our React project, particularly because GSAP is not designed with React in mind. This mismatch required us to find workarounds for combining GSAP's animation features with React's virtual DOM, complicating the integration process. Despite these obstacles, we successfully navigated the complexities, enhancing our problem-solving skills and deepening our technical knowledge in the process.
 
 ## Up Next 
---
+Our future plans include adding more animations for a livelier user experience, introducing a stats page for deeper user engagement, improving accessibility for wider inclusivity, and conducting further refactoring for better code efficiency. These updates aim to enrich the application, making it more interactive, accessible, and enjoyable for all users.
 
 ## Testing
 We used Cypress to simulate user interactions to identify issues early. Cypress offers an end-to-end testing framework that allows us to test both happy and sad paths, ensuring our application behaves as expected under various conditions. This includes:
