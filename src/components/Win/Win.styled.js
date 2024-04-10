@@ -26,6 +26,17 @@ export const StyledWin = styled.div`
         font-size: 100px;
         font-weight: 800;
         color: black;
+        margin: 0;
+    }
+
+    button {
+        padding: 20px 40px 20px 40px;
+        border: none;
+        font-weight: 800;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
 `

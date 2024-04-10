@@ -7,6 +7,10 @@ export default function Win({ animateWin, pages }){
     const winRef = useRef()
     animateWin(winRef)
 
+    function refreshPage() {
+        window.location.reload();
+      }
+
     return (
         <StyledWin ref={winRef}>
             <div id="win-container" >
@@ -14,6 +18,8 @@ export default function Win({ animateWin, pages }){
                     YOU WIN!!! 
                     <br/>
                     {` In ${pages.length} clicks`}
+                    <br/>
+                    <button onClick={refreshPage}>New Game</button>
                 </h2>
             </div>
         </StyledWin>

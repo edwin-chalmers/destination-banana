@@ -26,6 +26,15 @@ export const StyledLanding = styled.div `
         }
     }
 
+    #beach {
+        position: relative;
+        top: -5%;
+        left: 0;
+        scale: 1;
+
+
+    }
+
     /* #logo {
         position: absolute;
         scale: 0.90;

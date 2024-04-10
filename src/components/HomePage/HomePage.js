@@ -45,7 +45,17 @@ function HomePage({setError}) {
     //     return rando.json()
     //   }).then(data => {
     //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+    //     //change to endpointAPI
     //     updatePages(endpointAPI)
+    //     // window.endpointAPI = endpointAPI
+
+    // ** BANANA START TOPIC **//    
+    if (!endpointAPI) {
+      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+        return rando.json()
+      }).then(data => {
+        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(endpointAPI)
 
     if (!endpointAPI) {
       fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
@@ -96,9 +106,8 @@ function HomePage({setError}) {
       ease: 'bounce',
       onComplete: () => {
         homePage.removeChild(monkeyContainer)
-    }
+      }
     }, '+=2')
-    
   }
 
   function updatePages(endpointText) {
