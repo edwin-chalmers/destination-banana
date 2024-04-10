@@ -2,14 +2,12 @@ import { StyledNavButton } from './NavButton.styled'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-export default function NavButton({ buttonText, focusPage, pages, setClickCount }) {
+export default function NavButton({ buttonText, focusPage, pages }) {
     let extraClicks = 0 
     return (
         <>
             <StyledNavButton disabled={true} onClick={() => {
                 const displayedPages = pages.filter((page) => {
-                    if (pages.length > 1) {extraClicks ++}
-                    setClickCount = {extraClicks}
 
                     return page.isDisplayed
                 })
@@ -34,7 +32,6 @@ NavButton.propTypes = {
         stringForDOM: PropTypes.object,
         title: PropTypes.string
     })).isRequired,
-    setClickCount: PropTypes.func.isRequired,
     buttonText: PropTypes.string.isRequired,
     focusPage: PropTypes.func.isRequired,
 }

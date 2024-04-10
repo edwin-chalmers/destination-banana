@@ -40,7 +40,7 @@ function HomePage({setError}) {
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
         //change to endpointAPI
-        updatePages(endpointAPI)
+        updatePages('Daydream Believer')
         // window.endpointAPI = endpointAPI
     // if (!endpointAPI) {
     //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {

@@ -24,7 +24,7 @@ export const StyledLanding = styled.div `
 
     }
 
-    #beach{
+    #beach {
         position: relative;
         top: 0;
         left: 0;
@@ -32,7 +32,7 @@ export const StyledLanding = styled.div `
         margin-top: 120px;
     }
 
-    #logo{
+    #logo {
         position: absolute;
         scale: 0.90;
     }
