@@ -56,9 +56,9 @@ function HomePage({setError}) {
     //     updatePages(endpointAPI)
 
 
-        gsap.config({ trialWarn: false })
-        let tl = gsap.timeline()
-        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+    gsap.config({ trialWarn: false })
+    let tl = gsap.timeline()
+    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
     } else {
       updatePages(endpointAPI)
@@ -139,10 +139,7 @@ function HomePage({setError}) {
         return [...updatedPages, newPage]
       })
     }).catch(error => handleError(error))
-
-  //////////////////////////////////////////
   }
-  //////////////////////////////////////////
   
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {
@@ -209,11 +206,6 @@ function HomePage({setError}) {
   function focusPage(id) {
 
     const tl = gsap.timeline()
-    // tl.fromTo(
-    //     '#main-page', 
-    //     { left: '64' },
-    //     { duration: 1, left: '-330', ease: 'power3.out' }
-    // )
 
     setBackClicks((prev) => {
       const newBacks = prev + 1

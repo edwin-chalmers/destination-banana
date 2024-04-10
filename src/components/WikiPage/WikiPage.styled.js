@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WikiPageContainer = styled.div`
     width: 300px;
-    height: 88vh;
+    height: 85vh;
     border: 1px solid black;
     padding: 25px;
     overflow: hidden;

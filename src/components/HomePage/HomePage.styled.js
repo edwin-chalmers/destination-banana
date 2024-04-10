@@ -5,6 +5,11 @@ export const StyledHomepage = styled.div `
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
+    overflow: hidden;
+
+    main {
+        height: 100vh;
+    }
 
     #confused-monkey {
         width:  300px;
@@ -53,6 +58,11 @@ export const StyledHomepage = styled.div `
             }
         }
     }
+
+    #banana{
+        position:absolute;
+        z-index: 11;
+     }
 
 `
 

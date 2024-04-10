@@ -11,8 +11,7 @@ export default function NavButton({ buttonText, focusPage, pages }) {
 
                     return page.isDisplayed
                 })
-                displayedPages.length > 1 
-                    && focusPage(0) 
+                displayedPages.length > 1 && focusPage(0) 
 
             }}>
                 <div>
