@@ -19,7 +19,6 @@ export default function PagesContainer({ pages, focusPage }) {
         console.error("Element with ID 'click-counter' not found.");
     }
 
-    console.log(destLeft)
 
     const banana = useRef()
 
@@ -27,10 +26,10 @@ export default function PagesContainer({ pages, focusPage }) {
         const banana = document.createElement('p')
         banana.textContent= '+🍌'
         banana.id = 'banana'
+        console.log(containerRef)
         containerRef.current.appendChild(banana)
         const tl = gsap.timeline({
             onComplete: () => {
-                // Remove the banana element from the DOM
                 containerRef.current.removeChild(banana);
             }
         });
@@ -53,10 +52,11 @@ export default function PagesContainer({ pages, focusPage }) {
         console.log(containerRef.length)
         gsap.fromTo(
             containerRef.current,
-            { left: '-64' },
-            { duration: 1, left: '330', ease: 'power3.out' }
+            { left: '-250' },
+            { duration: 1, left: '330', ease: 'power3.out', delay: 1.5 }
+
         );
-    }, [pages.length]); 
+    }, []);
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
