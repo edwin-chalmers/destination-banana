@@ -8,5 +8,9 @@ export const StyledPagesContainer = styled.div`
     flex-wrap: nowrap;
     position: absolute;
     left: 0px;
-    top: 60px;
+    top: 0px;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
 `

@@ -5,6 +5,9 @@ export const StyledLanding = styled.div `
     height: 100vh;
     align-content: center;
     overflow: hidden;
+    background-image: url(/assets/beach_light.svg);
+    background-size: 100%;
+    background-position-y: 57%;;
 
     section {
         position: absolute;
@@ -15,29 +18,20 @@ export const StyledLanding = styled.div `
         
         width: 500px;
         padding: 50px 80px 50px 100px ; 
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(255,255,255,0.7);
         border-radius: 1000px;
 
         span {
             font-weight: 800;
         }
-
     }
 
-    #beach {
-        position: relative;
-        top: 0;
-        left: 0;
-        scale: 1;
-        margin-top: 120px;
-    }
-
-    #logo {
+    /* #logo {
         position: absolute;
         scale: 0.90;
-    }
+    } */
 
-    a{
+    a {
         position: absolute;
         z-index: 1;
         top: 50%;
@@ -48,11 +42,14 @@ export const StyledLanding = styled.div `
         background-image: url('/assets/DB-vertical-w-banana.svg');
         background-position: center; 
         background-repeat: no-repeat; 
-        background-size: cover; 
+        background-size: cover;
+        overflow: visible;
 
         &:hover {
             cursor: pointer;
             filter: drop-shadow(10px 10px 50px white);
+            width: 505px;
+            height: 320px;
         }
     }
 
