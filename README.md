@@ -11,12 +11,14 @@ Destination: Banana is a web game built around the Wikipeida API. The goal of th
 
 
 ### Additional Downloads
-`npm install html-react-parser`
-`npm install styled-components`
-`npm install react-router-dom`
-`npm install gsap`
-`npm install gsap-trial`
-`npm install @gsap/react`
+```
+npm install html-react-parser
+npm install styled-components
+npm install react-router-dom
+npm install gsap
+npm install gsap-trial
+npm install @gsap/react
+```
 
 
 ## Technologies used
@@ -44,7 +46,8 @@ We used Cypress to simulate user interactions to identify issues early. Cypress 
 Our testing approach, emphasizing coverage of both existing and new features, aligns with our objectives of mastering React and creating an intuitive user experience with Router.
 
 ### Preview
--
+<img width="1421" alt="image" src="https://github.com/edwin-chalmers/WikiLinks/assets/149631946/8e0d7c03-a96b-450d-9d88-aa3fd59215a3">
+
 
 ## Collaborators 
 - [Adam Bedient](https://github.com/cOdeBedient)

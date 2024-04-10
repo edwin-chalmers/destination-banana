@@ -1,10 +1,24 @@
 import styled from 'styled-components'
 
 export const StyledHomepage = styled.div `
-    background-image: url(/assets/beach_backdrop1.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
+    .background-container {
+        background-image: url(/assets/beach_backdrop1.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+
+    .background-container{
+        overflow: visible;
+    }
+
+    main {
+        height: 100vh;
+        overflow-x: scroll;
+    }
 
     #confused-monkey {
         width:  300px;
@@ -53,6 +67,11 @@ export const StyledHomepage = styled.div `
             }
         }
     }
+
+    #banana{
+        position:absolute;
+        z-index: 11;
+     }
 
 `
 
