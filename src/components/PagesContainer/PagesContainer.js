@@ -5,7 +5,7 @@ import {useGSAP, useRef, useEffect} from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
 
-    const containerRef = useRef(null); // Ref for the container
+    const containerRef = useRef(null);
     const clickCount = document.querySelector('#click-counter');
 
     let destTop, destLeft, bananaDest;
@@ -20,7 +20,7 @@ export default function PagesContainer({ pages, focusPage }) {
     }
 
 
-const banana = useRef()
+    const banana = useRef()
 
     useEffect(() => {
         const banana = document.createElement('p')
@@ -43,7 +43,7 @@ const banana = useRef()
             scale: '1',
             y: '-60',
             x: destLeft -250,
-            duration: '1.5',
+            duration: '1',
             ease: 'sine.inOut'
         })
     }, [pages.length])
@@ -54,6 +54,7 @@ const banana = useRef()
             containerRef.current,
             { left: '-250' },
             { duration: 1, left: '330', ease: 'power3.out', delay: 1.5 }
+
         );
     }, []);
 

@@ -4,35 +4,56 @@ export const StyledLanding = styled.div `
     width: 100%;
     height: 100vh;
     align-content: center;
-#beach{
-    position: relative;
-    top: 0;
-    left: 0;
-    scale: 0.90;
-    margin-top: 120px;
-}
+    overflow: hidden;
 
-#logo{
-    position: absolute;
-    scale: 0.90;
-}
+    div {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+        
+        width: 500px;
+        padding: 50px 80px 50px 100px ; 
+        background-color: rgba(255,255,255,0.5);
+        border-radius: 1000px;
 
-a{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1000px;
-    height: 1000px;
-    transform: translate(44%, -7%);
-    background-image: url(/assets/banana_dude.svg);
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;    
+        span {
+            font-weight: 800;
+        }
 
-    &:hover {
-        cursor: pointer;
-        filter: drop-shadow(2px 4px 6px black);
     }
-}
+
+    #beach{
+        position: relative;
+        top: 0;
+        left: 0;
+        scale: 1;
+        margin-top: 120px;
+    }
+
+    #logo{
+        position: absolute;
+        scale: 0.90;
+    }
+
+    a{
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        height: 320px;
+        transform: translate(-50%, -100%);
+        background-image: url('/assets/DB-vertical-w-banana.svg');
+        background-position: center; 
+        background-repeat: no-repeat; 
+        background-size: cover; 
+
+        &:hover {
+            cursor: pointer;
+            filter: drop-shadow(10px 10px 50px white);
+        }
+    }
 
 `

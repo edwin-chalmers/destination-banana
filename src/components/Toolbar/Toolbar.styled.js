@@ -51,11 +51,12 @@ export const StyledEndpoint = styled.div`
     
     h2 {
         margin: 0;
-        font-size: large;
+        font-size: 1.4em;
     }
 
     p {
         margin: 0 0 0 10px;
+        font-size: 1.2em;
     }
 `
 

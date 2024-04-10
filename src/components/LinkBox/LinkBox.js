@@ -27,7 +27,7 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer id="links-container">
-            <h1>Links</h1>
+            <h3>Links</h3>
             {linkTails}
         </StyledLinkContainer>
     )
