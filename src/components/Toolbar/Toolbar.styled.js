@@ -2,12 +2,10 @@ import styled from 'styled-components';
 
 export const StyledToolbar = styled.nav`
     background-color: rgba(254,255,255,0.8);
-    /* background: linear-gradient(to top, rgba(254,209,0,0), rgba(254,255,255,0.8)); */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
-    /* background-color: aquamarine; */
     #banana {
         position: absolute;
         left: 925px;
@@ -23,23 +21,8 @@ export const StyledButton = styled.button`
 `
 
 export const StyledLogo = styled.img`
-    /* margin: 0 0 0 20px; */
     width: 300px;
 `
-
-// export const NavButton = styled.div`
-//     width: 40px;
-//     height: 40px;
-//     background-color: gray;
-//     border-radius: 3px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-//     img {
-//         width: 30px;
-//     }
-// `
 
 export const StyledEndpoint = styled.div`
     padding: 1px;
@@ -47,7 +30,6 @@ export const StyledEndpoint = styled.div`
     text-align: center;
     display: flex;
     align-items: center;
-
     
     h2 {
         margin: 0;

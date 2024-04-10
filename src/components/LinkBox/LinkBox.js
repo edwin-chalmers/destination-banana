@@ -5,45 +5,22 @@ import {useGSAP, useRef, useEffect} from 'react'
 
 
 export default function LinkBox({ linkList, updatePages, checkForWin }) {
-    const clickCount = document.querySelector('#click-counter');
+    let clickCount
     let keyTicker = 0
 
     let destTop, destLeft, bananaDest;
 
-    if (clickCount) {
+    if (document.querySelector('#click-counter')) {
+        clickCount = document.querySelector('#click-counter')
         bananaDest = clickCount.getBoundingClientRect();
     
         destTop = bananaDest.top;
         destLeft = bananaDest.left;
-    } else {
-        console.error("Element with ID 'click-counter' not found.");
     }
 
     function handleClick(event) {
-        updatePages(event.target.textContent)
-      
         checkForWin(event.target.textContent)
-        gsap.fromTo(
-            '#main-page',
-            { left: '-65' },
-            { duration: 1, left: '330', ease: 'power3.out'}
-          )
-          
-    }
-    
-    const linkTails = linkList.map((link) => {
-        keyTicker += 1;
-        return (
-            <>
-                <div className='link-background'></div>
-                <a key={keyTicker} onClick={(event) => {
-                    event.preventDefault()
-                    handleClick(event)
-                }} href={link.url}>{link.title}</a>
-            </>
-        )
-    })
-
+        updatePages(event.target.textContent)
 
           const banana = document.createElement('p')
           banana.textContent= '+🍌'

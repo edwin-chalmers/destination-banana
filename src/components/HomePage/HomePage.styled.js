@@ -73,6 +73,11 @@ export const StyledHomepage = styled.div `
         z-index: 11;
      }
 
+     .dot{
+        z-index: 100;
+        filter: drop-shadow(2px 4px 6px black);
+     }
+
 `
 
 

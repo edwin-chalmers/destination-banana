@@ -1,10 +1,4 @@
 describe('destination: bananas', () => {
-  // beforeEach(() => {
-  //   let title = win.endpointAPI
-  // })
-
-  // console.log("tester", title)
-
   it('should go to main page and see game display on button click', () => {
     //MONKEES INTERCEPTS
     cy.fixture('monkees.json').then(randomPage => {
@@ -112,7 +106,6 @@ describe('destination: bananas', () => {
       })
     })
 
-
     //TESTS
     //VALIDATE HOMEPAGE
     cy.visit('http://localhost:3000/')
@@ -165,6 +158,7 @@ describe('destination: bananas', () => {
     //WIN
     cy.get('h2').contains('YOU WIN!!!')
       .get('h2').contains('In 4 clicks')
-
+      .get('button').click()
+      .get('#click-counter').contains('h2', '0 Clicks')
   })
 })

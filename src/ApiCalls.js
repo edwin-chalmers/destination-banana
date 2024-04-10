@@ -1,8 +1,4 @@
-
-
 function fetchHTML(endpoint) {
-
-    console.log("endpoint", endpoint)
 
     return fetch(`https://en.wikipedia.org/api/rest_v1/page/html/${endpoint}`)
         .then(response => {
@@ -28,13 +24,9 @@ function fetchPage(pageTitle) {
 
     url.search = new URLSearchParams(params).toString();
 
-    console.log('prepped url', url)
-
     return fetch(url)
         .then(response => response.json()) 
         .then(data => {
-
-            console.log('monkees data', data)
 
             if (data.parse && data.parse.links) {
                 
@@ -54,8 +46,5 @@ function fetchPage(pageTitle) {
             return [];
         });
 }
-
-
-
 
 export { fetchPage, fetchHTML }

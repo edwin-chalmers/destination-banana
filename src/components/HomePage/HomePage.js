@@ -12,11 +12,8 @@ import Draggable from 'gsap/Draggable';
 import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
 import { StyledHomepage } from './HomePage.styled'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-// import { useGSAP } from 'gsap'
-
-
 
 gsap.registerPlugin(Draggable, InertiaPlugin, Physics2DPlugin, ScrollTrigger);
 
@@ -40,29 +37,13 @@ function HomePage({setError}) {
   useEffect(() => {
     let endpointAPI
 
-    // if(!endpointAPI){
-    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-    //     return rando.json()
-    //   }).then(data => {
-    //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-    //     //change to endpointAPI
-    //     updatePages(endpointAPI)
-    //     // window.endpointAPI = endpointAPI
-
-    // ** BANANA START TOPIC **//    
-    if (!endpointAPI) {
-      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+    if(!endpointAPI){
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
         return rando.json()
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
         updatePages(endpointAPI)
 
-    if (!endpointAPI) {
-      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
-        return rando.json()
-      }).then(data => {
-        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-        updatePages(endpointAPI)
 
     let tl = gsap.timeline()
     tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
@@ -117,7 +98,7 @@ function HomePage({setError}) {
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
-      console.log('Monkees html', html)
+
       if(!html){
         handleBrokenLink()
         focusPage(0)
@@ -166,18 +147,16 @@ function HomePage({setError}) {
       const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
 
 
-      const bananaIndex = randomizedList.forEach((link) => {
-        console.log(link.title)
-        if(link.title === 'Banana'){
-          return randomizedList.indexOf(link)
+      const bananaIndex = randomizedList.forEach((link, i) => {
+        i++
+        if(link.title.toLowerCase() === 'banana'){
+          const bananaLink = randomizedList.splice(i-1, 1)
+          randomizedList.unshift(bananaLink[0])
         }
       })
 
-      console.log(bananaIndex)
-
       setLinkList(randomizedList)
    
-      
     })
   }
 
@@ -200,7 +179,7 @@ function HomePage({setError}) {
       dot.setAttribute("class", "dot");
       bg.appendChild(dot);
       dot.textContent = "🍌"
-      dots.push(dot);
+      dots.push(dot)
     }
     gsap.set(dots, {
       scale: "random(2, 10)",
@@ -208,7 +187,7 @@ function HomePage({setError}) {
       y: 800,
       rotate: "random(0,180)",
       transform: 'translate(50%, 50%)'
-    });
+    })
   
     let tl = gsap.timeline({ repeat: 100, onComplete: removeDots })
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
@@ -221,11 +200,12 @@ function HomePage({setError}) {
         gravity: 500
       },
       delay: "0"
-    });
+    })
   
     function removeDots() {
       console.log('remove dots')
-      dots.forEach(dot => dot.remove());
+
+      document.querySelectorAll("#main-content > div:nth-child").forEach(dot => console.log(dot))
     }
   }
   
