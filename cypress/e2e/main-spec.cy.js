@@ -6,9 +6,9 @@ describe('destination: bananas', () => {
   // console.log("tester", title)
 
   it('should go to main page and see game display on button click', () => {
-     //MONKEES INTERCEPTS
-     cy.fixture('monkees.json').then(randomPage => {
-      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/random/title', {
+    //MONKEES INTERCEPTS
+    cy.fixture('monkees.json').then(randomPage => {
+    cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/random/title', {
       status: 200,
       body: randomPage
       })
@@ -62,7 +62,7 @@ describe('destination: bananas', () => {
       })
     })
 
-//MUSA INTERCEPTS
+    //MUSA INTERCEPTS
     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=musa&prop=links&format=json&origin=*', {
       status: 200,
       body: {
@@ -87,7 +87,7 @@ describe('destination: bananas', () => {
       })
     })
 
-//BANANA INTERCEPTS
+    //BANANA INTERCEPTS
     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=banana&prop=links&format=json&origin=*', {
       status: 200,
       body: {
@@ -113,7 +113,8 @@ describe('destination: bananas', () => {
     })
 
 
-// TESTS
+    //TESTS
+    //VALIDATE HOMEPAGE
     cy.visit('http://localhost:3000/')
       .get('a').should('have.attr', 'href').should('include', '/HomePage')
       .get('section').children().should("have.length", 4)
@@ -129,7 +130,6 @@ describe('destination: bananas', () => {
       .get('nav').contains('h2', 'Destination:')
       .get('nav').contains('p', 'Banana')
 
-
     cy.get('#links-container').contains('h3', 'Links')
       .get('#links-container').contains('a', 'gorilla')
       .get('#links-container').contains('a', 'Daydream Believer')
@@ -140,23 +140,29 @@ describe('destination: bananas', () => {
     cy.get('#page-container').find('img').should('have.attr', 'src').should('include', '/assets/link-icon.svg')
       .get('#page-container').contains('h3', 'The Monkees')
 
+    //CLICK DAYDREAM BELIEVER
     cy.get('#links-container')
       .contains('a', 'Daydream Believer')
       .click()
+
+    //CLICK BACK  
       .get('#main-page').children().should("have.length", 2)
       .get('nav').contains('Back')
       .click()
 
+    //CLICK MUSA
     cy.get('#main-page').children().should("have.length", 1)
       .get('#links-container')
       .contains('a', 'musa')
       .click()
 
+    //CLICK BANANA
     cy.get('#main-page').children().should("have.length", 2)
       .get('#links-container')
       .contains('a', 'banana')
       .click()
 
+    //WIN
     cy.get('h2').contains('YOU WIN!!!')
       .get('h2').contains('In 4 clicks')
 
