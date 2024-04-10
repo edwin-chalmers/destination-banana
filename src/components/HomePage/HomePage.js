@@ -28,7 +28,10 @@ function HomePage({setError}) {
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
   const navigate = useNavigate()
+
+  //////////////////////////////////////////
   const homeAnimCont = useRef()
+  //////////////////////////////////////////
 
 
   useEffect(() => {
@@ -137,8 +140,10 @@ function HomePage({setError}) {
       })
     }).catch(error => handleError(error))
 
+  //////////////////////////////////////////
   }
-
+  //////////////////////////////////////////
+  
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {
       if (img.src.includes('Red_pog')) {

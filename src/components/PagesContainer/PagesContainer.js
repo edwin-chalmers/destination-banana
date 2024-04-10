@@ -54,9 +54,9 @@ export default function PagesContainer({ pages, focusPage }) {
             containerRef.current,
             { left: '-250' },
             { duration: 1, left: '330', ease: 'power3.out', delay: 1.5 }
+        )
+    }, []); 
 
-        );
-    }, []);
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 

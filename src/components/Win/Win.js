@@ -7,8 +7,6 @@ export default function Win({ animateWin, pages }){
     const winRef = useRef()
     animateWin(winRef)
 
-
-
     return (
         <StyledWin ref={winRef}>
             <div id="win-container" >

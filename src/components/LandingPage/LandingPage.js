@@ -38,12 +38,12 @@ function LandingPage() {
     return (
         <>
             <StyledLanding >
-                <div>
+                <section>
                     <p><span>1.</span> Click the <span>logo</span> to start your journey ☝️</p>
                     <p><span>2.</span> Each link will bring you closer to your destination: <span>banana</span>!</p>
                     <p><span>3.</span> Get to banana in as <span>few</span> clicks as possible.</p>
                     <p>The game pulls data from wikipedia and may contain content that is not suitable for everyone. Player discretion advised.</p>
-                </div>
+                </section>
                     {/* <button>Start</button> */}
                 <img id='beach' src='/assets/beach_light.svg' />
                 <Link id='link' to='/HomePage'></Link>
