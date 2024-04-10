@@ -1,6 +1,7 @@
 import { StyledLinkContainer } from './LinkBox.styled'
 import PropTypes from 'prop-types'
-
+import { gsap } from 'gsap'
+import {useGSAP, useRef, useEffect} from 'react'
 
 export default function LinkBox({ linkList, updatePages, checkForWin }) {
     let keyTicker = 0
@@ -8,6 +9,12 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
     function handleClick(event) {
         checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
+        gsap.fromTo(
+            '#main-page',
+            { left: '-65' },
+            { duration: 1, left: '330', ease: 'power3.out'}
+          )
+          
     }
     
     const linkTails = linkList.map((link) => {

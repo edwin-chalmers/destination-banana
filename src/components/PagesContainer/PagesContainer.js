@@ -26,6 +26,7 @@ const banana = useRef()
         const banana = document.createElement('p')
         banana.textContent= '+🍌'
         banana.id = 'banana'
+        console.log(containerRef)
         containerRef.current.appendChild(banana)
         const tl = gsap.timeline({
             onComplete: () => {
@@ -48,12 +49,13 @@ const banana = useRef()
     }, [pages.length])
 
     useEffect(() => {
+        console.log(containerRef.length)
         gsap.fromTo(
-            containerRef.current, 
-            { left: '-64' },
-            { duration: 1, left: '330', ease: 'power3.out' }
+            containerRef.current,
+            { left: '-250' },
+            { duration: 1, left: '330', ease: 'power3.out', delay: 1.5 }
         );
-    }, [pages.length]); 
+    }, []);
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 

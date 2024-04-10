@@ -9,7 +9,4 @@ export const StyledPagesContainer = styled.div`
     position: absolute;
     left: 0px;
     top: 60px;
-    p{
-        position: absolute;
-    }
 `
