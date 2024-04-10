@@ -47,6 +47,7 @@ Our testing approach, emphasizing coverage of both existing and new features, al
 
 ### Preview
 <img width="1421" alt="image" src="https://github.com/edwin-chalmers/WikiLinks/assets/149631946/8e0d7c03-a96b-450d-9d88-aa3fd59215a3">
+<img width="1421" alt="image" src="https://github.com/edwin-chalmers/WikiLinks/assets/149631946/5fe2b651-1372-49c1-a779-c27c5efaf56c">
 
 
 ## Collaborators 
