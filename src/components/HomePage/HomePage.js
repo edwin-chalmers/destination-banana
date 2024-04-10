@@ -205,7 +205,7 @@ function HomePage({setError}) {
     function removeDots() {
       console.log('remove dots')
 
-      document.querySelectorAll("#main-content > div:nth-child").forEach(dot => dot.remove())
+      document.querySelectorAll("#main-content > div:nth-child").forEach(dot => console.log(dot))
     }
   }
   

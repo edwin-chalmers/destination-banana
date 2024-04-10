@@ -35,11 +35,6 @@ export const StyledLanding = styled.div `
 
     }
 
-    /* #logo {
-        position: absolute;
-        scale: 0.90;
-    } */
-
     a {
         position: absolute;
         z-index: 1;
