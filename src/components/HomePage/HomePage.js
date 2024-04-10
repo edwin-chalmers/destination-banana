@@ -33,6 +33,11 @@ function HomePage({setError}) {
   const homeAnimCont = useRef()
   //////////////////////////////////////////
 
+  Draggable.create(".draggable-container", {
+    type: "x",
+    // bounds: ".background-container"
+  });
+
 
   useEffect(() => {
     let endpointAPI
@@ -156,7 +161,13 @@ function HomePage({setError}) {
       filteredWikiLinks = linksArray.filter(link => {
         return !charactersToRemove.some(character => link.title.includes(character));
       })
-      setLinkList(filteredWikiLinks)
+
+      const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
+      console.log('randomizedList', randomizedList)
+
+      setLinkList(randomizedList)
+   
+      
     })
   }
 
@@ -204,7 +215,6 @@ function HomePage({setError}) {
   }
 
   function focusPage(id) {
-
     const tl = gsap.timeline()
 
     setBackClicks((prev) => {
@@ -252,10 +262,14 @@ function HomePage({setError}) {
     <StyledHomepage >
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
-      <main ref={homeAnimCont} id='main-content'>
-        <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
-        <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
-      </main>
+      <div className="background-container">
+      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
+        <div className='draggable-container'>
+          <main ref={homeAnimCont} id='main-content'>
+            <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
+          </main>
+        </div>
+      </div>
     </StyledHomepage>
   )
 

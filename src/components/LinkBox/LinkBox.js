@@ -46,43 +46,25 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
               duration: '1.5',
               ease: 'sine.inOut'
           })
-
     }
     
-    const linkTails = linkList.map((link) => {
-        keyTicker += 1;
-        return (
-            <>
-                <div className='link-background'></div>
-                <a key={keyTicker} onClick={(event) => {
-                    event.preventDefault()
-                    handleClick(event)
-                }} href={link.url}>{link.title}</a>
-            </>
-        )
-    })
-
-   
-    // const linkBackgrounds = querySelectorAll('.link-background')
-
-    // linkBackgrounds.forEach(function (element){
-    //     const tl = gsap.timeline({paused:true});
-    //     tl.to(element, 0.2, {backgroundColor:"yellow"})
-    //     .to(element, 0.2, {height:100})
-    //     .to((element).find("div"), 0.2, {color:"red", rotation:360, y:40})
-    //     element.animation = tl;
-    // })
-    
-    // (".link-background").mouseenter(function(){
-    //     this.animation.play();
-    // })
-    
-    // (".link-background").mouseleave(function(){
-    //     this.animation.reverse();
-    // })
-
-   
-
+    let linkTails
+    if(linkList) {
+        linkTails = linkList.map((link) => {
+            keyTicker += 1;
+            return (
+                <>
+                    <div className='link-background'></div>
+                    <a key={keyTicker} onClick={(event) => {
+                        event.preventDefault()
+                        handleClick(event)
+                    }} href={link.url}>{link.title}</a>
+                </>
+            )
+        })
+    } else {
+        linkTails = <p> No Links to display here! Click the back button. </p>
+    }
 
     return (
         <StyledLinkContainer id="links-container">
