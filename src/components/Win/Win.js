@@ -13,6 +13,7 @@ export default function Win({ animateWin, pages }){
 
     return (
         <StyledWin ref={winRef}>
+            <img id='monkeyBro' src='./assets/monkey_bro.svg'/>
             <div id="win-container" >
                 <h2>
                     YOU WIN!!! 
@@ -36,3 +37,5 @@ Win.propTypes = {
     }).isRequired,
     animateWin: PropTypes.func.isRequired
 }
+
+

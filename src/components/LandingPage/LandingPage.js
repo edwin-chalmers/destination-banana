@@ -9,7 +9,6 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin"
 import { MotionPathHelper } from "gsap-trial/dist/MotionPathHelper";
 import { ScrambleTextPlugin } from "gsap-trial/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react/dist";
-import { StyledLandingPage } from './LandingPage.styled';
 import {GSDevTools} from "gsap-trial/GSDevTools"
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
 import { useRef, useEffect } from 'react'
@@ -24,7 +23,7 @@ function LandingPage() {
         const tl = gsap.timeline();
         tl.to(
             '#monkeyThief',
-            { left: '-500', delay: 1, duration: .5 }
+            { left: '-500', delay: 1, duration: .75 }
         )
         tl.to(
             '#monkeyThief',
@@ -32,8 +31,10 @@ function LandingPage() {
         )
         tl.to(
             '#monkeyThief',
-            { left: '4000', duration: 3 }, "+=.5"
-        )
+            { left: '4000', duration: 3, onComplete: function() {
+                document.getElementById('monkeyThief').remove();
+            } }, "+=.5"
+        );
     }, [])
 
     return (
@@ -46,8 +47,6 @@ function LandingPage() {
                         <p><span>3.</span> Get to banana in as <span>few</span> clicks as possible.</p>
                         <p>The game pulls data from wikipedia and may contain content that is not suitable for everyone. Player discretion advised.</p>
                     </section>
-                        {/* <button>Start</button> */}
-                    {/* <img id='beach' src='/assets/beach_light.svg' /> */}
                     <Link id='link' to='/HomePage'></Link>
             </StyledLanding >
         </main>

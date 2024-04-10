@@ -14,12 +14,6 @@ export const StyledWin = styled.div`
     text-align: center;
     ${centerElements};
     
-    /* div {
-        width: 50%;
-        height: 50%;
-        ${centerElements};
-    } */
-    
     h2 {
         background-color: rgba(254,209,0,1);
         padding: 100px;
@@ -27,6 +21,7 @@ export const StyledWin = styled.div`
         font-weight: 800;
         color: black;
         margin: 0;
+        border-radius: 40px;
     }
 
     button {
@@ -39,4 +34,10 @@ export const StyledWin = styled.div`
         }
     }
 
+    #monkeyBro{
+        width: 380px;
+        position: relative;
+        left: 150px;
+        filter: drop-shadow(2px 4px 6px black);
+    }
 `

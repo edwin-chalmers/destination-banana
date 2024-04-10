@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-// Styled components
 export const StyledLinkContainer = styled.div`
   background: white;
   max-width: 322px;
   text-align: center;
-  /* padding-left: 15px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -19,7 +17,6 @@ export const StyledLinkContainer = styled.div`
   height: 88.5vh;
   border: 1px solid black;
   position: fixed;
-  /* position: relative; */
 
   a {
     margin-top: 1px;
@@ -38,10 +35,7 @@ export const StyledLinkContainer = styled.div`
     
     &:hover {
       cursor: pointer;
-      /* text-decoration: underline; */
       background-color: yellow;
-      /* color: rgb(53,98,201); */
-      /* font-weight: bold; */
     }
   }
 
