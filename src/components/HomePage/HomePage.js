@@ -28,7 +28,7 @@ function HomePage({setError}) {
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
   const navigate = useNavigate()
-
+  
 
   useEffect(() => {
     let endpointAPI
@@ -99,7 +99,6 @@ function HomePage({setError}) {
       })
     }).catch(error => handleError(error))
   }
-
 
   function cleanupHTML() {
     document.querySelectorAll('img').forEach((img) => {

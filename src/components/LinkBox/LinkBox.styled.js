@@ -5,6 +5,7 @@ export const StyledLinkContainer = styled.div`
   background: white;
   max-width: 322px;
   text-align: center;
+  /* padding-left: 15px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,20 +24,22 @@ export const StyledLinkContainer = styled.div`
     margin-bottom: 1px;
     text-decoration: none;
     color: black;
+    width: 100%;
 
     &::before {
-        content: '*';
+        content: '🍌 ';
       }
       
       &::after {
-        content: '*';
+        content: ' 🍌';
       }
     
     &:hover {
       cursor: pointer;
-      text-decoration: underline;
-      color: rgb(53,98,201);
-      font-weight: bold;
+      /* text-decoration: underline; */
+      background-color: yellow;
+      /* color: rgb(53,98,201); */
+      /* font-weight: bold; */
     }
   }
 `
