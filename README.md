@@ -11,12 +11,14 @@ Destination: Banana is a web game built around the Wikipeida API. The goal of th
 
 
 ### Additional Downloads
-`npm install html-react-parser`
-`npm install styled-components`
-`npm install react-router-dom`
-`npm install gsap`
-`npm install gsap-trial`
-`npm install @gsap/react`
+```
+npm install html-react-parser
+npm install styled-components
+npm install react-router-dom
+npm install gsap
+npm install gsap-trial
+npm install @gsap/react
+```
 
 
 ## Technologies used
