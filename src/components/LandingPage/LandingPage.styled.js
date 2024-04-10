@@ -5,6 +5,9 @@ export const StyledLanding = styled.div `
     height: 100vh;
     align-content: center;
     overflow: hidden;
+    background-image: url(/assets/beach_light.svg);
+    background-size: 100%;
+    background-position-y: 57%;;
 
     section {
         position: absolute;
@@ -35,7 +38,7 @@ export const StyledLanding = styled.div `
         scale: 0.90;
     }
 
-    a{
+    a {
         position: absolute;
         z-index: 1;
         top: 50%;

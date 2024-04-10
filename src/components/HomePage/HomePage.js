@@ -13,11 +13,12 @@ import InertiaPlugin from 'gsap-trial/InertiaPlugin'
 import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
 import { StyledHomepage } from './HomePage.styled'
 import { Route, Routes, useNavigate } from 'react-router-dom'
+import {ScrollTrigger} from 'gsap/ScrollTrigger'
 // import { useGSAP } from 'gsap'
 
 
 
-gsap.registerPlugin(Draggable, InertiaPlugin, Physics2DPlugin);
+gsap.registerPlugin(Draggable, InertiaPlugin, Physics2DPlugin, ScrollTrigger);
 
 function HomePage({setError}) {
 
@@ -28,40 +29,31 @@ function HomePage({setError}) {
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
   const navigate = useNavigate()
-
-  //////////////////////////////////////////
-  const homeAnimCont = useRef()
-  //////////////////////////////////////////
+  gsap.config({ trialWarn: false })
 
   Draggable.create(".draggable-container", {
     type: "x",
-    // bounds: ".background-container"
-  });
-
+    edgeResistance: 0.65,
+    bounds: { minX: 0}
+  })
 
   useEffect(() => {
     let endpointAPI
 
-    // ** RANDOM START TOPIC **//
-    if(!endpointAPI){
-      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-        return rando.json()
-      }).then(data => {
-        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-        //change to endpointAPI
-        updatePages(endpointAPI)
-        // window.endpointAPI = endpointAPI
-
-    // ** BANANA START TOPIC **//    
-    // if (!endpointAPI) {
-    //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+    // if(!endpointAPI){
+    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
     //     return rando.json()
     //   }).then(data => {
     //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
     //     updatePages(endpointAPI)
 
+    if (!endpointAPI) {
+      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+        return rando.json()
+      }).then(data => {
+        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(endpointAPI)
 
-    gsap.config({ trialWarn: false })
     let tl = gsap.timeline()
     tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
@@ -163,7 +155,15 @@ function HomePage({setError}) {
       })
 
       const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-      console.log('randomizedList', randomizedList)
+
+
+      const bananaIndex = randomizedList.forEach((link) => {
+        if(link['title'] === 'Banana'){
+          return randomizedList.indexOf(link)
+        }
+      })
+
+      console.log(randomizedList)
 
       setLinkList(randomizedList)
    
@@ -199,10 +199,10 @@ function HomePage({setError}) {
       rotate: "random(0,180)",
       transform: 'translate(50%, 50%)'
     });
-
-    let tl = gsap.timeline({ repeat: 100 })
+  
+    let tl = gsap.timeline({ repeat: 100, onComplete: removeDots })
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
-
+  
     gsap.to(dots, {
       duration: 8,
       physics2D: {
@@ -212,7 +212,13 @@ function HomePage({setError}) {
       },
       delay: "0"
     });
+  
+    function removeDots() {
+      console.log('remove dots')
+      dots.forEach(dot => dot.remove());
+    }
   }
+  
 
   function focusPage(id) {
     const tl = gsap.timeline()
@@ -265,7 +271,7 @@ function HomePage({setError}) {
       <div className="background-container">
       <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
         <div className='draggable-container'>
-          <main ref={homeAnimCont} id='main-content'>
+          <main id='main-content'>
             <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
           </main>
         </div>

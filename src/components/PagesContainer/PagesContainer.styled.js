@@ -10,7 +10,7 @@ export const StyledPagesContainer = styled.div`
     left: 0px;
     top: 0px;
 
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
     width: 100%;
 `

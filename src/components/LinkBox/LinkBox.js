@@ -54,7 +54,6 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
             keyTicker += 1;
             return (
                 <>
-                    <div className='link-background'></div>
                     <a key={keyTicker} onClick={(event) => {
                         event.preventDefault()
                         handleClick(event)

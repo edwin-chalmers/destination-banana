@@ -11,6 +11,10 @@ export const StyledHomepage = styled.div `
         width: 100%;
     }
 
+    .background-container{
+        overflow: visible;
+    }
+
     main {
         height: 100vh;
         overflow-x: scroll;
