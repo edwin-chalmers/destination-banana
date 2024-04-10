@@ -3,8 +3,6 @@ import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
 
 export default function Toolbar( { focusPage, pages, backClicks }) {
-console.log("🚀 ~ Toolbar ~ pages:", pages)
-
 
     return (
         <StyledToolbar >
