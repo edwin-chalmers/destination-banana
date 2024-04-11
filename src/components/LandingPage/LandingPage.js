@@ -2,12 +2,11 @@ import { Link } from 'react-router-dom'
 import { StyledLanding } from './LandingPage.styled'
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
-import { MotionPathPlugin } from "gsap/MotionPathPlugin"
 import { useGSAP } from "@gsap/react/dist";
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
 import { useRef, useEffect } from 'react'
 
-gsap.registerPlugin(Draggable, MotionPathPlugin, MotionPathHelper, useGSAP);
+gsap.registerPlugin(Draggable, useGSAP);
 gsap.config({trialWarn: false})
  
 function LandingPage() {

@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
@@ -6,7 +5,6 @@ import Win from '../Win/Win'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState, useRef } from 'react'
 import parse from 'html-react-parser';
-import { Link } from 'react-router-dom'
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
 import { StyledHomepage } from './HomePage.styled'
