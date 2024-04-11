@@ -2,7 +2,7 @@
 **Overview:**
 Destination: Banana is a web game built around the Wikipeida API. The goal of this project was to build an application around an API, complimented by technologies new we taught ourselves to use. 
 
-[Check it out here!](https://edwin-chalmers.github.io/destination-banana/)
+[Check it out here!](https://destination-banana.vercel.app/)/
 
 ###  Installation
 - `fork` this repo and clone it to your local machine
