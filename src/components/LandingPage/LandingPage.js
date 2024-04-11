@@ -2,19 +2,12 @@ import { Link } from 'react-router-dom'
 import { StyledLanding } from './LandingPage.styled'
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
-import InertiaPlugin from 'gsap-trial/InertiaPlugin'
-import { CustomEase } from "gsap-trial/CustomEase";
-import { DrawSVGPlugin } from "gsap-trial/DrawSVGPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin"
-import { MotionPathHelper } from "gsap-trial/dist/MotionPathHelper";
-import { ScrambleTextPlugin } from "gsap-trial/ScrambleTextPlugin";
 import { useGSAP } from "@gsap/react/dist";
-import {GSDevTools} from "gsap-trial/GSDevTools"
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
 import { useRef, useEffect } from 'react'
 
-gsap.registerPlugin(GSDevTools)
-gsap.registerPlugin(Draggable, MotionPathPlugin, MotionPathHelper, InertiaPlugin, useGSAP,DrawSVGPlugin,ScrambleTextPlugin,CustomEase, MotionPathPlugin, DrawSVGPlugin);
+gsap.registerPlugin(Draggable, MotionPathPlugin, MotionPathHelper, useGSAP);
 gsap.config({trialWarn: false})
  
 function LandingPage() {
