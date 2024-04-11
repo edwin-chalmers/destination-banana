@@ -37,20 +37,20 @@ function HomePage({setError}) {
   useEffect(() => {
     let endpointAPI
 
-    // if(!endpointAPI){
-    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-    //     return rando.json()
-    //   }).then(data => {
-    //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-    //     updatePages(endpointAPI)
+    if(!endpointAPI){
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+        return rando.json()
+      }).then(data => {
+        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(endpointAPI)
 
-        if (!endpointAPI) {
-          fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
-            return rando.json()
-          }).then(data => {
-            endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-            updatePages(endpointAPI)
-    
+      // if (!endpointAPI) {
+      //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+      //     return rando.json()
+      //   }).then(data => {
+      //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+      //     updatePages(endpointAPI)
+  
 
 
     let tl = gsap.timeline()
