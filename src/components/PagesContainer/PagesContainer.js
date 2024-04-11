@@ -8,13 +8,24 @@ export default function PagesContainer({ pages, focusPage }) {
     const containerRef = useRef(null)
 
     useEffect(() => {
+        if(pages.length > 1){
+            const tl = gsap.timeline()
+            tl.fromTo(
+                containerRef.current, 
+                { left: '-63' },
+                { duration: 1, delay: .2, left: '330', ease: 'power3.out'}
+            );
+        }
+    }, [pages.length]);
+
+    useEffect(() => {
         const tl = gsap.timeline()
         tl.fromTo(
             containerRef.current, 
-            { left: '-65' },
-            { duration: 1, left: '330', ease: 'power3.out'}
-        );
-    }, [pages.length]); 
+            { left: '-250' },
+            { duration: 1, left: '330', delay: 1.5},
+        )
+    }, [])
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
