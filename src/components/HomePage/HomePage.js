@@ -37,12 +37,20 @@ function HomePage({setError}) {
   useEffect(() => {
     let endpointAPI
 
-    if(!endpointAPI){
-      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-        return rando.json()
-      }).then(data => {
-        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-        updatePages(endpointAPI)
+    // if(!endpointAPI){
+    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+    //     return rando.json()
+    //   }).then(data => {
+    //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+    //     updatePages(endpointAPI)
+
+        if (!endpointAPI) {
+          fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+            return rando.json()
+          }).then(data => {
+            endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+            updatePages(endpointAPI)
+    
 
 
     let tl = gsap.timeline()
@@ -194,11 +202,11 @@ function HomePage({setError}) {
   
     gsap.to(dots, {
       duration: 8,
-      physics2D: {
-        velocity: "random(200, 1000)",
-        angle: "random(250, 290)",
-        gravity: 500
-      },
+      // physics2D: {
+      //   velocity: "random(200, 1000)",
+      //   angle: "random(250, 290)",
+      //   gravity: 500
+      // },
       delay: "0"
     })
   
