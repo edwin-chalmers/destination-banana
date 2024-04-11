@@ -9,13 +9,11 @@ import parse from 'html-react-parser';
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable';
-import InertiaPlugin from 'gsap-trial/InertiaPlugin'
-import { Physics2DPlugin } from "gsap-trial/Physics2DPlugin";
 import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(Draggable, InertiaPlugin, Physics2DPlugin, ScrollTrigger);
+gsap.registerPlugin(Draggable, ScrollTrigger);
 
 function HomePage({setError}) {
 
