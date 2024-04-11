@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import {useGSAP, useRef, useEffect} from 'react'
 
 
-export default function LinkBox({ linkList, updatePages, checkForWin }) {
+export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     let clickCount
     let keyTicker = 0
 
@@ -21,31 +21,38 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
     function handleClick(event) {
         checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
+}
 
-          const banana = document.createElement('p')
-          banana.textContent= '+🍌'
-          banana.id = 'banana'
-          const mainPage = document.querySelector('#main-page')
-          mainPage.appendChild(banana)
-          const tl = gsap.timeline({
-              onComplete: () => {
-                  mainPage.removeChild(banana);
-              }
-          });
-          tl.fromTo('#banana', {
-              scale: '5',
-              filter: 'drop-shadow(2px 4px 3px black)',
-              y: '32px',
-              x: '74px',
-          },
-          {
-              scale: '1',
-              y: '-60',
-              x: destLeft -250,
-              duration: '1.5',
-              ease: 'sine.inOut'
-          })
-    }
+
+    useEffect(() => {
+        if(pages.length > 1) {
+            const banana = document.createElement('p')
+            banana.textContent= '+🍌'
+            banana.id = 'banana'
+            const mainPage = document.querySelector('#main-page')
+            mainPage.appendChild(banana)
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    mainPage.removeChild(banana);
+                }
+            });
+            tl.fromTo('#banana', {
+                scale: '5',
+                filter: 'drop-shadow(2px 4px 3px black)',
+                y: '32px',
+                x: '74px',
+            },
+            {
+                scale: '1',
+                y: '-60',
+                x: destLeft -250,
+                duration: '1.5',
+                ease: 'sine.inOut'
+            })
+        }
+        }, [pages])
+
+    // }
     
     let linkTails
     if(linkList) {

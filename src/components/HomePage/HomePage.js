@@ -14,7 +14,6 @@ import {ScrollTrigger} from 'gsap/ScrollTrigger'
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
 function HomePage({setError}) {
-
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
@@ -119,6 +118,7 @@ function HomePage({setError}) {
         isDisplayed: true,
         title: endpointText
       }
+
       setNextId(prev => prev += 1)
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
@@ -217,8 +217,6 @@ function HomePage({setError}) {
   
 
   function focusPage(id) {
-    const tl = gsap.timeline()
-
     setBackClicks((prev) => {
       const newBacks = prev + 1
 
@@ -265,7 +263,7 @@ function HomePage({setError}) {
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <div className="background-container">
-      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
+      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
         <div className='draggable-container'>
           <main id='main-content'>
             <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />

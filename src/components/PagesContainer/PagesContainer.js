@@ -4,17 +4,49 @@ import { gsap } from 'gsap'
 import {useGSAP, useRef, useEffect} from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
-
     const containerRef = useRef(null)
 
+    const numDisplayedPages = pages.reduce((acc, page) => {
+        if(page.isDisplayed) {
+            acc++
+        }
+
+        return acc
+    }, 0)
+
     useEffect(() => {
+        if(pages.length > 1){
+            console.log('here 9')
+            const tl = gsap.timeline()
+            tl.fromTo(
+                containerRef.current, 
+                { left: '-63' },
+                { duration: 1, left: '330', ease: 'power3.out'}
+            );
+        }
+    }, [pages.length]);
+
+    useEffect(() => {
+        if(pages.length > 1) {
+            console.log('here 12')
+            const tl = gsap.timeline()
+            tl.fromTo(
+                containerRef.current, 
+                { left: '660' },
+                { duration: 1, left: '330', ease: 'power3.out'}
+            );
+        }
+    }, [pages.length - numDisplayedPages]);
+
+    useEffect(() => {
+        console.log('here 5')
         const tl = gsap.timeline()
         tl.fromTo(
             containerRef.current, 
-            { left: '-65' },
-            { duration: 1, left: '330', ease: 'power3.out'}
-        );
-    }, [pages.length]); 
+            { left: '-250' },
+            { duration: 1, left: '330', delay: 1.5},
+        )
+    }, [])
 
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
