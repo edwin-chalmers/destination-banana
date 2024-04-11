@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgba(254,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     justify-content: space-between;
     align-items: center;
