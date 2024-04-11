@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StyledToolbar = styled.nav`
     background-color: rgba(254,255,255,0.8);
@@ -11,6 +12,14 @@ export const StyledToolbar = styled.nav`
         left: 925px;
         top: 0; 
     }
+`
+
+export const StyledLink = styled(Link) `
+    width: 240px;
+    height: 30px;
+    background-image: url(/assets/DB-horizontal-w-banana.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
 `
 
 export const StyledButton = styled.button`

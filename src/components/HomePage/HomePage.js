@@ -33,19 +33,19 @@ function HomePage({setError}) {
   useEffect(() => {
     let endpointAPI
 
-    if(!endpointAPI){
-      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-        return rando.json()
-      }).then(data => {
-        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-        updatePages(endpointAPI)
+    // if(!endpointAPI){
+    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+    //     return rando.json()
+    //   }).then(data => {
+    //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+    //     updatePages(endpointAPI)
 
-      // if (!endpointAPI) {
-      //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
-      //     return rando.json()
-      //   }).then(data => {
-      //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-      //     updatePages(endpointAPI)
+      if (!endpointAPI) {
+        fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+          return rando.json()
+        }).then(data => {
+          endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+          updatePages(endpointAPI)
   
 
 
@@ -193,23 +193,25 @@ function HomePage({setError}) {
       transform: 'translate(50%, 50%)'
     })
   
-    let tl = gsap.timeline({ repeat: 100, onComplete: removeDots })
+    let tl = gsap.timeline({ repeat: 100})
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
   
-    gsap.to(dots, {
-      duration: 8,
-      // physics2D: {
-      //   velocity: "random(200, 1000)",
-      //   angle: "random(250, 290)",
-      //   gravity: 500
-      // },
-      delay: "0"
+    // tl.to(dots, {
+    //   duration: 0.5,
+    //   delay: "0"
+    // })
+
+    let tl2 = gsap.timeline({onComplete: removeDots})
+    tl2.to(dots, {
+      duration: 5, 
+      y: '+=5000', 
+      ease: 'easeInOutQuad', 
+      delay: "0.5"
     })
+
   
     function removeDots() {
-      console.log('remove dots')
-
-      document.querySelectorAll("#main-content > div:nth-child").forEach(dot => console.log(dot))
+     document.querySelectorAll('.dot').forEach((dot) => dot.remove())
     }
   }
   

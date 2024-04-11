@@ -7,7 +7,8 @@ export const StyledLanding = styled.div `
     overflow: hidden;
     background-image: url(/assets/beach_light.svg);
     background-size: 100%;
-    background-position-y: 57%;;
+    background-position-y: 57%;
+    position: fixed;
 
     section {
         position: absolute;

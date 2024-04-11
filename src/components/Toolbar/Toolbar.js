@@ -1,12 +1,13 @@
-import { StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, StyledCounter } from './Toolbar.styled'
+import { StyledLink, StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, StyledCounter } from './Toolbar.styled'
 import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
+
 
 export default function Toolbar( { focusPage, pages, backClicks }) {
 
     return (
         <StyledToolbar >
-            <StyledLogo src='/assets/DB-horizontal-w-banana.svg' alt='wikiLinks site logo'/>
+            <StyledLink to={'/'} alt='wikiLinks site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter >
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
