@@ -21,6 +21,15 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     function handleClick(event) {
         checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
+        const addWidth = 300
+        var element = document.querySelector('.draggable-container')
+        var currentWidth = element.offsetWidth
+        let newWidth = currentWidth += 340
+
+        element.style.width = `${newWidth}px`
+
+
+        console.log(currentWidth)
 }
 
 

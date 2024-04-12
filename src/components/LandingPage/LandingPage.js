@@ -45,21 +45,16 @@ function LandingPage() {
         tl.to(
             monkeyThief,
             {
-                left: '4000', duration: 4.5, onComplete: function () {
+                left: '4000', duration: 2, onComplete: function () {
                     if (document.getElementById('monkeyThief')) {
                         document.getElementById('monkeyThief').remove()
-                        enterGame()
+                        navigate('/HomePage')
                     }
                 } 
             }, "+=.5"
         )
     }
 
-    function enterGame() {
-        setTimeout(() => {
-            navigate('/HomePage')
-        }, 0);
-    }
 
 
     return ( 

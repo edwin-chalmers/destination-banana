@@ -6,13 +6,13 @@ export const StyledHomepage = styled.div `
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
-        overflow: hidden;
+        overflow: visible;
         position: fixed;
         width: 100%;
     }
 
-    .background-container{
-        overflow: visible;
+    .draggable-container{
+        width: 100%;
     }
 
     main {
