@@ -41,13 +41,17 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                 filter: 'drop-shadow(2px 4px 3px black)',
                 y: '32px',
                 x: '74px',
+                zIndex: '100',
+                position: 'absolute'
             },
             {
                 scale: '1',
                 y: '-60',
                 x: destLeft -250,
                 duration: '1.5',
-                ease: 'sine.inOut'
+                ease: 'sine.inOut',
+                zIndex: '100',
+                position: 'absolute'
             })
         }
         }, [pages])

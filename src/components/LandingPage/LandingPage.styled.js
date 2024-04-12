@@ -32,30 +32,42 @@ export const StyledLanding = styled.div `
         top: -5%;
         left: 0;
         scale: 1;
-
-
     }
 
-    a {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 50%;
+    #link{
         width: 500px;
-        height: 320px;
-        transform: translate(-50%, -100%);
-        background-image: url('/assets/DB-vertical-w-banana.svg');
-        background-position: center; 
-        background-repeat: no-repeat; 
-        background-size: cover;
+        position: relative;
+        z-index: 1;
         overflow: visible;
-
         &:hover {
             cursor: pointer;
             filter: drop-shadow(10px 10px 50px white);
             width: 505px;
             height: 320px;
         }
+    }
+
+    #bananaContainer{
+        z-index: 1;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -95%);
+    }
+
+    a {
+        position: absolute;
+    z-index: 3;
+    /* top: 50%; */
+    /* left: 50%; */
+    width: 500px;
+    height: 320px;
+    transform: translate(8%, 0%);
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* overflow: visible; */
+    background: black;
     }
 
 `

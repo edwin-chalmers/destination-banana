@@ -11,6 +11,7 @@ import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
+
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
 function HomePage({setError}) {
@@ -32,19 +33,19 @@ function HomePage({setError}) {
   useEffect(() => {
     let endpointAPI
 
-    // if(!endpointAPI){
-    //   fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-    //     return rando.json()
-    //   }).then(data => {
-    //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-    //     updatePages(endpointAPI)
+    if(!endpointAPI){
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+        return rando.json()
+      }).then(data => {
+        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(endpointAPI)
 
-      if (!endpointAPI) {
-        fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
-          return rando.json()
-        }).then(data => {
-          endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-          updatePages(endpointAPI)
+      // if (!endpointAPI) {
+      //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+      //     return rando.json()
+      //   }).then(data => {
+      //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
+      //     updatePages(endpointAPI)
   
 
 
@@ -90,6 +91,7 @@ function HomePage({setError}) {
       ease: 'bounce',
       onComplete: () => {
         homePage.removeChild(monkeyContainer)
+
       }
     }, '+=2')
   }
@@ -206,7 +208,8 @@ function HomePage({setError}) {
       duration: 5, 
       y: '+=5000', 
       ease: 'easeInOutQuad', 
-      delay: "0.5"
+      delay: "0.5",
+      zIndex: '100',
     })
 
   
