@@ -29,7 +29,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
             const banana = document.createElement('p')
             banana.textContent= '+🍌'
             banana.id = 'banana'
-            const mainPage = document.querySelector('#main-page')
+            const mainPage = document.querySelector('.background-container')
             mainPage.appendChild(banana)
             const tl = gsap.timeline({
                 onComplete: () => {
@@ -39,19 +39,20 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
             tl.fromTo('#banana', {
                 scale: '5',
                 filter: 'drop-shadow(2px 4px 3px black)',
-                y: '32px',
-                x: '74px',
+                y: '-160px',
+                x: '129px',
                 zIndex: '100',
                 position: 'absolute'
             },
             {
                 scale: '1',
-                y: '-60',
-                x: destLeft -250,
-                duration: '1.5',
+                y: '-350',
+                x: destLeft -50,
+                duration: '1',
                 ease: 'sine.inOut',
                 zIndex: '100',
-                position: 'absolute'
+                position: 'absolute',
+                opacity: 0.25,
             })
         }
         }, [pages])

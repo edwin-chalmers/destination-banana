@@ -75,18 +75,20 @@ function HomePage({setError}) {
     monkeyBro.src = '/assets/confused_monkey.svg'
     monkeyBro.id = "confused-monkey"
 
-    const homePage = document.querySelector('#main-content')
+    const homePage = document.querySelector('.background-container')
     homePage.appendChild(monkeyContainer)
     monkeyContainer.appendChild(monkeyBro)
     monkeyContainer.appendChild(badLink)
     badLink.appendChild(linkMsg)
 
     tl.to(monkeyContainer, {
-      transform: 'translate(287px, 100px)',
+      transform: 'translate(637px, -895px)',
       duration: 0.5,
       ease: 'bounce',
-    }).to(monkeyContainer, {
-      transform: 'translate(-1000px, 100px)',
+    })
+    
+    tl.to(monkeyContainer, {
+      transform: 'translate(-1000px, -895px)',
       duration: 0.5,
       ease: 'bounce',
       onComplete: () => {
@@ -103,7 +105,6 @@ function HomePage({setError}) {
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
-
       if(!html){
         handleBrokenLink()
         focusPage(0)
