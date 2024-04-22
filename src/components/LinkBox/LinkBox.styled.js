@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledLinkContainer = styled.div`
-  background: white;
+  background-color: rgb(255, 255, 255, .8);
   max-width: 322px;
   text-align: center;
   display: flex;

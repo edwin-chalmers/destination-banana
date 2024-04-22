@@ -11,10 +11,10 @@ import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
+
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
 function HomePage({setError}) {
-
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
@@ -75,22 +75,25 @@ function HomePage({setError}) {
     monkeyBro.src = '/assets/confused_monkey.svg'
     monkeyBro.id = "confused-monkey"
 
-    const homePage = document.querySelector('#main-content')
+    const homePage = document.querySelector('.background-container')
     homePage.appendChild(monkeyContainer)
     monkeyContainer.appendChild(monkeyBro)
     monkeyContainer.appendChild(badLink)
     badLink.appendChild(linkMsg)
 
     tl.to(monkeyContainer, {
-      transform: 'translate(287px, 100px)',
+      transform: 'translate(637px, -895px)',
       duration: 0.5,
       ease: 'bounce',
-    }).to(monkeyContainer, {
-      transform: 'translate(-1000px, 100px)',
+    })
+    
+    tl.to(monkeyContainer, {
+      transform: 'translate(-1000px, -895px)',
       duration: 0.5,
       ease: 'bounce',
       onComplete: () => {
         homePage.removeChild(monkeyContainer)
+
       }
     }, '+=2')
   }
@@ -102,7 +105,6 @@ function HomePage({setError}) {
 
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
-
       if(!html){
         handleBrokenLink()
         focusPage(0)
@@ -119,6 +121,7 @@ function HomePage({setError}) {
         isDisplayed: true,
         title: endpointText
       }
+
       setNextId(prev => prev += 1)
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
@@ -193,30 +196,31 @@ function HomePage({setError}) {
       transform: 'translate(50%, 50%)'
     })
   
-    let tl = gsap.timeline({ repeat: 100, onComplete: removeDots })
+    let tl = gsap.timeline({ repeat: 100})
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
   
-    gsap.to(dots, {
-      duration: 8,
-      // physics2D: {
-      //   velocity: "random(200, 1000)",
-      //   angle: "random(250, 290)",
-      //   gravity: 500
-      // },
-      delay: "0"
+    // tl.to(dots, {
+    //   duration: 0.5,
+    //   delay: "0"
+    // })
+
+    let tl2 = gsap.timeline({onComplete: removeDots})
+    tl2.to(dots, {
+      duration: 5, 
+      y: '+=5000', 
+      ease: 'easeInOutQuad', 
+      delay: "0.5",
+      zIndex: '100',
     })
+
   
     function removeDots() {
-      console.log('remove dots')
-
-      document.querySelectorAll("#main-content > div:nth-child").forEach(dot => console.log(dot))
+     document.querySelectorAll('.dot').forEach((dot) => dot.remove())
     }
   }
   
 
   function focusPage(id) {
-    const tl = gsap.timeline()
-
     setBackClicks((prev) => {
       const newBacks = prev + 1
 
@@ -263,7 +267,7 @@ function HomePage({setError}) {
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <div className="background-container">
-      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} />
+      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
         <div className='draggable-container'>
           <main id='main-content'>
             <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />

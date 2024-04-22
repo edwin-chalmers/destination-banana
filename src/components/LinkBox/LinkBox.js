@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import {useGSAP, useRef, useEffect} from 'react'
 
 
-export default function LinkBox({ linkList, updatePages, checkForWin }) {
+export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     let clickCount
     let keyTicker = 0
 
@@ -21,31 +21,52 @@ export default function LinkBox({ linkList, updatePages, checkForWin }) {
     function handleClick(event) {
         checkForWin(event.target.textContent)
         updatePages(event.target.textContent)
+        const addWidth = 300
+        var element = document.querySelector('.draggable-container')
+        var currentWidth = element.offsetWidth
+        let newWidth = currentWidth += 340
 
-          const banana = document.createElement('p')
-          banana.textContent= '+🍌'
-          banana.id = 'banana'
-          const mainPage = document.querySelector('#main-page')
-          mainPage.appendChild(banana)
-          const tl = gsap.timeline({
-              onComplete: () => {
-                  mainPage.removeChild(banana);
-              }
-          });
-          tl.fromTo('#banana', {
-              scale: '5',
-              filter: 'drop-shadow(2px 4px 3px black)',
-              y: '32px',
-              x: '74px',
-          },
-          {
-              scale: '1',
-              y: '-60',
-              x: destLeft -250,
-              duration: '1.5',
-              ease: 'sine.inOut'
-          })
-    }
+        element.style.width = `${newWidth}px`
+
+
+        console.log(currentWidth)
+}
+
+
+    useEffect(() => {
+        if(pages.length > 1) {
+            const banana = document.createElement('p')
+            banana.textContent= '+🍌'
+            banana.id = 'banana'
+            const mainPage = document.querySelector('.background-container')
+            mainPage.appendChild(banana)
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    mainPage.removeChild(banana);
+                }
+            });
+            tl.fromTo('#banana', {
+                scale: '5',
+                filter: 'drop-shadow(2px 4px 3px black)',
+                y: '-160px',
+                x: '129px',
+                zIndex: '100',
+                position: 'absolute'
+            },
+            {
+                scale: '1',
+                y: '-350',
+                x: destLeft -50,
+                duration: '1',
+                ease: 'sine.inOut',
+                zIndex: '100',
+                position: 'absolute',
+                opacity: 0.25,
+            })
+        }
+        }, [pages])
+
+    // }
     
     let linkTails
     if(linkList) {

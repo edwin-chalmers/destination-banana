@@ -12,7 +12,7 @@ export const WikiPageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding-top: 5px;
-    background-color: white;
+    background-color: rgb(255, 255, 255, .75);
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;

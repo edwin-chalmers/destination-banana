@@ -6,13 +6,13 @@ export const StyledHomepage = styled.div `
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
-        overflow: hidden;
+        overflow: visible;
         position: fixed;
         width: 100%;
     }
 
-    .background-container{
-        overflow: visible;
+    .draggable-container{
+        width: 100%;
     }
 
     main {
@@ -24,7 +24,7 @@ export const StyledHomepage = styled.div `
         width:  300px;
         position: absolute;
         z-index: 10;
-        transform: translate(-300px, 0px);
+        transform: translate(0px, 0px);
     }
 
     #monkey-container {
@@ -37,8 +37,8 @@ export const StyledHomepage = styled.div `
         padding: 20px;
         height: 130px;
         background: white;
-        position: relative;
-        transform: translate(-500px, 190px);
+        position: absolute;
+        transform: translate(-200px, 190px);
         filter: drop-shadow(2px 4px 6px black);
         border-radius: 30px;
         background-color: black;
@@ -70,7 +70,8 @@ export const StyledHomepage = styled.div `
 
     #banana{
         position:absolute;
-        z-index: 11;
+        top: 299px;
+        left: 129px
      }
 
      .dot{
