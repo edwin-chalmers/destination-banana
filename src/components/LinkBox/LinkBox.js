@@ -27,9 +27,6 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
         let newWidth = currentWidth += 340
 
         element.style.width = `${newWidth}px`
-
-
-        console.log(currentWidth)
 }
 
 

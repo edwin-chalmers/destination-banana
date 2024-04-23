@@ -36,6 +36,13 @@ export const WikiPageContainer = styled.div`
     .metadata {
         display: none;
     }
+
+    #additionalImages{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
 `
 
 export const InfoBox = styled.div`

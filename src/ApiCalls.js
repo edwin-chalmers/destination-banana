@@ -47,4 +47,11 @@ function fetchPage(pageTitle) {
         });
 }
 
-export { fetchPage, fetchHTML }
+const fetchPhotos = async (endpoint) => {
+    const getPics = await fetch(`https://en.wikipedia.org/api/rest_v1/page/media-list/${endpoint}`)
+    .then(response => response.json())
+    return getPics
+}
+
+
+export { fetchPage, fetchHTML, fetchPhotos }

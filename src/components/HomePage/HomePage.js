@@ -152,7 +152,7 @@ function HomePage({setError}) {
       })
 
       const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-
+      // const randomizedList = filteredWikiLinks.sort();
 
       const bananaIndex = randomizedList.forEach((link, i) => {
         i++

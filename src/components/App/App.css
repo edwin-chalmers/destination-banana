@@ -11,3 +11,7 @@ main {
     align-items: flex-start;
     flex-wrap: nowrap;
 }
+
+#webpack-dev-server-client-overlay{
+    /* display:none; */
+}

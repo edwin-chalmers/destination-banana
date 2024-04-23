@@ -16,7 +16,6 @@ export default function PagesContainer({ pages, focusPage }) {
 
     useEffect(() => {
         if(pages.length > 1){
-            console.log('here 9')
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
@@ -39,7 +38,6 @@ export default function PagesContainer({ pages, focusPage }) {
     }, [pages.length - numDisplayedPages]);
 
     useEffect(() => {
-        console.log('here 5')
         const tl = gsap.timeline()
         tl.fromTo(
             containerRef.current, 
