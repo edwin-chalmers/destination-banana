@@ -43,7 +43,7 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, focus
         <WikiPageContainer id='page-container'>
             <LinkIcon id={id} focusPage={focusPage} />
             <h3>{title}</h3>
-            {stringForDOM}
+            <div id='pageContent'>{stringForDOM}</div>
             {photoEls}
         </WikiPageContainer>
     )

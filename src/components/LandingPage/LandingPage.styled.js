@@ -70,4 +70,5 @@ export const StyledLanding = styled.div `
     background: black;
     }
 
+
 `

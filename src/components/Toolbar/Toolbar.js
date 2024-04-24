@@ -1,13 +1,16 @@
 import { StyledLink, StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, StyledCounter } from './Toolbar.styled'
 import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
+import DailyChallenge from '../DailyChallenge/DailyChallenge';
 
 
-export default function Toolbar( { focusPage, pages, backClicks }) {
-
+export default function Toolbar( { focusPage, pages, backClicks, startTitle, setStartTitle }) {
+    const resetStartTitle = () => {
+        setStartTitle('')
+    }
     return (
         <StyledToolbar >
-            <StyledLink to={'/'} alt='wikiLinks site logo'/>
+            <StyledLink onClick={resetStartTitle} to={'/'} alt='wikiLinks site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter >
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
@@ -16,7 +19,7 @@ export default function Toolbar( { focusPage, pages, backClicks }) {
             <div>
                 <StyledEndpoint >
                     <h2>Start Point:</h2>
-                    { pages.length > 0 && <p>{pages[0].title}</p> }
+                     <p>{ pages.length > 0 && <p>{pages[0].title}</p> }</p>
                 </StyledEndpoint>
                 <StyledEndpoint >
                     <h2>Destination:</h2>

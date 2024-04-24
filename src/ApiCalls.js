@@ -23,11 +23,9 @@ function fetchPage(pageTitle) {
     };
 
     url.search = new URLSearchParams(params).toString();
-
     return fetch(url)
         .then(response => response.json()) 
         .then(data => {
-
             if (data.parse && data.parse.links) {
                 
                 const linksArray = data.parse.links.map(link => {
@@ -53,5 +51,10 @@ const fetchPhotos = async (endpoint) => {
     return getPics
 }
 
-
-export { fetchPage, fetchHTML, fetchPhotos }
+const getFeatured = async (endpoint) => {
+    const fetchFeat = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/featured/${endpoint}`)
+    .then(response => response.json())
+    console.log(fetchFeat)
+    return fetchFeat
+}
+export { fetchPage, fetchHTML, fetchPhotos, getFeatured }

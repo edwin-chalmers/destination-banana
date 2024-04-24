@@ -1,18 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App/App'
+import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+import React, { createContext, useContext, useState, useEffect } from "react";
+
+// Define your global props
+const defaultGlobalProps = {
+    
+};
+
+const GlobalPropContext = createContext();
+
+const GlobalPropProvider = ({ children }) => { 
+    const [startTitle, setStartTitle] = useState('')
+
+    const globalPropValue = {
+        setStartTitle,
+        startTitle
+      };
+
+      return (
+        <GlobalPropContext.Provider value={globalPropValue}>
+          {children}
+        </GlobalPropContext.Provider>
+      );
+}
+
+export const useGlobalProps = () => useContext(GlobalPropContext);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
+      <GlobalPropProvider>
         <App />
+        </GlobalPropProvider>,
     </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// Optional: report Web Vitals
 reportWebVitals();

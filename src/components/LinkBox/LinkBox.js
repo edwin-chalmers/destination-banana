@@ -31,6 +31,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
 
     useEffect(() => {
+        console.log(pages)
         if(pages.length > 1) {
             const banana = document.createElement('p')
             banana.textContent= '+🍌'
@@ -67,6 +68,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     
     let linkTails
     if(linkList) {
+        
         linkTails = linkList.map((link) => {
             keyTicker += 1;
             return (
@@ -78,6 +80,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                 </>
             )
         })
+
     } else {
         linkTails = <p> No Links to display here! Click the back button. </p>
     }
