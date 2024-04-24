@@ -5,14 +5,14 @@ import Draggable from 'gsap/Draggable';
 import { useGSAP } from "@gsap/react/dist";
 import { useNavigate } from 'react-router-dom'
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
-
+import DailyChallenge from '../DailyChallenge/DailyChallenge';
+import { useGlobalProps } from "../../index";
 import { useRef, useEffect } from 'react'
 
 gsap.registerPlugin(Draggable, useGSAP);
 
 
 function LandingPage() {
-
 
     
 
@@ -59,6 +59,7 @@ function LandingPage() {
 
     return ( 
         <main>
+            <DailyChallenge />
             <MonkeyThief />
             <StyledLanding >
                 <section>

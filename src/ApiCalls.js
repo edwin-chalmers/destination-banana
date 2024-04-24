@@ -23,11 +23,9 @@ function fetchPage(pageTitle) {
     };
 
     url.search = new URLSearchParams(params).toString();
-
     return fetch(url)
         .then(response => response.json()) 
         .then(data => {
-
             if (data.parse && data.parse.links) {
                 
                 const linksArray = data.parse.links.map(link => {
@@ -47,4 +45,16 @@ function fetchPage(pageTitle) {
         });
 }
 
-export { fetchPage, fetchHTML }
+const fetchPhotos = async (endpoint) => {
+    const getPics = await fetch(`https://en.wikipedia.org/api/rest_v1/page/media-list/${endpoint}`)
+    .then(response => response.json())
+    return getPics
+}
+
+const getFeatured = async (endpoint) => {
+    const fetchFeat = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/featured/${endpoint}`)
+    .then(response => response.json())
+    console.log(fetchFeat)
+    return fetchFeat
+}
+export { fetchPage, fetchHTML, fetchPhotos, getFeatured }

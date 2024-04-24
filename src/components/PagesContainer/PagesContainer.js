@@ -16,7 +16,6 @@ export default function PagesContainer({ pages, focusPage }) {
 
     useEffect(() => {
         if(pages.length > 1){
-            console.log('here 9')
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
@@ -28,7 +27,6 @@ export default function PagesContainer({ pages, focusPage }) {
 
     useEffect(() => {
         if(pages.length > 1) {
-            console.log('here 12')
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
@@ -39,12 +37,11 @@ export default function PagesContainer({ pages, focusPage }) {
     }, [pages.length - numDisplayedPages]);
 
     useEffect(() => {
-        console.log('here 5')
         const tl = gsap.timeline()
         tl.fromTo(
             containerRef.current, 
-            { left: '-250' },
-            { duration: 1, left: '330', delay: 1.5},
+            { left: '-250', opacity: 0 },
+            { duration: 1, left: '330',opacity: 1, delay: 1.5},
         )
     }, [])
 

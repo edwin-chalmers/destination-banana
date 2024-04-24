@@ -33,8 +33,79 @@ export const WikiPageContainer = styled.div`
         pointer-events: none;
     }
 
+    #pageContent{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        .mw-file-description{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+            img{
+                width: 100%;
+            }
+            }
+        figure{
+            width: 100%;
+        }
+        .hatnote{
+            display: none;
+        }
+        table {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            tbody{
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                tr{
+                    width: 100%;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    flex-wrap: nowrap;
+                    td{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-overflow: ellipsis;
+                }
+                .infobox-full-data, .infobox-above{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+                }
+            }
+        }
+        }
+
+    }
+
     .metadata {
         display: none;
+    }
+
+    #additionalImages{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
     }
 `
 

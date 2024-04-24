@@ -10,11 +10,12 @@ import Draggable from 'gsap/Draggable';
 import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
-
+import { useGlobalProps } from '../..';
 
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
-function HomePage({setError}) {
+function HomePage() {
+  
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
@@ -30,33 +31,36 @@ function HomePage({setError}) {
     bounds: { minX: 0}
   })
 
-  useEffect(() => {
-    let endpointAPI
 
-    if(!endpointAPI){
+  const {
+    startTitle,
+    setStartTitle
+  } = useGlobalProps();
+
+
+  useEffect(() => {
+    fetchWikiData()
+  }, [startTitle])
+
+  const fetchWikiData = async() => {
+    let endpointAPI
+    if(!endpointAPI && !startTitle){
       fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
         return rando.json()
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
         updatePages(endpointAPI)
-
-      // if (!endpointAPI) {
-      //   fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
-      //     return rando.json()
-      //   }).then(data => {
-      //     endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-      //     updatePages(endpointAPI)
-  
-
-
-    let tl = gsap.timeline()
-    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        let tl = gsap.timeline()
+        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
     } else {
-      updatePages(endpointAPI)
+        const formatTitle = startTitle.replaceAll('_', ' ').toString()
+        let tl = gsap.timeline()
+        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+      updatePages(formatTitle)
     }
 
-  }, [])
+  }
   
   function handleError(error) {
     navigate('/error')
@@ -99,6 +103,7 @@ function HomePage({setError}) {
   }
 
   function updatePages(endpointText) {
+    console.log(endpointText)
     createLinkList(endpointText)
 
     let htmlFilter
@@ -152,7 +157,7 @@ function HomePage({setError}) {
       })
 
       const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-
+      // const randomizedList = filteredWikiLinks.sort();
 
       const bananaIndex = randomizedList.forEach((link, i) => {
         i++
@@ -161,7 +166,7 @@ function HomePage({setError}) {
           randomizedList.unshift(bananaLink[0])
         }
       })
-
+      
       setLinkList(randomizedList)
    
     })
@@ -265,7 +270,7 @@ function HomePage({setError}) {
   return (
     <StyledHomepage >
       {win && <Win pages={pages} animateWin={animateWin} />}
-      <Toolbar pages={pages} focusPage={focusPage} backClicks={backClicks} />
+      <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <div className="background-container">
       <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
         <div className='draggable-container'>
