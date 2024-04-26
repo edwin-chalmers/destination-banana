@@ -41,7 +41,6 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, focus
     }
     return isDisplayed && (
         <WikiPageContainer id='page-container'>
-            <LinkIcon id={id} focusPage={focusPage} />
             <h3>{title}</h3>
             <div id='pageContent'>{stringForDOM}</div>
             {photoEls}
