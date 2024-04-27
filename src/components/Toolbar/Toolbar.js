@@ -2,20 +2,45 @@ import { StyledLink, StyledToolbar, StyledButton, StyledLogo, StyledEndpoint, St
 import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
 import DailyChallenge from '../DailyChallenge/DailyChallenge';
+import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 
 export default function Toolbar( { focusPage, pages, backClicks, startTitle, setStartTitle }) {
     const resetStartTitle = () => {
         setStartTitle('')
     }
+
+    const linkRef = useRef(null)
+
+    let destRight
+    let monkeyDest
+
+    if (linkRef.current) {
+        monkeyDest = linkRef.current.getBoundingClientRect();
+        destRight = monkeyDest.right;
+    }
+
+    // useEffect(() => {
+
+    // }, [pages])
+
     return (
         <StyledToolbar >
             <StyledLink onClick={resetStartTitle} to={'/'} alt='wikiLinks site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
-            <StyledCounter >
+            <StyledCounter ref={linkRef}>
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
                 {`🍌`}
             </StyledCounter>
+            {/* <div className='greedy-monkey-container'> */}
+                <motion.div
+                    style={{left:`${destRight}px`}}
+                    className="greedy-monkey"
+                    animate={{y: [0, -100, 0]}}
+                    transition={{delay: 1, type: "tween", duration: 3}}>
+                </motion.div>
+            {/* </div> */}
             <div>
                 <StyledEndpoint >
                     <h2>Start Point:</h2>

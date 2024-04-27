@@ -7,6 +7,21 @@ export const StyledToolbar = styled.nav`
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
+    overflow: hidden;
+
+    /* .greedy-monkey-container {
+        height: 100%;
+        position: relative;
+    } */
+
+    .greedy-monkey {
+        width: 20px;
+        height: 20px;
+        border: 3px solid black;
+        position: absolute;
+        top: 100px;
+        /* left: 50%; */
+    }
 `
 
 export const StyledLink = styled(Link) `
