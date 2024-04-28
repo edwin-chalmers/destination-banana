@@ -23,7 +23,7 @@ export const StyledToolbar = styled.nav`
 `
 
 export const StyledLink = styled(Link) `
-    width: 240px;
+    width: 300px;
     height: 30px;
     background-image: url(/assets/DB-horizontal-w-banana.svg);
     background-repeat: no-repeat;
