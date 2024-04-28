@@ -3,16 +3,17 @@ import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
 import DailyChallenge from '../DailyChallenge/DailyChallenge';
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 
 export default function Toolbar( { focusPage, pages, backClicks, startTitle, setStartTitle }) {
+    // const [monkeyState, setMonkeyState] = useState(pages)
+
     const resetStartTitle = () => {
         setStartTitle('')
     }
 
     const linkRef = useRef(null)
-
     let destRight
     let monkeyDest
 
@@ -20,10 +21,6 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
         monkeyDest = linkRef.current.getBoundingClientRect();
         destRight = monkeyDest.right;
     }
-
-    // useEffect(() => {
-
-    // }, [pages])
 
     return (
         <StyledToolbar >
@@ -33,14 +30,14 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
                 {`🍌`}
             </StyledCounter>
-            {/* <div className='greedy-monkey-container'> */}
                 <motion.div
+                    key={pages}
                     style={{left:`${destRight}px`}}
                     className="greedy-monkey"
                     animate={{y: [0, -100, 0]}}
-                    transition={{delay: 1, type: "tween", duration: 3}}>
+                    transition={{delay: .5, type: "tween", duration: 3}}>
+                        <img src='/assets/confused_monkey.svg' alt='Monkey Bro' />
                 </motion.div>
-            {/* </div> */}
             <div>
                 <StyledEndpoint >
                     <h2>Start Point:</h2>

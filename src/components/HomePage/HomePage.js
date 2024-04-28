@@ -272,7 +272,7 @@ function HomePage() {
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <div className="background-container">
-      <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
+        <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
         <div className='draggable-container'>
           <main id='main-content'>
             <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />

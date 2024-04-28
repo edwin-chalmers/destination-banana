@@ -53,12 +53,12 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
             {
                 scale: '1',
                 y: '-350',
-                x: destLeft -50,
-                duration: '1',
+                x: destLeft,
+                duration: '2',
                 ease: 'sine.inOut',
                 zIndex: '100',
                 position: 'absolute',
-                opacity: 0.25,
+                opacity: 0.5,
             })
         }
         }, [pages])

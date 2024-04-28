@@ -15,12 +15,10 @@ export const StyledToolbar = styled.nav`
     } */
 
     .greedy-monkey {
-        width: 20px;
-        height: 20px;
-        border: 3px solid black;
+        width: 80px;
+        height: 80px;
         position: absolute;
         top: 100px;
-        /* left: 50%; */
     }
 `
 
