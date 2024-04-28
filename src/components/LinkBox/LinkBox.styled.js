@@ -41,7 +41,7 @@ export const StyledLinkContainer = styled.div`
     /* border-top: 1px solid black; */
     text-decoration: none;
     color: black;
-    background-color: white;
+    background-color: rgb(255, 255, 255, .6);
     width: fit-content;
     padding: 2px 5px 2px 5px;
     border-radius: 10px;
@@ -67,7 +67,7 @@ export const StyledLinkContainer = styled.div`
     font-weight: bold;
   }
 
-  h3 {
+  h4 {
     background-color: white;
     font-size: 21px;
     border: 1px solid black;

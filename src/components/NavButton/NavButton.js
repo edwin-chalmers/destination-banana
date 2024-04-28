@@ -3,21 +3,27 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 export default function NavButton({ buttonText, focusPage, pages }) {
-    let extraClicks = 0 
+    let extraClicks = 0
+
+    function handleClick() {
+        const displayedPages = pages.filter((page) => {
+
+            return page.isDisplayed
+        })
+        displayedPages.length > 1 && focusPage(0) 
+    }
+
     return (
         <>
-            <StyledNavButton disabled={true} onClick={() => {
-                const displayedPages = pages.filter((page) => {
-
-                    return page.isDisplayed
-                })
-                displayedPages.length > 1 && focusPage(0) 
-
-            }}>
-                <div>
+            <StyledNavButton onClick={handleClick} onKeyDown={(e) => {
+                                                                                        
+                                                                    if(e.code === 'Space' || e.code === 'Enter') {
+                                                                        e.preventDefault()
+                                                                        handleClick()
+                                                                    }
+                                                                }}>
                     <p>Back</p>
                     <img src="/assets/future_white_48dp.svg" alt='undo icon'/>
-                </div>
             </StyledNavButton>
         </>
     )

@@ -48,7 +48,7 @@ export const StyledEndpoint = styled.div`
     display: flex;
     align-items: center;
     
-    h2 {
+    h3 {
         margin: 0;
         font-size: 1.4em;
     }

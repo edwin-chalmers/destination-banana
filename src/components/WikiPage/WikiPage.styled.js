@@ -17,7 +17,7 @@ export const WikiPageContainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
     
-    h3 {
+    h5 {
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         margin: 0 0 20px 0;

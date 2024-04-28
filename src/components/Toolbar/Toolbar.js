@@ -24,7 +24,7 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
 
     return (
         <StyledToolbar >
-            <StyledLink onClick={resetStartTitle} to={'/'} alt='wikiLinks site logo'/>
+            <StyledLink onClick={resetStartTitle} to={'/'} alt='Destination: Banana site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter ref={linkRef}>
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
@@ -40,11 +40,11 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
                 </motion.div>
             <div>
                 <StyledEndpoint >
-                    <h2>Start Point:</h2>
+                    <h3>Start Point:</h3>
                      <p>{ pages.length > 0 && <p>{pages[0].title}</p> }</p>
                 </StyledEndpoint>
                 <StyledEndpoint >
-                    <h2>Destination:</h2>
+                    <h3>Destination:</h3>
                     <p>Banana</p>
                 </StyledEndpoint>
             </div>
