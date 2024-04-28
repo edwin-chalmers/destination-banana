@@ -88,7 +88,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer id="links-container">
-            <h3>🍌Links</h3>
+            <h3>Links</h3>
             {linkTails}
         </StyledLinkContainer>
     )

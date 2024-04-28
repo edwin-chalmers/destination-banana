@@ -69,6 +69,10 @@ export const StyledLinkContainer = styled.div`
 
   h3 {
     background-color: white;
+    font-size: 21px;
+    border: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0 5px 0 5px;
   }
 `
 
