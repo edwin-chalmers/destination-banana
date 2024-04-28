@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgb(120,204,246);
     display: flex;
     justify-content: space-between;
     align-items: center;

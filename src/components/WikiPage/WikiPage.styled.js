@@ -37,6 +37,12 @@ export const WikiPageContainer = styled.div`
         pointer-events: none;
     }
 
+    .trow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .infobox-image {
         flex-direction: column;
     }
