@@ -39,6 +39,11 @@ export const StyledLanding = styled.div `
         position: relative;
         z-index: 1;
         overflow: visible;
+
+        &:focus {
+            outline: 2px solid blue
+        }
+
         &:hover {
             cursor: pointer;
             filter: drop-shadow(10px 10px 50px white);

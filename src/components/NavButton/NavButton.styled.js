@@ -6,23 +6,29 @@ const centerElements = () => `
     align-items: center;
 `
 
-export const StyledNavButton = styled.div`
+export const StyledNavButton = styled.button`
     --transparent: rgba(0,0,0,0)
     --button-color: #bababa;
     --hover-color: rgb(254, 209, 0);
+    width: 120px;
+        height: 40px;
+        background-color: var(--transparent);
+        border: 2px solid rgba(0,0,0,0.01);
+        border-radius: 3px;
+        ${centerElements}
 
     ${centerElements};
-    flex-direction: column;
+    flex-direction: row;
     margin: 0 15px 0 15px;
     
-    div {
+    /* div {
         width: 120px;
         height: 40px;
         background-color: var(--transparent);
         border: 2px solid rgba(0,0,0,0.01);
         border-radius: 3px;
         ${centerElements}
-    }
+    } */
     
     img {
         width: 30px;
@@ -37,17 +43,10 @@ export const StyledNavButton = styled.div`
         font-size: large;
     }
     
-        &:hover {
-    
-            p {
-                cursor: pointer;
-            }
-    
-            div {
-                cursor: pointer;
-                border: 2px solid var(--hover-color);
-            }
-        }
+    &:hover {
+        cursor: pointer;
+        border: 2px solid var(--hover-color);
+    }
 `
 
 const boxMixin = (size = '100px', backgroundColor = 'lightblue') => `

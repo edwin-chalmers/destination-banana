@@ -2,27 +2,31 @@ import styled from 'styled-components';
 
 export const WikiPageContainer = styled.div`
     width: 300px;
-    height: 85vh;
+    height: 83vh;
     border: 1px solid black;
     padding: 25px;
     overflow: hidden;
     margin: 20px;
     min-width: 300px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5px;
     background-color: rgb(255, 255, 255, .75);
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
     
-    h3 {
+    h5 {
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         margin: 0 0 20px 0;
         text-align: center;
         font-size: x-large;
+    }
+
+    .infobox-above {
+        margin-top: 0;
     }
 
     a {
@@ -33,55 +37,75 @@ export const WikiPageContainer = styled.div`
         pointer-events: none;
     }
 
+    .trow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infobox-image {
+        flex-direction: column;
+    }
+
     #pageContent{
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
+
         section{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        .mw-file-description{
             width: 100%;
             display: flex;
             flex-direction: column;
-            flex-wrap: nowrap;
             align-items: center;
-            img{
+            justify-content: flex-start;
+            overflow: hidden;
+
+            .mw-file-description{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-items: center;
+                /* img{
+                    width: 100%;
+                } */
+            }
+
+            figure{
                 width: 100%;
             }
+
+            .hatnote{
+                display: none;
             }
-        figure{
-            width: 100%;
-        }
-        .hatnote{
-            display: none;
-        }
-        table {
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            align-items: center;
-            tbody{
+
+            table {
                 display: flex;
                 width: 100%;
                 flex-direction: column;
                 align-items: center;
+
+            tbody {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+
                 tr{
                     width: 100%;
                     display: flex;
                     align-items: flex-start;
-                    justify-content: flex-start;
+                    justify-content: center;
                     flex-wrap: nowrap;
+
                     td{
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         text-overflow: ellipsis;
                 }
+
                 .infobox-full-data, .infobox-above{
                     width: 100%;
                     display: flex;

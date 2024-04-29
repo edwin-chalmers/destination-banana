@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { gsap } from 'gsap'
 import {useGSAP, useRef, useEffect} from 'react'
 
-
 export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     let clickCount
     let keyTicker = 0
@@ -54,17 +53,19 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
             {
                 scale: '1',
                 y: '-350',
-                x: destLeft -50,
-                duration: '1',
+                x: destLeft,
+                duration: '2',
                 ease: 'sine.inOut',
                 zIndex: '100',
                 position: 'absolute',
-                opacity: 0.25,
+                opacity: 0.5,
             })
         }
         }, [pages])
 
-    // }
+    useEffect(() => {
+        
+    }, [pages])
     
     let linkTails
     if(linkList) {
@@ -87,7 +88,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer id="links-container">
-            <h3>Links</h3>
+            <h4>Links</h4>
             {linkTails}
         </StyledLinkContainer>
     )

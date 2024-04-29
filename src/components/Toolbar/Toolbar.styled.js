@@ -2,15 +2,28 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgb(120,204,246);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
+    overflow: hidden;
+
+    /* .greedy-monkey-container {
+        height: 100%;
+        position: relative;
+    } */
+
+    .greedy-monkey {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        top: 100px;
+    }
 `
 
 export const StyledLink = styled(Link) `
-    width: 240px;
+    width: 300px;
     height: 30px;
     background-image: url(/assets/DB-horizontal-w-banana.svg);
     background-repeat: no-repeat;
@@ -35,7 +48,7 @@ export const StyledEndpoint = styled.div`
     display: flex;
     align-items: center;
     
-    h2 {
+    h3 {
         margin: 0;
         font-size: 1.4em;
     }
