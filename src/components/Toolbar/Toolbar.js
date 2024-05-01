@@ -30,6 +30,7 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
                 <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
                 {`🍌`}
             </StyledCounter>
+            {pages.length > 1 &&
                 <motion.div
                     key={pages}
                     style={{left:`${destRight}px`}}
@@ -38,6 +39,7 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
                     transition={{delay: .5, type: "tween", duration: 3}}>
                         <img src='/assets/confused_monkey.svg' alt='Monkey Bro' />
                 </motion.div>
+            }
             <div>
                 <StyledEndpoint >
                     <h3>Start Point:</h3>

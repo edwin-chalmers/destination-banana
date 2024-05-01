@@ -9,6 +9,7 @@ export const StyledHomepage = styled.div `
         overflow: visible;
         position: fixed;
         width: 100%;
+        height: 100vh;
     }
 
     .draggable-container{

@@ -2,6 +2,7 @@ import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
+import LoadScreen from '../LoadScreen/LoadScreen'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState, useRef } from 'react'
 import parse from 'html-react-parser';
@@ -32,6 +33,10 @@ function HomePage() {
   })
 
 
+  const [dataReady, setDataReady] = useState(false)
+  const [linkReady, setLinkReady] = useState(false)
+
+
   const {
     startTitle,
     setStartTitle
@@ -50,16 +55,15 @@ function HomePage() {
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
         updatePages(endpointAPI)
-        let tl = gsap.timeline()
-        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        // let tl = gsap.timeline()
+        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
     } else {
         const formatTitle = startTitle.replaceAll('_', ' ').toString()
-        let tl = gsap.timeline()
-        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        // let tl = gsap.timeline()
+        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       updatePages(formatTitle)
     }
-
   }
   
   function handleError(error) {
@@ -104,7 +108,7 @@ function HomePage() {
 
   function updatePages(endpointText) {
     console.log(endpointText)
-    createLinkList(endpointText)
+    
 
     let htmlFilter
 
@@ -137,6 +141,9 @@ function HomePage() {
 
         return [...updatedPages, newPage]
       })
+
+      createLinkList(endpointText)
+
     }).catch(error => handleError(error))
   }
   
@@ -168,7 +175,7 @@ function HomePage() {
       })
       
       setLinkList(randomizedList)
-   
+      setTimeout(() => {setDataReady(true)}, 1000)
     })
   }
 
@@ -267,18 +274,33 @@ function HomePage() {
     setPages(updatedPages)
   }
 
+  useEffect(() => {
+    if(dataReady){
+      setTimeout(() => {setLinkReady(true)}, 1000)
+    }
+  }, [dataReady])
+
   return (
     <StyledHomepage >
       {win && <Win pages={pages} animateWin={animateWin} />}
-      <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
-      <div className="background-container">
-        <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
-        <div className='draggable-container'>
-          <main id='main-content'>
-            <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
-          </main>
-        </div>
-      </div>
+      {dataReady ?
+        <>
+          <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+          <div className="background-container">
+            {linkReady &&
+              <>
+                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
+                <div className='draggable-container'>
+                  <main id='main-content'>
+                    <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
+                  </main>
+                </div>
+              </>
+            }
+          </div>
+        </>
+        :
+        <LoadScreen />}
     </StyledHomepage>
   )
 
