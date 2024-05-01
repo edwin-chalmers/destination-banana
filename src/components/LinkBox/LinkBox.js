@@ -29,12 +29,10 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     element.style.width = `${newWidth}px`
   }
 
-
   useEffect(() => {
     let tl = gsap.timeline()
     tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' })
   }, [])
-
 
     useEffect(() => {
         if(pages.length > 1) {
@@ -80,7 +78,10 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                     <a key={keyTicker} onClick={(event) => {
                         event.preventDefault()
                         handleClick(event)
-                    }} href={link.url}>{link.title}</a>
+                    }} 
+                    href={link.url}
+                     id={`${link.title.toLowerCase()}_LL`}
+                     >{link.title}</a>
                 </>
             )
         })

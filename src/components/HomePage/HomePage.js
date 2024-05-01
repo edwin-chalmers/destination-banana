@@ -178,7 +178,6 @@ function HomePage({}) {
           randomizedList.unshift(bananaLink[0])
         }
       })
-      
       setLinkList(randomizedList)
       setTimeout(() => {setDataReady(true)}, 1000)
     })
