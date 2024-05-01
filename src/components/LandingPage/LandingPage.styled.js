@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledLanding = styled.div `
+export const StyledLanding = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
     height: 100vh;
     align-content: center;
@@ -16,6 +20,7 @@ export const StyledLanding = styled.div `
         top: 50%;
         left: 50%;
         transform: translate(-50%, -10%);
+        text-align: center;
         
         width: 500px;
         padding: 50px 80px 50px 100px ; 
@@ -62,17 +67,21 @@ export const StyledLanding = styled.div `
 
     a {
         position: absolute;
-    z-index: 3;
-    /* top: 50%; */
-    /* left: 50%; */
-    width: 500px;
-    height: 320px;
-    transform: translate(8%, 0%);
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* overflow: visible; */
-    background: black;
+        z-index: 3;
+        /* top: 50%; */
+        /* left: 50%; */
+        width: 500px;
+        height: 320px;
+        transform: translate(8%, 0%);
+        /* background-position: center; */
+        /* background-repeat: no-repeat; */
+        /* background-size: cover; */
+        /* overflow: visible; */
+        background: black;
+    }
+
+    .landing-buttons {
+        margin-top: 400px;
     }
 
 

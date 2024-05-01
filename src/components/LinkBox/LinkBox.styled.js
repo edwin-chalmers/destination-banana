@@ -42,7 +42,7 @@ export const StyledLinkContainer = styled.div`
     /* border-top: 1px solid black; */
     text-decoration: none;
     color: black;
-    background-color: rgb(255, 255, 255, .6);
+    background-color: rgba(255, 255, 255, .85);
     width: fit-content;
     padding: 2px 5px 2px 5px;
     border-radius: 10px;
@@ -60,7 +60,6 @@ export const StyledLinkContainer = styled.div`
     &:hover {
       cursor: pointer;
       background-color: rgb(252,184,5);
-
     }
   }
 
@@ -69,11 +68,13 @@ export const StyledLinkContainer = styled.div`
   }
 
   h4 {
-    background-color: white;
-    font-size: 21px;
-    border: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 0 5px 0 5px;
+    background-color: rgba(255, 255, 255, .85);
+    border-radius: 10px;
+    font-size: 30px;
+    /* border: 1px solid black; */
+    border-bottom: 2px solid black;
+    padding: 0 5px 0 0px;
+    margin: 10px 0;
   }
 `
 

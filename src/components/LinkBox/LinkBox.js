@@ -31,6 +31,12 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 }
 
 
+  useEffect(() => {
+    let tl = gsap.timeline()
+    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' })
+  }, [])
+
+
     useEffect(() => {
         if(pages.length > 1) {
             const banana = document.createElement('p')
@@ -64,9 +70,6 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
         }
         }, [pages])
 
-    useEffect(() => {
-        
-    }, [pages])
     
     let linkTails
     if(linkList) {
@@ -89,7 +92,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <h4>Links</h4>
+            <h4>Destinations:</h4>
             {linkTails}
         </StyledLinkContainer>
     )

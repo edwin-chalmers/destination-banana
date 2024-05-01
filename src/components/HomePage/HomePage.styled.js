@@ -6,40 +6,84 @@ export const StyledHomepage = styled.div `
     position: fixed;
 }
     .background-container {
-        /* background-image: url(/assets/beach_backdrop1.svg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: bottom; */
-        top: 50px;
-    overflow: visible;
-    position: relative;
-    width: 100%;
+      /* background-image: url(/assets/beach_backdrop1.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: bottom; */
+      top: 50px;
+      overflow: visible;
+      position: relative;
+      width: 100%;
     }
 
-    #leftNav{
-    z-index: 5;
-    scale: 0.14;
-    position: absolute;
-    left: 221px;
-    filter: drop-shadow(2px 4px 6px black);
-    top: 170px;
-    &:hover{
-        cursor: pointer;
-    filter: brightness(0.5);
-    }
+      #leftNav{
+        z-index: 5;
+        scale: 0.14;
+        position: absolute;
+        left: 221px;
+        filter: drop-shadow(2px 4px 6px black);
+        top: 170px;
+        &:hover{
+          cursor: pointer;
+          filter: brightness(0.5);
+      }
     }
 
     #rightNav{
-    z-index: 5;
-    scale: 0.14;
-    position: absolute;
-    left: 1793px;
-    filter: drop-shadow(2px 4px 6px black);
-    top: 194px;
-    &:hover{
+      z-index: 5;
+      scale: 0.14;
+      position: absolute;
+      left: 1793px;
+      filter: drop-shadow(2px 4px 6px black);
+      top: 194px;
+      &:hover{
         cursor: pointer;
-    filter: brightness(0.5);
+        filter: brightness(0.5);
+      }
     }
+
+    .running-monkey-1,
+    .running-monkey-2,
+    .running-monkey-3,
+    .running-monkey-4,
+    .running-monkey-5
+     {
+        background-image: url(/assets/running-monkey.png);
+        background-size: cover;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: -300px;
+        margin-top: 33%;
+    }
+
+    /* .running-monkey-4 {
+        width: 300px;
+        /* height: 300px; */
+    /* } */ */
+
+    .running-monkey-2 {
+        margin-top: 40%;
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    .running-monkey-3 {
+        margin-top: 36%;
+    }
+
+    .running-monkey-4 {
+        width: 850px;
+        height: 850px;
+        left: -1000px;
+        margin-top: 35%;
+    }
+
+    .running-monkey-5 {
+        margin-top: 39%;
+        width: 900px;
+        height: 900px;
+        left: -1000px;
     }
 
     .outer-container{

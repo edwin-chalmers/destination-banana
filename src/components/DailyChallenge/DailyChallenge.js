@@ -3,8 +3,10 @@ import { getFeatured } from '../../ApiCalls'
 import { useEffect } from 'react'
 import { useGlobalProps } from '../..'
 import { useNavigate } from 'react-router-dom'
+import LandingButton from '../LandingButton/LandingButton'
 
-export default function DailyChallenge() {
+
+export default function DailyChallenge({ setBtnDesc, description}) {
     const {startTitle, setStartTitle} = useGlobalProps()
     const navigate = useNavigate()
     let featuredArticles
@@ -32,7 +34,16 @@ export default function DailyChallenge() {
 
     return (
         <>   
-            <button id='dailyChallenge' onClick={playDailyChallenge}>Play Daily Challenge</button>
+            <LandingButton
+                className='dailyChallengeButton' 
+                buttonName={"daily-challenge"} 
+                buttonAlt={"daily challenge"} 
+                backgroundColor="#7ff1f4"
+                boxShadow="#61dbdb"
+                goToPage={playDailyChallenge}
+                setBtnDesc={setBtnDesc}
+                description={description}
+            />
         </>
     )
 }

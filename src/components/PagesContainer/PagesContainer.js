@@ -4,6 +4,9 @@ import { gsap } from 'gsap'
 import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
 function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref) {
+    const [linksReady, setLinksReady] = useState(false)
+    setTimeout(() => {setLinksReady(true)}, 500)
+
     const containerRef = useRef(null)
     const pagesContainer = useRef(null);
     const[allowClick, setAllowClick] = useState(true)
@@ -47,7 +50,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
         tl.fromTo(
             containerRef.current, 
             { left: '-250', opacity: 0 },
-            { duration: 1, left: '330',opacity: 1, delay: 1.5},
+            { duration: 1, left: '330', opacity: 1, delay: 1},
         )
     }, [])
 
@@ -106,7 +109,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
 
     return (
         <StyledPagesContainer ref={containerRef} id='main-page'>
-            {pagesDisplay}
+            {linksReady && pagesDisplay}
         </StyledPagesContainer>
     )
 }

@@ -1,6 +1,6 @@
 main {
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .pages-container {

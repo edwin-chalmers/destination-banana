@@ -21,15 +21,6 @@ export const StyledNavButton = styled.button`
     flex-direction: row;
     margin: 0 15px 0 15px;
     
-    /* div {
-        width: 120px;
-        height: 40px;
-        background-color: var(--transparent);
-        border: 2px solid rgba(0,0,0,0.01);
-        border-radius: 3px;
-        ${centerElements}
-    } */
-    
     img {
         width: 30px;
         margin-left: 5px;
