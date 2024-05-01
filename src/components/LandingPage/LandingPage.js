@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { StyledLanding } from './LandingPage.styled'
 import { gsap } from 'gsap';
-import Draggable from 'gsap/Draggable';
 import { useGSAP } from "@gsap/react/dist";
 import { useNavigate } from 'react-router-dom'
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
@@ -10,7 +9,7 @@ import LandingButton from '../LandingButton/LandingButton';
 import { useGlobalProps } from "../../index";
 import { useRef, useEffect, useState } from 'react'
 
-gsap.registerPlugin(Draggable, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 
 function LandingPage() {

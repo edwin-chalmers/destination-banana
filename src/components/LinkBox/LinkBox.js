@@ -1,34 +1,33 @@
 import { StyledLinkContainer } from './LinkBox.styled'
 import PropTypes from 'prop-types'
 import { gsap } from 'gsap'
-import {useGSAP, useRef, useEffect} from 'react'
+import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
-    let clickCount
-    let keyTicker = 0
+function LinkBox({ pages, linkList, updatePages, checkForWin }) {
+  let clickCount
+  let keyTicker = 0
+  let destTop, destLeft, bananaDest;
 
-    let destTop, destLeft, bananaDest;
+  const linksContainer = useRef();
 
-    const {linksContainer} = useRef()
+  if (document.querySelector('#click-counter')) {
+      clickCount = document.querySelector('#click-counter')
+      bananaDest = clickCount.getBoundingClientRect();
 
-    if (document.querySelector('#click-counter')) {
-        clickCount = document.querySelector('#click-counter')
-        bananaDest = clickCount.getBoundingClientRect();
-    
-        destTop = bananaDest.top;
-        destLeft = bananaDest.left;
-    }
+      destTop = bananaDest.top;
+      destLeft = bananaDest.left;
+  }
 
-    function handleClick(event) {
-        checkForWin(event.target.textContent)
-        updatePages(event.target.textContent)
-        const addWidth = 300
-        var element = document.querySelector('.draggable-container')
-        var currentWidth = element.offsetWidth
-        let newWidth = currentWidth += 340
-        document.getElementById('links-container').scrollTop = 0
-        element.style.width = `${newWidth}px`
-}
+  function handleClick(event) {
+    checkForWin(event.target.textContent)
+    updatePages(event.target.textContent)
+    const addWidth = 300
+    var element = document.querySelector('.outer-container')
+    var currentWidth = element.offsetWidth
+    let newWidth = currentWidth += 340
+    document.getElementById('links-container').scrollTop = 0
+    element.style.width = `${newWidth}px`
+  }
 
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
 
     useEffect(() => {
-        console.log(pages)
         if(pages.length > 1) {
             const banana = document.createElement('p')
             banana.textContent= '+🍌'
@@ -104,3 +102,5 @@ LinkBox.propTypes = {
     updatePages: PropTypes.func.isRequired,
     checkForWin: PropTypes.func.isRequired,
 }
+
+export default forwardRef(LinkBox)

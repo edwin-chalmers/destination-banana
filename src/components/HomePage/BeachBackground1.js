@@ -3,29 +3,28 @@ import { useState, useEffect } from "react";
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
 function BeachBackground1(props) {
+// var currentDate = new Date();
+// var hours = currentDate.getHours();
+// var minutes = currentDate.getMinutes();
+// var seconds = currentDate.getSeconds();
+// const [sec, setSec] = useState()
+// const [min, setMin] = useState()
+// const [hrs, setHrs] = useState()
 
-var currentDate = new Date();
-var hours = currentDate.getHours();
-var minutes = currentDate.getMinutes();
-var seconds = currentDate.getSeconds();
-const [sec, setSec] = useState()
-const [min, setMin] = useState()
-const [hrs, setHrs] = useState()
-
-hours = (hours < 10 ? "0" : "") + hours;
-minutes = (minutes < 10 ? "0" : "") + minutes;
-seconds = (seconds < 10 ? "0" : "") + seconds;
+// hours = (hours < 10 ? "0" : "") + hours;
+// minutes = (minutes < 10 ? "0" : "") + minutes;
+// seconds = (seconds < 10 ? "0" : "") + seconds;
 
 
-useEffect(() => {
-  setTimeout(() => {
-    setSec(seconds)
-    setMin(minutes)
-    setHrs(hours)
-  }, 1000);
-}, [sec])
+// useEffect(() => {
+//   setTimeout(() => {
+//     setSec(seconds)
+//     setMin(minutes)
+//     setHrs(hours)
+//   }, 1000);
+// }, [sec])
 
-var localTime = hours + ":" + minutes + ":" + seconds;
+// var localTime = hours + ":" + minutes + ":" + seconds;
 
     const plantsDelay = () => Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
     var minDuration = 500; // Minimum duration (1 second)

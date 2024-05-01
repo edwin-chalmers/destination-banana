@@ -1,14 +1,19 @@
 import WikiPage from '../WikiPage/WikiPage'
 import { StyledPagesContainer } from './PagesContainer.styled'
 import { gsap } from 'gsap'
-import {useGSAP, useRef, useEffect, useState} from 'react'
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-export default function PagesContainer({ pages, focusPage }) {
+function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref) {
     const [linksReady, setLinksReady] = useState(false)
     setTimeout(() => {setLinksReady(true)}, 500)
 
-
     const containerRef = useRef(null)
+    const pagesContainer = useRef(null);
+    const[allowClick, setAllowClick] = useState(true)
+
+      React.useImperativeHandle(ref, (arg) => ({
+        childFunction: (arg) => childFunction(arg)
+      }));
 
     const numDisplayedPages = pages.reduce((acc, page) => {
         if(page.isDisplayed) {
@@ -49,6 +54,41 @@ export default function PagesContainer({ pages, focusPage }) {
         )
     }, [])
 
+    const childFunction = (arg) => {
+        if(allowClick) {
+            setAllowClick(false)
+            const tl = gsap.timeline()
+            switch (arg) {
+                case 'left':             
+                    tl.to(
+                        containerRef.current, 
+                        { 
+                            duration: 1,
+                            left: '+=391.531', 
+                            ease: 'power3.out',
+                            onComplete: () => {setAllowClick(true)}
+                        }
+                    )
+                break
+                case 'right':             
+                    tl.to(
+                        containerRef.current, 
+                        { 
+                            duration: 1, 
+                            left: '-=391.531', 
+                            ease: 'power3.out',
+                            onComplete: () => {setAllowClick(true)}
+                        }
+                    )
+                break
+            }
+        }
+    }
+
+    useEffect(() => {
+        setClickAllowed(allowClick)
+    }, [allowClick]);
+
     const filteredPages = pages.filter(page => page.isDisplayed === true)
 
     const pagesDisplay = filteredPages.map((page) => {
@@ -73,3 +113,5 @@ export default function PagesContainer({ pages, focusPage }) {
         </StyledPagesContainer>
     )
 }
+
+export default forwardRef(PagesContainer)

@@ -4,36 +4,36 @@ import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
 import LoadScreen from '../LoadScreen/LoadScreen'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react';
 import parse from 'html-react-parser';
 import { gsap } from 'gsap';
-import Draggable from 'gsap/Draggable';
 import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
-import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import BeachBackground1 from './BeachBackground1';
 import { useGlobalProps } from '../..';
+import NavButtonLeft from './NavButtonLeft.png'
+import NavButtonRight from './NavButtonRight.png'
 import { motion } from 'framer-motion'
 
-gsap.registerPlugin(Draggable, ScrollTrigger);
 
-function HomePage() {
-  
+function HomePage({}) {
   const [pages, setPages] = useState([])
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
   const [targetTitle, setTargetTitle] = useState('banana')
   const [win, setWin] = useState(false)
   const [backClicks, setBackClicks] = useState(0)
+  const [position, setPosition] = useState()
+  const [leftClick, setLeftClick] = useState(1)
+  const [rightClick, setRightClick] = useState(1)
+  const [allowedRight, setAllowedRight] = useState()
+  const [allowedLeft, setAllowedLeft] = useState(0)
+  const [clickAllowed, setClickAllowed] = useState(true);
+  
   const navigate = useNavigate()
   gsap.config({ trialWarn: false })
-
-  Draggable.create(".draggable-container", {
-    type: "x",
-    edgeResistance: 0.65,
-    bounds: { minX: 0}
-  })
-
+  const pagesRef = useRef()
+  
 
   const [dataReady, setDataReady] = useState(false)
   const [linkReady, setLinkReady] = useState(false)
@@ -44,6 +44,10 @@ function HomePage() {
     setStartTitle
   } = useGlobalProps();
 
+  useEffect(() => {
+    setPosition(document.querySelector('.outer-container').getBoundingClientRect().width)
+    setAllowedRight(pages.length - 3)
+  }, [pages.length])
 
   useEffect(() => {
     fetchWikiData()
@@ -109,8 +113,8 @@ function HomePage() {
   }
 
   function updatePages(endpointText) {
-    console.log(endpointText)
-    
+    createLinkList(endpointText)
+
 
     let htmlFilter
 
@@ -276,6 +280,36 @@ function HomePage() {
     setPages(updatedPages)
   }
 
+  const handleScroll = (direction) => {
+   if(clickAllowed){
+    let left = leftClick
+    let right = rightClick
+    let allowedLeftClicks = allowedLeft
+
+    switch(direction) {
+      case 'left':
+        
+        if(allowedLeft > 0){
+        setLeftClick(left +1)
+        setRightClick(right -1)
+        pagesRef.current.childFunction('left')}
+        break
+        
+        case 'right' : 
+        if(rightClick < allowedRight){
+          setRightClick(right +1)
+          setAllowedLeft(allowedLeftClicks +1)
+          pagesRef.current.childFunction('right')      
+        }
+        break
+      }
+}
+    }
+    
+    const handleClickAllowed = (newValue) => {
+      setClickAllowed(newValue);
+    };
+
   useEffect(() => {
     if(dataReady){
       setTimeout(() => {setLinkReady(true)}, 1000)
@@ -374,11 +408,14 @@ function HomePage() {
                 {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
-                <div className='draggable-container'>
+                {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
+                <div className='outer-container'>
                   <main id='main-content'>
-                    <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
+                    <PagesContainer id="page-container" clickAllowed={clickAllowed} setClickAllowed={handleClickAllowed} ref={pagesRef} pages={pages} focusPage={focusPage} />
                   </main>
                 </div>
+                {pages.length > 4 && rightClick < allowedRight && <img id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}/>}
+              </div>
               </>
             }
           </div>
