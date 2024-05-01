@@ -149,6 +149,14 @@ export const StyledHomepage = styled.div `
         left: 129px
      }
 
+        #banana_LL::before{
+            content: '🍌🍌🍌🍌🍌'
+        }
+
+        #banana_LL::after{
+            content: '🍌🍌🍌🍌🍌'
+        }
+
      .dot{
         z-index: 100;
         filter: drop-shadow(2px 4px 6px black);
