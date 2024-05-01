@@ -4,31 +4,30 @@ import { gsap } from 'gsap'
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
 function LinkBox({ pages, linkList, updatePages, checkForWin }) {
-    let clickCount
-    let keyTicker = 0
+  let clickCount
+  let keyTicker = 0
+  let destTop, destLeft, bananaDest;
 
-    let destTop, destLeft, bananaDest;
+  const linksContainer = useRef();
 
-    const linksContainer = useRef();
+  if (document.querySelector('#click-counter')) {
+      clickCount = document.querySelector('#click-counter')
+      bananaDest = clickCount.getBoundingClientRect();
 
-    if (document.querySelector('#click-counter')) {
-        clickCount = document.querySelector('#click-counter')
-        bananaDest = clickCount.getBoundingClientRect();
-    
-        destTop = bananaDest.top;
-        destLeft = bananaDest.left;
-    }
+      destTop = bananaDest.top;
+      destLeft = bananaDest.left;
+  }
 
-    function handleClick(event) {
-        checkForWin(event.target.textContent)
-        updatePages(event.target.textContent)
-        const addWidth = 300
-        var element = document.querySelector('.outer-container')
-        var currentWidth = element.offsetWidth
-        let newWidth = currentWidth += 340
-        document.getElementById('links-container').scrollTop = 0
-        element.style.width = `${newWidth}px`
-}
+  function handleClick(event) {
+    checkForWin(event.target.textContent)
+    updatePages(event.target.textContent)
+    const addWidth = 300
+    var element = document.querySelector('.outer-container')
+    var currentWidth = element.offsetWidth
+    let newWidth = currentWidth += 340
+    document.getElementById('links-container').scrollTop = 0
+    element.style.width = `${newWidth}px`
+  }
 
 
   useEffect(() => {

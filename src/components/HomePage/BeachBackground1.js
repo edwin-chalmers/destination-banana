@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
 function BeachBackground1(props) {
-
 // var currentDate = new Date();
 // var hours = currentDate.getHours();
 // var minutes = currentDate.getMinutes();
