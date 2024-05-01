@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react/dist";
 import { useNavigate } from 'react-router-dom'
 import MonkeyThief from '../MonkeyThief/MonkeyThief'
 import DailyChallenge from '../DailyChallenge/DailyChallenge';
+import LandingButton from '../LandingButton/LandingButton';
 import { useGlobalProps } from "../../index";
 import { useRef, useEffect } from 'react'
 
@@ -60,9 +61,25 @@ function LandingPage() {
 
     return ( 
         <main>
-            <DailyChallenge />
             <MonkeyThief />
             <StyledLanding >
+            <div className='landing-buttons'>
+                <LandingButton
+                className='startButton' 
+                buttonName={"start"} 
+                buttonAlt={"start"} 
+                backgroundColor="#fcb805"
+                boxShadow="#ff931e"
+                />
+                <DailyChallenge />
+                <LandingButton
+                className='helpButton' 
+                buttonName={"help"} 
+                buttonAlt={"help"} 
+                backgroundColor="#e5fdfb"
+                boxShadow="#bdeafd"
+                />
+            </div>
                 <section>
                     <p><span>1.</span> Click the <span>logo</span> to start your journey ☝️</p>
                     <p><span>2.</span> Each link will bring you closer to your destination: <span>banana</span>!</p>

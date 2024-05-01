@@ -1,3 +1,7 @@
 #dailyChallenge {
     z-index: 10;
 }
+
+.dailyChallengeButton {
+    z-index: 30;
+}
