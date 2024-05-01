@@ -16,7 +16,33 @@ export const StyledHomepage = styled.div `
     width: 100%;
     }
 
-    .draggable-container{
+    #leftNav{
+    z-index: 5;
+    scale: 0.14;
+    position: absolute;
+    left: 221px;
+    filter: drop-shadow(2px 4px 6px black);
+    top: 170px;
+    &:hover{
+        cursor: pointer;
+    filter: brightness(0.5);
+    }
+    }
+
+    #rightNav{
+    z-index: 5;
+    scale: 0.14;
+    position: absolute;
+    left: 1793px;
+    filter: drop-shadow(2px 4px 6px black);
+    top: 194px;
+    &:hover{
+        cursor: pointer;
+    filter: brightness(0.5);
+    }
+    }
+
+    .outer-container{
         width: 100%;
     }
 
