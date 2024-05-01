@@ -10,20 +10,20 @@ export default function NavButton({ buttonText, focusPage, pages }) {
 
             return page.isDisplayed
         })
-        displayedPages.length > 1 && focusPage(0) 
+        displayedPages.length > 1 && focusPage(0)
     }
 
     return (
         <>
             <StyledNavButton onClick={handleClick} onKeyDown={(e) => {
-                                                                                        
-                                                                    if(e.code === 'Space' || e.code === 'Enter') {
-                                                                        e.preventDefault()
-                                                                        handleClick()
-                                                                    }
-                                                                }}>
-                    <p>Back</p>
-                    <img src="/assets/future_white_48dp.svg" alt='undo icon'/>
+
+                if (e.code === 'Space' || e.code === 'Enter') {
+                    e.preventDefault()
+                    handleClick()
+                }
+            }}>
+                <p>Back</p>
+                <img src="/assets/future_white_48dp.svg" alt='undo icon' />
             </StyledNavButton>
         </>
     )

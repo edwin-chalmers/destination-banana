@@ -2,6 +2,7 @@ import PagesContainer from '../PagesContainer/PagesContainer';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
+import LoadScreen from '../LoadScreen/LoadScreen'
 import { fetchPage, fetchHTML } from '../../ApiCalls';
 import { useEffect, useState, useRef } from 'react'
 import parse from 'html-react-parser';
@@ -12,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 import BeachBackground1 from './BeachBackground1';
 import { useGlobalProps } from '../..';
+import { motion } from 'framer-motion'
 
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
@@ -33,6 +35,10 @@ function HomePage() {
   })
 
 
+  const [dataReady, setDataReady] = useState(false)
+  const [linkReady, setLinkReady] = useState(false)
+
+
   const {
     startTitle,
     setStartTitle
@@ -51,16 +57,15 @@ function HomePage() {
       }).then(data => {
         endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
         updatePages(endpointAPI)
-        let tl = gsap.timeline()
-        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        // let tl = gsap.timeline()
+        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       }).catch(error => handleError(error))
     } else {
         const formatTitle = startTitle.replaceAll('_', ' ').toString()
-        let tl = gsap.timeline()
-        tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        // let tl = gsap.timeline()
+        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       updatePages(formatTitle)
     }
-
   }
   
   function handleError(error) {
@@ -105,7 +110,7 @@ function HomePage() {
 
   function updatePages(endpointText) {
     console.log(endpointText)
-    createLinkList(endpointText)
+    
 
     let htmlFilter
 
@@ -138,6 +143,9 @@ function HomePage() {
 
         return [...updatedPages, newPage]
       })
+
+      createLinkList(endpointText)
+
     }).catch(error => handleError(error))
   }
   
@@ -169,7 +177,7 @@ function HomePage() {
       })
       
       setLinkList(randomizedList)
-   
+      setTimeout(() => {setDataReady(true)}, 1000)
     })
   }
 
@@ -268,19 +276,115 @@ function HomePage() {
     setPages(updatedPages)
   }
 
+  useEffect(() => {
+    if(dataReady){
+      setTimeout(() => {setLinkReady(true)}, 1000)
+    }
+  }, [dataReady])
+
+  const transitionValues = {
+    duration: 5,
+    yoyo: Infinity,
+    ease: "easeOut"
+  };
+
   return (
     <StyledHomepage >
       <BeachBackground1 />
       {win && <Win pages={pages} animateWin={animateWin} />}
-      <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
-      <div className="background-container">
-        <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
-        <div className='draggable-container'>
-          <main id='main-content'>
-            <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
-          </main>
-        </div>
-      </div>
+      {dataReady ?
+        <>
+          <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+          <div className="background-container">
+            {linkReady &&
+              <>
+                <motion.div
+                  className="running-monkey-1"
+                  transition={{
+                    x: {duration: 1, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 8, repeatDelay: 3 },
+                    y: {duration: .05, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                  }}
+                  animate={{
+                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
+                    y: ['-100px', '-150px' ],
+                  }}
+                  // animate={{left: [-100, 500, 2200]}}
+                  // transition={{delay: .5, type: "tween", duration: 3}}
+                  >
+                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
+                </motion.div>
+                <motion.div
+                  className="running-monkey-2"
+                  transition={{
+                    x: {duration: 1.5, type: 'tween', delay: 1, ease: 'linear', repeat: Infinity, repeatType: 'reverse', repeatDelay: 2 },
+                    y: {duration: .10, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                  }}
+                  animate={{
+                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
+                    y: ['-100px', '-150px' ],
+                  }}
+                  // animate={{left: [-100, 500, 2200]}}
+                  // transition={{delay: .5, type: "tween", duration: 3}}
+                  >
+                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
+                </motion.div>
+                <motion.div
+                  className="running-monkey-3"
+                  transition={{
+                    x: {duration: 2, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 5, repeatDelay: 5 },
+                    y: {duration: .15, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                  }}
+                  animate={{
+                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
+                    y: ['-100px', '-150px' ],
+                  }}
+                  // animate={{left: [-100, 500, 2200]}}
+                  // transition={{delay: .5, type: "tween", duration: 3}}
+                  >
+                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
+                </motion.div>
+                <motion.div
+                  className="running-monkey-4"
+                  transition={{
+                    x: {duration: 2, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 6, repeatDelay: 5 },
+                    y: {duration: .1, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                  }}
+                  animate={{
+                    x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
+                    y: ['-100px', '-150px' ],
+                  }}
+                  // animate={{left: [-100, 500, 2200]}}
+                  // transition={{delay: .5, type: "tween", duration: 3}}
+                  >
+                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
+                </motion.div>
+                <motion.div
+                  className="running-monkey-5"
+                  transition={{
+                    x: {duration: 1, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 2, repeatDelay: 5 },
+                    y: {duration: .1, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                  }}
+                  animate={{
+                    x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
+                    y: ['-100px', '-150px' ],
+                  }}
+                  // animate={{left: [-100, 500, 2200]}}
+                  // transition={{delay: .5, type: "tween", duration: 3}}
+                  >
+                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
+                </motion.div>
+                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
+                <div className='draggable-container'>
+                  <main id='main-content'>
+                    <PagesContainer id="page-container" pages={pages} focusPage={focusPage} />
+                  </main>
+                </div>
+              </>
+            }
+          </div>
+        </>
+        :
+        <LoadScreen />}
     </StyledHomepage>
   )
 

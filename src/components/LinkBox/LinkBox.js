@@ -31,6 +31,12 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 }
 
 
+  useEffect(() => {
+    let tl = gsap.timeline()
+    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' })
+  }, [])
+
+
     useEffect(() => {
         console.log(pages)
         if(pages.length > 1) {
@@ -65,9 +71,6 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
         }
         }, [pages])
 
-    useEffect(() => {
-        
-    }, [pages])
     
     let linkTails
     if(linkList) {
