@@ -1,13 +1,22 @@
 import { StyledLandingButton } from "./LandingButton.styled"
 
 
-export default function LandingButton({ playDailyChallenge, buttonName, buttonAlt, backgroundColor, boxShadow }) {
+export default function LandingButton({ 
+    goToPage, 
+    buttonName, 
+    buttonAlt, 
+    backgroundColor, 
+    boxShadow,
+    setBtnDesc,
+    description
+}) {
 
     return (
         <StyledLandingButton 
-            onClick={playDailyChallenge}
+            onClick={goToPage}
             backgroundColor={backgroundColor} 
-            boxShadow={boxShadow} 
+            boxShadow={boxShadow}
+            onMouseEnter={() => setBtnDesc(description)}
         >
             <img src={`/assets/buttons/${buttonName}.svg`} alt={buttonAlt} />
         </StyledLandingButton>

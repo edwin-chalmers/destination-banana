@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import LandingButton from '../LandingButton/LandingButton'
 
 
-export default function DailyChallenge() {
+export default function DailyChallenge({ setBtnDesc, description}) {
     const {startTitle, setStartTitle} = useGlobalProps()
     const navigate = useNavigate()
     let featuredArticles
@@ -40,7 +40,9 @@ export default function DailyChallenge() {
                 buttonAlt={"daily challenge"} 
                 backgroundColor="#7ff1f4"
                 boxShadow="#61dbdb"
-                playDailyChallenge={playDailyChallenge}
+                goToPage={playDailyChallenge}
+                setBtnDesc={setBtnDesc}
+                description={description}
             />
         </>
     )

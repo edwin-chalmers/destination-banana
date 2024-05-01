@@ -8,13 +8,14 @@ import MonkeyThief from '../MonkeyThief/MonkeyThief'
 import DailyChallenge from '../DailyChallenge/DailyChallenge';
 import LandingButton from '../LandingButton/LandingButton';
 import { useGlobalProps } from "../../index";
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 gsap.registerPlugin(Draggable, useGSAP);
 
 
 function LandingPage() {
 
+    const [btnDesc, setBtnDesc] = useState("Welcome to Destination: Bananas!")
     const navigate = useNavigate()
 
     function playGame(e, type) {
@@ -57,35 +58,38 @@ function LandingPage() {
         }
     }
 
-
-
     return ( 
         <main>
             <MonkeyThief />
             <StyledLanding >
-            <div className='landing-buttons'>
-                <LandingButton
-                className='startButton' 
-                buttonName={"start"} 
-                buttonAlt={"start"} 
-                backgroundColor="#fcb805"
-                boxShadow="#ff931e"
-                />
-                <DailyChallenge />
-                <LandingButton
-                className='helpButton' 
-                buttonName={"help"} 
-                buttonAlt={"help"} 
-                backgroundColor="#e5fdfb"
-                boxShadow="#bdeafd"
-                />
-            </div>
                 <section>
-                    <p><span>1.</span> Click the <span>logo</span> to start your journey ☝️</p>
-                    <p><span>2.</span> Each link will bring you closer to your destination: <span>banana</span>!</p>
-                    <p><span>3.</span> Get to banana in as <span>few</span> clicks as possible.</p>
-                    <p>The game pulls data from wikipedia and may contain content that is not suitable for everyone. Player discretion advised.</p>
+                    <p>{btnDesc}</p>
                 </section>
+                <div className='landing-buttons'>
+                    <LandingButton
+                        className='startButton' 
+                        buttonName={"start"} 
+                        buttonAlt={"start"} 
+                        backgroundColor="#fcb805"
+                        boxShadow="#ff931e"
+                        goToPage={(e) => playGame(e, 'click')} // Not sure how this works
+                        setBtnDesc={setBtnDesc}
+                        description={"Standard Game"}
+                    />
+                    <DailyChallenge 
+                        setBtnDesc={setBtnDesc}
+                        description={"Daily Challenge"}
+                    />
+                    <LandingButton
+                        className='helpButton' 
+                        buttonName={"help"} 
+                        buttonAlt={"help"} 
+                        backgroundColor="#e5fdfb"
+                        boxShadow="#bdeafd"
+                        setBtnDesc={setBtnDesc}
+                        description={"Everything you'll need to know!"}
+                    />
+                </div>
                 <div id='bananaContainer'>
                     <svg id='link' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0' onKeyDown={e => playGame(e)} onMouseDown={e => playGame(e, 'click')}>
                         <g id="a"/>

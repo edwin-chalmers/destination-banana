@@ -9,6 +9,7 @@ export const StyledLandingButton = styled.button`
     border: none;
     outline: none;
     padding: 10px 50px;
+    margin: 0 10px;
 
     border-radius: 100px;
     transition: all ease 0.05s;
@@ -16,12 +17,16 @@ export const StyledLandingButton = styled.button`
     box-shadow: 0px 15px 0px 0px ${props => props.boxShadow};
 
     &:active {
-    transform: translateY(15px);
-    box-shadow: 0px 0px 0px 0px ${props => props.boxShadow};
+        transform: translateY(15px);
+        box-shadow: 0px 0px 0px 0px ${props => props.boxShadow};
+    }
+
+    &:hover {
+        cursor: pointer;
+        /* filter: drop-shadow(0 0 10px white); */
     }
 
     img {
         height: 40px;
-
     }
 `
