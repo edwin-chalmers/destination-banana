@@ -345,7 +345,7 @@ function HomePage() {
                   className="running-monkey-4"
                   transition={{
                     x: {duration: 2, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 6, repeatDelay: 5 },
-                    y: {duration: .15, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
+                    y: {duration: .1, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
                   }}
                   animate={{
                     x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],

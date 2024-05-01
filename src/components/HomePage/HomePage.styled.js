@@ -34,6 +34,8 @@ export const StyledHomepage = styled.div `
 
     .running-monkey-2 {
         margin-top: 40%;
+        width: 120px !important;
+        height: 120px !important;
     }
 
     .running-monkey-3 {
