@@ -45,7 +45,6 @@ function HomePage({}) {
   } = useGlobalProps();
 
   useEffect(() => {
-    setPosition(document.querySelector('.outer-container').getBoundingClientRect().width)
     setAllowedRight(pages.length - 3)
   }, [pages.length])
 
@@ -342,10 +341,7 @@ function HomePage({}) {
                     x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
                     y: ['-100px', '-150px' ],
                   }}
-                  // animate={{left: [-100, 500, 2200]}}
-                  // transition={{delay: .5, type: "tween", duration: 3}}
                   >
-                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <motion.div
                   className="running-monkey-2"
@@ -357,10 +353,7 @@ function HomePage({}) {
                     x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
                     y: ['-100px', '-150px' ],
                   }}
-                  // animate={{left: [-100, 500, 2200]}}
-                  // transition={{delay: .5, type: "tween", duration: 3}}
                   >
-                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <motion.div
                   className="running-monkey-3"
@@ -372,10 +365,7 @@ function HomePage({}) {
                     x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
                     y: ['-100px', '-150px' ],
                   }}
-                  // animate={{left: [-100, 500, 2200]}}
-                  // transition={{delay: .5, type: "tween", duration: 3}}
                   >
-                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <motion.div
                   className="running-monkey-4"
@@ -387,10 +377,7 @@ function HomePage({}) {
                     x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
                     y: ['-100px', '-150px' ],
                   }}
-                  // animate={{left: [-100, 500, 2200]}}
-                  // transition={{delay: .5, type: "tween", duration: 3}}
                   >
-                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <motion.div
                   className="running-monkey-5"
@@ -402,10 +389,7 @@ function HomePage({}) {
                     x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
                     y: ['-100px', '-150px' ],
                   }}
-                  // animate={{left: [-100, 500, 2200]}}
-                  // transition={{delay: .5, type: "tween", duration: 3}}
                   >
-                {/* <img src='/assets/confused_monkey.svg' alt='Monkey Bro' /> */}
                 </motion.div>
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
@@ -415,7 +399,6 @@ function HomePage({}) {
                   </main>
                 </div>
                 {pages.length > 4 && rightClick < allowedRight && <img id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}/>}
-              </div>
               </>
             }
           </div>
