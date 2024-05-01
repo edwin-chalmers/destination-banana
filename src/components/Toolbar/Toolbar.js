@@ -37,17 +37,18 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
                     className="greedy-monkey"
                     animate={{y: [0, -100, 0]}}
                     transition={{delay: .5, type: "tween", duration: 3}}>
-                        <img src='/assets/confused_monkey.svg' alt='Monkey Bro' />
+                        <img src='/assets/greedy_monkey.svg' alt='Monkey Bro' />
                 </motion.div>
             }
             <div>
                 <StyledEndpoint >
                     <h3>Start Point:</h3>
-                     <p>{ pages.length > 0 && <p>{pages[0].title}</p> }</p>
+                     <p>{ pages.length > 0 && pages[0].title }</p>
                 </StyledEndpoint>
                 <StyledEndpoint >
                     <h3>Destination:</h3>
                     <p>Banana</p>
+                  
                 </StyledEndpoint>
             </div>
         </StyledToolbar>

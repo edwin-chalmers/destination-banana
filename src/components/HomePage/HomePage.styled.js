@@ -1,15 +1,19 @@
 import styled from 'styled-components'
 
 export const StyledHomepage = styled.div `
+#beachBackground{
+    z-index: 0;
+    position: fixed;
+}
     .background-container {
-        background-image: url(/assets/beach_backdrop1.svg);
+        /* background-image: url(/assets/beach_backdrop1.svg);
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: bottom;
-        overflow: visible;
-        position: fixed;
-        width: 100%;
-        height: 100vh;
+        background-position: bottom; */
+        top: 50px;
+    overflow: visible;
+    position: relative;
+    width: 100%;
     }
 
     .running-monkey-1,
