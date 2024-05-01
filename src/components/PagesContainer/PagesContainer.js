@@ -1,9 +1,13 @@
 import WikiPage from '../WikiPage/WikiPage'
 import { StyledPagesContainer } from './PagesContainer.styled'
 import { gsap } from 'gsap'
-import {useGSAP, useRef, useEffect} from 'react'
+import {useGSAP, useRef, useEffect, useState} from 'react'
 
 export default function PagesContainer({ pages, focusPage }) {
+    const [linksReady, setLinksReady] = useState(false)
+    setTimeout(() => {setLinksReady(true)}, 500)
+
+
     const containerRef = useRef(null)
 
     const numDisplayedPages = pages.reduce((acc, page) => {
@@ -41,7 +45,7 @@ export default function PagesContainer({ pages, focusPage }) {
         tl.fromTo(
             containerRef.current, 
             { left: '-250', opacity: 0 },
-            { duration: 1, left: '330',opacity: 1, delay: 1.5},
+            { duration: 1, left: '330', opacity: 1, delay: 1},
         )
     }, [])
 
@@ -65,7 +69,7 @@ export default function PagesContainer({ pages, focusPage }) {
 
     return (
         <StyledPagesContainer ref={containerRef} id='main-page'>
-            {pagesDisplay}
+            {linksReady && pagesDisplay}
         </StyledPagesContainer>
     )
 }
