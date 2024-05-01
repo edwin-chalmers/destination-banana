@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgb(120,204,246);
+    background-color: rgb(120, 204, 246);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px 0 20px;
     overflow: hidden;
-
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    opacity: 0.8;
     /* .greedy-monkey-container {
         height: 100%;
         position: relative;
@@ -43,7 +46,7 @@ export const StyledLogo = styled.img`
 
 export const StyledEndpoint = styled.div`
     padding: 1px;
-    margin: 0px 20px 0px 20px;
+    margin: 0px 45px 0px 20px;
     text-align: center;
     display: flex;
     align-items: center;

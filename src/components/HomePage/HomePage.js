@@ -10,6 +10,7 @@ import Draggable from 'gsap/Draggable';
 import { StyledHomepage } from './HomePage.styled'
 import { useNavigate } from 'react-router-dom'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
+import BeachBackground1 from './BeachBackground1';
 import { useGlobalProps } from '../..';
 
 gsap.registerPlugin(Draggable, ScrollTrigger);
@@ -269,6 +270,7 @@ function HomePage() {
 
   return (
     <StyledHomepage >
+      <BeachBackground1 />
       {win && <Win pages={pages} animateWin={animateWin} />}
       <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
       <div className="background-container">

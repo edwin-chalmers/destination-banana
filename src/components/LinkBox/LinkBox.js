@@ -9,6 +9,8 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     let destTop, destLeft, bananaDest;
 
+    const {linksContainer} = useRef()
+
     if (document.querySelector('#click-counter')) {
         clickCount = document.querySelector('#click-counter')
         bananaDest = clickCount.getBoundingClientRect();
@@ -24,7 +26,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
         var element = document.querySelector('.draggable-container')
         var currentWidth = element.offsetWidth
         let newWidth = currentWidth += 340
-
+        document.getElementById('links-container').scrollTop = 0
         element.style.width = `${newWidth}px`
 }
 
@@ -87,7 +89,7 @@ export default function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     }
 
     return (
-        <StyledLinkContainer id="links-container">
+        <StyledLinkContainer ref={linksContainer} id="links-container">
             <h4>Links</h4>
             {linkTails}
         </StyledLinkContainer>

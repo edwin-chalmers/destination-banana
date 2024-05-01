@@ -21,6 +21,7 @@ export const StyledLinkContainer = styled.div`
   height: 88.5vh;
   border: 1px solid black;
   position: fixed;
+  opacity: 0.9;
 
   /* &::before {
     z-index: -1;
