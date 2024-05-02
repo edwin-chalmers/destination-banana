@@ -45,7 +45,7 @@ export const StyledLinkContainer = styled.div`
 
   h4 {
     background-color: rgb(252, 284, 235, .9);
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 30px;
     width: fit-content;
     padding: 1px 10px 3px 12px;
