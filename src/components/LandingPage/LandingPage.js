@@ -14,10 +14,16 @@ gsap.registerPlugin(useGSAP);
 
 function LandingPage() {
 
+    const {
+        gameType,
+        setGameType,
+      } = useGlobalProps();
+
     const [btnDesc, setBtnDesc] = useState("Welcome to Destination: Bananas!")
     const navigate = useNavigate()
-
-    function playGame(e, type) {
+    
+    function playGame(e, type) {  
+        setGameType('Normal')
         if(e.code === 'Space' || e.code === 'Enter' || type === 'click') {
             e.preventDefault()
             e.currentTarget.blur()

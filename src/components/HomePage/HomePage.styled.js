@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 export const StyledHomepage = styled.div `
-#beachBackground{
+#backgroundContainer{
     z-index: 0;
     position: fixed;
+    width: 100vw;
+    height: 80vh;
 }
     .background-container {
       /* background-image: url(/assets/beach_backdrop1.svg);

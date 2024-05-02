@@ -14,11 +14,13 @@ const GlobalPropContext = createContext();
 
 const GlobalPropProvider = ({ children }) => { 
     const [startTitle, setStartTitle] = useState('')
-
+    const [gameType, setGameType] = useState()
     const globalPropValue = {
         setStartTitle,
-        startTitle
-      };
+        startTitle,
+        gameType, 
+        setGameType
+      }
 
       return (
         <GlobalPropContext.Provider value={globalPropValue}>

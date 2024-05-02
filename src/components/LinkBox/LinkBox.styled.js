@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const StyledLinkContainer = styled.div`
   /* background: linear-gradient(to left, rgb(252, 184, 5, .6), 80%, rgb(252, 184, 5, .6)); */
   /* background: linear-gradient(to left, rgb(176, 204, 246, .9), 80%, rgb(146, 204, 246, .5)); */
-  background-image: url(/assets/banana-wallpaper.jpg);
+  /* background-image: url(/assets/banana-wallpaper.jpg); */
   background-size: 100%;
-  background-color: rgb(255, 255, 255, .8);
+  background-color: rgb(252,184,5);
   max-width: 322px;
   text-align: center;
   display: flex;
@@ -37,13 +37,13 @@ export const StyledLinkContainer = styled.div`
   /* } */
 
   a {
-    /* margin-top: 1px;
-    margin-bottom: 1px; */
+    margin-top: 1px;
+    margin-bottom: 1px;
     /* border-top: 1px solid black; */
     text-decoration: none;
     color: black;
     background-color: rgba(255, 255, 255, .85);
-    width: fit-content;
+    width: 93%;
     padding: 2px 5px 2px 5px;
     border-radius: 10px;
     /* width: 100%; */
@@ -59,7 +59,11 @@ export const StyledLinkContainer = styled.div`
     
     &:hover {
       cursor: pointer;
-      background-color: rgb(252,184,5);
+      box-shadow: 0px 0px 9px 2px black;
+      position: relative;
+      top: 0px;
+      left: 5px;
+      z-index: 20;
     }
   }
 
