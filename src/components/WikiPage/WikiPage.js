@@ -42,7 +42,7 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, focus
     return isDisplayed && (
         <WikiPageContainer id='page-container'>
                 <h5>{title}</h5>
-                <p className="click-num">{`${id}🍌`}</p>
+                <p className="click-num">{`${id}`}</p>
             <div id='pageContent'>{stringForDOM}</div>
             {photoEls}
         </WikiPageContainer>
