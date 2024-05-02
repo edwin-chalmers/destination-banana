@@ -92,7 +92,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <h4>Destinations:</h4>
+            <h4>Destination:</h4>
             {linkTails}
         </StyledLinkContainer>
     )

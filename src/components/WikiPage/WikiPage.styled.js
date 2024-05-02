@@ -32,11 +32,12 @@ export const WikiPageContainer = styled.div`
         top: 5px;
         padding: 1px 4px 1px 4px;
         margin: 0;
+        margin-right: 2px;
         font-weight: 800;
         border-radius: 5px;
-        border: 2px solid rgb(242, 125, 38, 1);
-        background-color: rgb(242, 195, 58, 1)
-        /* border-bottom: 3px solid black; */
+        /* border: 2px solid rgb(242, 125, 38, 1); */
+        background-color: rgb(242, 195, 58, 1);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .infobox-above {
