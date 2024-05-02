@@ -84,5 +84,4 @@ export const StyledLanding = styled.div`
         margin-top: 400px;
     }
 
-
 `

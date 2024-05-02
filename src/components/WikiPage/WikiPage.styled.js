@@ -23,6 +23,21 @@ export const WikiPageContainer = styled.div`
         margin: 0 0 20px 0;
         text-align: center;
         font-size: x-large;
+        width: fit-content;
+    }
+
+  
+
+    .click-num {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding: 0;
+        margin: 0;
+        font-weight: 800;
+        border-radius: 5px;
+        border: 2px solid black;
+        /* border-bottom: 3px solid black; */
     }
 
     .infobox-above {
