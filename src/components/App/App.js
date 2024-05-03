@@ -13,7 +13,7 @@ function App() {
   const [error, setError] = useState(false)
 
   return (
-    <>
+    <div id='app-parent'>
       {/* <Error /> */}
       <Routes>
         <Route path='/Error' element={<Error />} />
@@ -22,7 +22,7 @@ function App() {
         <Route path='/HomePage' element={<HomePage setError={setError}/>} />
         <Route path='/WordGame' element={<WordGame/>} />      
       </Routes>
-    </>
+    </div>
 
   );
 }

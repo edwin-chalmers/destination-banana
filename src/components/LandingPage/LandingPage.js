@@ -66,7 +66,7 @@ function LandingPage() {
     return ( 
         <main>
             <MonkeyThief />
-            <StyledLanding >
+            <StyledLanding id='landingPage'>
                 <section>
                     <p>{btnDesc}</p>
                 </section>
@@ -96,7 +96,7 @@ function LandingPage() {
                     />
                 </div>
                 <div id='bananaContainer'>
-                    <svg id='link' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0' onKeyDown={e => playGame(e)} onMouseDown={e => playGame(e, 'click')}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
                         <g id="a"/>
                         <g id="b">
                         <g id="c">

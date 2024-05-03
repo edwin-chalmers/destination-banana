@@ -26,15 +26,13 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     gameData.clicks = clickCount.innerText.replace(' Clicks', '')
     gameData.links.push(event.target.href)
     localStorage.setItem('gameData', JSON.stringify(gameData))
-    console.log(gameData.links)
-
     checkForWin(event.target.textContent)
     updatePages(event.target.textContent)
     const addWidth = 300
     var element = document.querySelector('.outer-container')
     var currentWidth = element.offsetWidth
     let newWidth = currentWidth += 340
-    document.getElementById('links-container').scrollTop = 0
+    document.getElementById('linkTails').scrollTop = 0
     element.style.width = `${newWidth}px`
   }
 
@@ -91,7 +89,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                     }} 
                     href={link.url}
                      id={`${link.title.toLowerCase()}_LL`}
-                     >{link.title}</a>
+                     ><p>{link.title}</p></a>
                 </>
             )
         })
@@ -101,8 +99,8 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <h4>Destinations:</h4>
-            {linkTails}
+            <header><h4>Destinations:</h4></header>
+            <div id='linkTails'>{linkTails}</div>
         </StyledLinkContainer>
     )
 }

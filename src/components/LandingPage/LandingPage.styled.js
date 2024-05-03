@@ -39,30 +39,22 @@ export const StyledLanding = styled.div`
         scale: 1;
     }
 
-    #link{
-        width: 500px;
-        position: relative;
-        z-index: 1;
-        overflow: visible;
-
-        &:focus {
-            outline: 2px solid blue
-        }
-
-        &:hover {
-            cursor: pointer;
-            filter: drop-shadow(10px 10px 50px white);
-            width: 505px;
-            height: 320px;
-        }
-    }
-
+    
     #bananaContainer{
         z-index: 1;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -95%);
+        svg{
+            width: 500px;
+            position: relative;
+            z-index: 1;
+            overflow: visible;
+            &:focus{
+                outline: none;
+            }
+        }
     }
 
     a {

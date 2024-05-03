@@ -38,6 +38,8 @@ function HomePage({}) {
   const [linkReady, setLinkReady] = useState(false)
   const [date, setDate] = useState()
   const [gameId, setgameId] = useState()
+  const [width, setWidth] = useState();
+  const navBar = useRef()
 
   const {
     startTitle,
@@ -45,8 +47,32 @@ function HomePage({}) {
     gameType,
   } = useGlobalProps();
 
+    useEffect(() => {
+
+      function handleResize() {
+          setWidth(window.innerWidth);
+        }
+        
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      return () => {
+          window.removeEventListener('resize', handleResize);
+      };
+    }, []); 
+
+    useEffect(() => {
+      console.log(width, width/1920)
+      if (navBar.current) {
+        const style = window.getComputedStyle(navBar.current);
+        const fontSize = style.fontSize;
+        console.log("Font Size:", fontSize);
+        navBar.current.style.fontSize = `${width/1920*100}%`
+      }
+    }, [width])
+
   useEffect(() => {
     fetchWikiData()
+    setWidth(window.innerWidth)
     return () => {
       const gameData = JSON.parse(localStorage.getItem('gameData'))
       postUser(gameData)
@@ -372,15 +398,16 @@ function HomePage({}) {
   };
 
   return (
-    <StyledHomepage >
+    <StyledHomepage id='homepage'>
       <BeachBackground1 />
       {win && <Win pages={pages} animateWin={animateWin} />}
       {dataReady ?
         <>
-          <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+        <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
           <div className="background-container">
             {linkReady &&
               <>
+              {width > 720 && <>
                 <motion.div
                   className="running-monkey-1"
                   transition={{
@@ -441,6 +468,7 @@ function HomePage({}) {
                   }}
                   >
                 </motion.div>
+                </>}
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
                 <div className='outer-container'>

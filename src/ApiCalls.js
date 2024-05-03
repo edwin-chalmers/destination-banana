@@ -81,7 +81,6 @@ const postUser = async (gameData) => {
 
 
 const postUserData = async (gameData) => {
-    console.log(gameData)
         const userData = {
             "user_id": gameData.id,
             "date": gameData.date,
