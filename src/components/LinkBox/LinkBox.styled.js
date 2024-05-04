@@ -36,10 +36,13 @@ export const StyledLinkContainer = styled.div`
     border-radius: 10px;
     font-weight: 700;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    
     &:hover {
       cursor: pointer;
-      background-color: rgb(252,184,5);
+      box-shadow: 0px 0px 9px 2px black;
+      position: relative;
+      top: 0px;
+      left: 5px;
+      z-index: 20;
     }
   }
 
@@ -52,6 +55,21 @@ export const StyledLinkContainer = styled.div`
     margin: 17px 0 15px 0;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
-`
+  #linkTails{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: overlay;
+    width: 100%;
+  }
+  p{
+    font-weight: bold;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    overflow: hidden;
+  }
+  `
 
 

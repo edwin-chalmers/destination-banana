@@ -14,10 +14,16 @@ gsap.registerPlugin(useGSAP);
 
 function LandingPage() {
 
+    const {
+        gameType,
+        setGameType,
+      } = useGlobalProps();
+
     const [btnDesc, setBtnDesc] = useState("Welcome to Destination: Bananas!")
     const navigate = useNavigate()
-
-    function playGame(e, type) {
+    
+    function playGame(e, type) {  
+        setGameType('Normal')
         if(e.code === 'Space' || e.code === 'Enter' || type === 'click') {
             e.preventDefault()
             e.currentTarget.blur()
@@ -60,7 +66,7 @@ function LandingPage() {
     return ( 
         <main>
             <MonkeyThief />
-            <StyledLanding >
+            <StyledLanding id='landingPage'>
                 <section>
                     <p>{btnDesc}</p>
                 </section>
@@ -90,7 +96,7 @@ function LandingPage() {
                     />
                 </div>
                 <div id='bananaContainer'>
-                    <svg id='link' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0' onKeyDown={e => playGame(e)} onMouseDown={e => playGame(e, 'click')}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
                         <g id="a"/>
                         <g id="b">
                         <g id="c">

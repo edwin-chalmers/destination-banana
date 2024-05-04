@@ -3,80 +3,103 @@ import { useState, useEffect } from "react";
 import { useSpring, animated, config, easings } from '@react-spring/web'
 
 function BeachBackground1(props) {
+  
+  window.addEventListener('resize', () => {
+    const svgContainer = document.querySelector('#backgroundContainer');
+    
+    svgContainer.style.width = window.innerWidth + 'px';
+    svgContainer.style.height = window.innerHeight + 'px';
+    
+  });
+
+  const resizeSVG = () => {
+    const svgElement = document.querySelector('#beachBackground')
+    svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.5}`)
+    svgElement.style.width = window.innerWidth + 'px';
+    svgElement.style.height = window.innerHeight + 'px';
+  }
+
+  useEffect(() => {
+    resizeSVG()
+  }, [])
     const plantsDelay = () => Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
-    var minDuration = 500; 
-    var maxDuration = 2000; 
+    const minDuration = 500; 
+    const maxDuration = 2000; 
     
-    var randomDuration = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
-    
+    const randomDuration = Math.floor(Math.random() * (maxDuration - minDuration + 1)) + minDuration;
+    const minute = 60000
+    const dayCycle = minute * 5
     
     const { x, y } = useSpring({
-        from: { x: 0, y: 0 },
-        to: { x: 1, y: 1 },
-        config: {
-          duration: 8000,
-          easing: easings.easeInOutSine,
-        },
-        loop: {reverse: true}
-      });
-
-      const {cloud} = useSpring({
-        from: { cloud: 0 },
-        to: { cloud: 1},
-        config: {
-          duration: 90000,
-          easing: easings.easeInOutSine,
-        },
-        loop: true
-      })
-
-      const {plants} = useSpring({
-        from: { plants: 0 },
-        to: { plants: 1},
-        config: {
-          duration: randomDuration,
-          easing: easings.easeInOutSine,
-        },
-        loop: {reverse: true, delay: plantsDelay}
-      })
-      
-      const {sun} = useSpring({
-        from: { sun: 0 },
-        to: { sun: .75},
-        config: {
-          duration: 10000,
-          easing: easings.easeInOutSine,
-        },
-        loop: {reverse: true, delay: 10000}
-      })
-
-      const linearColor1 = useSpring({
-        from: {stopColor: '#fca45b'},
-        to: {stopColor: '#7000ff'},
-        config: {
-            duration: 10000,
-            easing: easings.easeInOutSine,
-          },
-          loop: {reverse: true, delay: 10000}
-      })
-      const linearColor2 = useSpring({
-        from: {stopColor: '#f19200'},
-        to: {stopColor: '#0e07ff'},  
-        config: {
-            duration: 10000,
-            easing: easings.easeInOutSine,
-          },
-          loop: {reverse: true, delay: 10000}
-      })
+      from: { x: 0, y: 0 },
+      to: { x: 1, y: 1 },
+      config: {
+        duration: 8000,
+        easing: easings.easeInOutSine,
+      },
+      loop: { reverse: true }
+    });
+  
+    const { cloud } = useSpring({
+      from: { cloud: 0 },
+      to: { cloud: 1 },
+      config: {
+        duration: 90000,
+        easing: easings.easeInOutSine,
+      },
+      loop: true
+    });
+  
+    const { plants } = useSpring({
+      from: { plants: 0 },
+      to: { plants: 1 },
+      config: {
+        duration: randomDuration,
+        easing: easings.easeInOutSine,
+      },
+      loop: { reverse: true, delay: plantsDelay }
+    });
+  
+    const { sun } = useSpring({
+      from: { sun: 0 },
+      to: { sun: 0.75 },
+      config: {
+        duration: dayCycle,
+        easing: easings.easeInOutSine,
+      },
+      loop: { reverse: true }
+    });
+  
+    const linearColor1 = useSpring({
+      from: { stopColor: '#fca45b' },
+      to: { stopColor: '#7000ff' },
+      config: {
+        duration: dayCycle,
+        easing: easings.easeInOutSine,
+      },
+      loop: { reverse: true }
+    });
+  
+    const linearColor2 = useSpring({
+      from: { stopColor: '#f19200' },
+      to: { stopColor: '#0e07ff' },
+      config: {
+        duration: dayCycle,
+        easing: easings.easeInOutSine,
+      },
+      loop: { reverse: true }
+    });
 
     return (
+      <div id='backgroundContainer'>
       <svg
         id="beachBackground"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 750 500"
+        // x="0px"
+        // y="0px"
+        // viewBox="50 50 750 500"
+        preserveAspectRatio="none"
         {...props}
       >
         <linearGradient
@@ -2577,6 +2600,7 @@ transform={sun.to({
         </animated.g>
       </g>
     </svg>
+    </div>
   )
 }
 

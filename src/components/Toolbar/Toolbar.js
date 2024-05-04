@@ -3,10 +3,11 @@ import NavButton from '../NavButton/NavButton'
 import PropTypes from 'prop-types'
 import DailyChallenge from '../DailyChallenge/DailyChallenge';
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
-export default function Toolbar( { focusPage, pages, backClicks, startTitle, setStartTitle }) {
+const Toolbar = React.forwardRef((props, navBar) => {
+    const { focusPage, pages, backClicks, startTitle, setStartTitle } = props;
     // const [monkeyState, setMonkeyState] = useState(pages)
 
     const resetStartTitle = () => {
@@ -23,7 +24,7 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
     }
 
     return (
-        <StyledToolbar >
+        <StyledToolbar ref={navBar}>
             <StyledLink onClick={resetStartTitle} to={'/'} alt='Destination: Banana site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter ref={linkRef}>
@@ -53,7 +54,7 @@ export default function Toolbar( { focusPage, pages, backClicks, startTitle, set
             </div>
         </StyledToolbar>
     )
-}
+})
 
 Toolbar.propTypes = {
     pages: PropTypes.arrayOf(PropTypes.shape({
@@ -64,3 +65,5 @@ Toolbar.propTypes = {
         title: PropTypes.string
      })).isRequired,
 }
+
+export default Toolbar

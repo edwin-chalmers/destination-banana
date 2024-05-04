@@ -3,7 +3,7 @@ import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
 import LoadScreen from '../LoadScreen/LoadScreen'
-import { fetchPage, fetchHTML } from '../../ApiCalls';
+import { fetchPage, fetchHTML, getCategoryMembers } from '../../ApiCalls';
 import { useEffect, useState, useRef } from 'react';
 import parse from 'html-react-parser';
 import { gsap } from 'gsap';
@@ -14,6 +14,7 @@ import { useGlobalProps } from '../..';
 import NavButtonLeft from './NavButtonLeft.png'
 import NavButtonRight from './NavButtonRight.png'
 import { motion } from 'framer-motion'
+import { postUser } from '../../ApiCalls';
 
 
 function HomePage({}) {
@@ -29,44 +30,120 @@ function HomePage({}) {
   const [allowedRight, setAllowedRight] = useState()
   const [allowedLeft, setAllowedLeft] = useState(0)
   const [clickAllowed, setClickAllowed] = useState(true);
-  
+  const [userProfile, setUserProfile] = useState()
   const navigate = useNavigate()
   gsap.config({ trialWarn: false })
   const pagesRef = useRef()
-  
-
   const [dataReady, setDataReady] = useState(false)
   const [linkReady, setLinkReady] = useState(false)
-
+  const [date, setDate] = useState()
+  const [gameId, setgameId] = useState()
+  const [width, setWidth] = useState();
+  const navBar = useRef()
 
   const {
     startTitle,
-    setStartTitle
+    setStartTitle,
+    gameType,
   } = useGlobalProps();
+
+    useEffect(() => {
+
+      function handleResize() {
+          setWidth(window.innerWidth);
+        }
+        
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      return () => {
+          window.removeEventListener('resize', handleResize);
+      };
+    }, []); 
+
+    useEffect(() => {
+      console.log(width, width/1920)
+      if (navBar.current) {
+        const style = window.getComputedStyle(navBar.current);
+        const fontSize = style.fontSize;
+        console.log("Font Size:", fontSize);
+        navBar.current.style.fontSize = `${width/1920*100}%`
+      }
+    }, [width])
+
+  useEffect(() => {
+    fetchWikiData()
+    setWidth(window.innerWidth)
+    return () => {
+      const gameData = JSON.parse(localStorage.getItem('gameData'))
+      postUser(gameData)
+      localStorage.removeItem('gameData')
+    }
+  }, [])
+
+  useEffect(() => {
+    if(win){
+      const gameData = JSON.parse(localStorage.getItem('gameData'))
+      postUser(gameData)
+      localStorage.removeItem('gameData')
+    }
+  }, [win])
+
+  useEffect(() => {
+
+    if(startTitle){
+    const now = new Date()
+    
+    const formattedDate = now.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    })
+    
+    setDate(formattedDate)
+    const timestamp = Date.now();
+    const randomInt = Math.floor(Math.random() * 1000000)
+    
+    setgameId(`${timestamp}${randomInt}`)
+    const user = JSON.parse(localStorage.getItem('bananaUser'))
+    
+    if(user){
+      setUserProfile(user)
+    }
+  }
+  }, [startTitle])
+
+  useEffect(() => {
+    
+    if(userProfile && startTitle){
+      const gameData = {
+        id: userProfile.id,
+        date: date,
+        gameId: gameId,
+        gameType: gameType,
+        topic: startTitle,
+        clicks: 0,
+        links: []
+      }
+      localStorage.setItem('gameData', JSON.stringify(gameData))
+    }
+  }, [userProfile])
 
   useEffect(() => {
     setAllowedRight(pages.length - 3)
   }, [pages.length])
 
-  useEffect(() => {
-    fetchWikiData()
-  }, [startTitle])
-
   const fetchWikiData = async() => {
-    let endpointAPI
-    if(!endpointAPI && !startTitle){
+    if(!startTitle){
       fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
         return rando.json()
       }).then(data => {
-        endpointAPI = data.items[0].title.replaceAll('_', ' ').toString()
-        updatePages(endpointAPI)
-        // let tl = gsap.timeline()
-        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
+        const title = data.items[0].title.replaceAll('_', ' ').toString()
+        updatePages(title)
+        setStartTitle(title)
       }).catch(error => handleError(error))
     } else {
         const formatTitle = startTitle.replaceAll('_', ' ').toString()
-        // let tl = gsap.timeline()
-        // tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' });
       updatePages(formatTitle)
     }
   }
@@ -319,15 +396,16 @@ function HomePage({}) {
   };
 
   return (
-    <StyledHomepage >
+    <StyledHomepage id='homepage'>
       <BeachBackground1 />
       {win && <Win pages={pages} animateWin={animateWin} />}
       {dataReady ?
         <>
-          <Toolbar setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+        <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
           <div className="background-container">
             {linkReady &&
               <>
+              {width > 720 && <>
                 <motion.div
                   className="running-monkey-1"
                   transition={{
@@ -388,6 +466,7 @@ function HomePage({}) {
                   }}
                   >
                 </motion.div>
+                </>}
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
                 <div className='outer-container'>

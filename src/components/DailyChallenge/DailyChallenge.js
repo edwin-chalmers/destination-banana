@@ -7,7 +7,7 @@ import LandingButton from '../LandingButton/LandingButton'
 
 
 export default function DailyChallenge({ setBtnDesc, description}) {
-    const {startTitle, setStartTitle} = useGlobalProps()
+    const {startTitle, setStartTitle, setGameType} = useGlobalProps()
     const navigate = useNavigate()
     let featuredArticles
     
@@ -17,6 +17,7 @@ export default function DailyChallenge({ setBtnDesc, description}) {
     const day = String(currentDate.getDate()).padStart(2, '0'); 
  
     const playDailyChallenge = async () => {
+        setGameType('Daily_Challenge')
         featuredArticles = await getFeatured(`${year}/${month}/${day}`)
         setData()
     }

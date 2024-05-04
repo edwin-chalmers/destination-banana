@@ -1,7 +1,8 @@
 import { StyledLinkContainer } from './LinkBox.styled'
 import PropTypes from 'prop-types'
 import { gsap } from 'gsap'
-import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, useEffect, forwardRef, useState } from 'react'
+import { getArticleCategories } from '../../ApiCalls'
 
 function LinkBox({ pages, linkList, updatePages, checkForWin }) {
   let clickCount
@@ -9,6 +10,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
   let destTop, destLeft, bananaDest;
 
   const linksContainer = useRef();
+ const [clicks, setClicks] = useState()
 
   if (document.querySelector('#click-counter')) {
       clickCount = document.querySelector('#click-counter')
@@ -19,13 +21,18 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
   }
 
   function handleClick(event) {
+
+    const gameData = JSON.parse(localStorage.getItem('gameData'))
+    gameData.clicks = clickCount.innerText.replace(' Clicks', '')
+    gameData.links.push(event.target.href)
+    localStorage.setItem('gameData', JSON.stringify(gameData))
     checkForWin(event.target.textContent)
     updatePages(event.target.textContent)
     const addWidth = 300
     var element = document.querySelector('.outer-container')
     var currentWidth = element.offsetWidth
     let newWidth = currentWidth += 340
-    document.getElementById('links-container').scrollTop = 0
+    document.getElementById('linkTails').scrollTop = 0
     element.style.width = `${newWidth}px`
   }
 
@@ -65,6 +72,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                 opacity: 0.5,
             })
         }
+
         }, [pages])
 
     
@@ -81,7 +89,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                     }} 
                     href={link.url}
                      id={`${link.title.toLowerCase()}_LL`}
-                     >{link.title}</a>
+                     ><p>{link.title}</p></a>
                 </>
             )
         })
@@ -91,8 +99,8 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <h4>Destination:</h4>
-            {linkTails}
+            <header><h4>Destinations:</h4></header>
+            <div id='linkTails'>{linkTails}</div>
         </StyledLinkContainer>
     )
 }
