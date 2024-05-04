@@ -70,9 +70,9 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     
     let linkTails
     if(linkList) {
-        
         linkTails = linkList.map((link) => {
             keyTicker += 1;
+
             return (
                 <>
                     <a key={keyTicker} onClick={(event) => {
@@ -85,14 +85,13 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
                 </>
             )
         })
-
     } else {
         linkTails = <p> No Links to display here! Click the back button. </p>
     }
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <h4>Destinations:</h4>
+            <h4>Destination:</h4>
             {linkTails}
         </StyledLinkContainer>
     )

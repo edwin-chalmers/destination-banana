@@ -112,8 +112,6 @@ function HomePage({}) {
   }
 
   function updatePages(endpointText) {
-    createLinkList(endpointText)
-
 
     let htmlFilter
 

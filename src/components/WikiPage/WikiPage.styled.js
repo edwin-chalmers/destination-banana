@@ -4,7 +4,7 @@ export const WikiPageContainer = styled.div`
     width: 300px;
     height: 83vh;
     border: 1px solid black;
-    padding: 25px;
+    padding: 25px 30px 25px 27px;
     overflow: hidden;
     margin: 20px;
     min-width: 300px;
@@ -23,6 +23,21 @@ export const WikiPageContainer = styled.div`
         margin: 0 0 20px 0;
         text-align: center;
         font-size: x-large;
+        width: fit-content;
+    }
+
+    .click-num {
+        position: absolute;
+        right: 3px;
+        top: 5px;
+        padding: 1px 4px 1px 4px;
+        margin: 0;
+        margin-right: 2px;
+        font-weight: 800;
+        border-radius: 5px;
+        /* border: 2px solid rgb(242, 125, 38, 1); */
+        background-color: rgb(242, 195, 58, 1);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .infobox-above {

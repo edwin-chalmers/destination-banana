@@ -9,8 +9,8 @@ export const StyledPagesContainer = styled.div`
     position: absolute;
     left: 0px;
     top: 0px;
-
     overflow-x: visible;
     overflow-y: visible;
     width: 100%;
+    margin-top: 10px;
 `
