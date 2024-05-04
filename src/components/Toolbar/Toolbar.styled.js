@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledToolbar = styled.nav`
-    background-color: rgb(120, 204, 246);
+    background-color: rgb(252, 284, 255, .7);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,11 +11,7 @@ export const StyledToolbar = styled.nav`
     z-index: 2;
     position: absolute;
     width: 100%;
-    opacity: 0.8;
-    /* .greedy-monkey-container {
-        height: 100%;
-        position: relative;
-    } */
+    /* opacity: 0.8; */
 
     .greedy-monkey {
         width: 80px;
