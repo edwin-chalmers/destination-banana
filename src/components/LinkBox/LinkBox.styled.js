@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const StyledLinkContainer = styled.div`
   /* background: linear-gradient(to left, rgb(252, 104, 5, .6), 80%, rgb(252, 184, 5, .6)); */
   /* background: linear-gradient(to left, rgb(176, 204, 246, .9), 80%, rgb(146, 204, 246, .5)); */
-  background-image: url(/assets/banana-background-3-revise.png);
+  /* background-image: url(/assets/banana-background-3-revise.png); */
   background-size: 50%;
-  background-color: rgb(255, 250, 5, .9);
+  /* background: linear-gradient(to left, rgb(252, 154, 5, 1), 80%, rgb(252, 184, 5, .6)); */
+  background-color: rgb(155,234,255, .9);
   max-width: 322px;
   text-align: center;
   display: flex;
@@ -24,6 +25,7 @@ export const StyledLinkContainer = styled.div`
   border-radius: 20px;
   margin-left: 10px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  /* mix-blend-mode: hard-light; */
 
   a {
     text-decoration: none;
@@ -47,7 +49,7 @@ export const StyledLinkContainer = styled.div`
   }
 
   h4 {
-    background-color: rgb(252, 284, 235, .9);
+    background-color: rgb(252,184,5);
     border-radius: 5px;
     font-size: 30px;
     width: fit-content;
