@@ -4,7 +4,6 @@ export const StyledLanding = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 100%;
     height: 100vh;
     align-content: center;
@@ -13,6 +12,10 @@ export const StyledLanding = styled.div`
     background-size: 100%;
     background-position-y: 57%;
     position: fixed;
+
+    font-family: "Fredoka", sans-serif;
+    font-weight: 550;
+    font-size: 1.2em;
 
     section {
         position: absolute;
