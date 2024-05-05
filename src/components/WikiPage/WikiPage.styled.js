@@ -4,7 +4,7 @@ export const WikiPageContainer = styled.div`
     width: 300px;
     height: 83vh;
     border: 1px solid black;
-    padding: 25px 30px 25px 27px;
+    padding: 25px 20px 25px 17px;
     overflow: hidden;
     margin: 20px;
     min-width: 300px;

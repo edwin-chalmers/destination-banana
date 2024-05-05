@@ -4,7 +4,7 @@ export const StyledLandingButton = styled.button`
     z-index: 10;
     
     min-width: 200px;
-    height: 80px;
+    height: 60px;
 
     border: none;
     outline: none;
@@ -28,5 +28,13 @@ export const StyledLandingButton = styled.button`
 
     img {
         height: 40px;
+    }
+
+    button {
+        background: none;
+        border: none;
+        font-family: "Fredoka", sans-serif;
+        font-weight: 650;
+        font-size: 2.4em;
     }
 `

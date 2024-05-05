@@ -29,7 +29,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
             tl.fromTo(
                 containerRef.current, 
                 { left: '-63' },
-                { duration: 1, left: '330', ease: 'power3.out'}
+                { duration: 1, left: '340', ease: 'power3.out'}
             );
         }
     }, [pages.length]);
@@ -40,7 +40,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
             tl.fromTo(
                 containerRef.current, 
                 { left: '660' },
-                { duration: 1, left: '330', ease: 'power3.out'}
+                { duration: 1, left: '340', ease: 'power3.out'}
             );
         }
     }, [pages.length - numDisplayedPages]);
@@ -50,7 +50,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
         tl.fromTo(
             containerRef.current, 
             { left: '-250', opacity: 0 },
-            { duration: 1, left: '330', opacity: 1, delay: 1},
+            { duration: 1, left: '340', opacity: 1, delay: 1},
         )
     }, [])
 

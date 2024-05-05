@@ -18,7 +18,8 @@ export default function LandingButton({
             boxShadow={boxShadow}
             onMouseEnter={() => setBtnDesc(description)}
         >
-            <img src={`/assets/buttons/${buttonName}.svg`} alt={buttonAlt} />
+            {/* <img src={`/assets/buttons/${buttonName}.svg`} alt={buttonAlt} /> */}
+            <button>{buttonName}</button>
         </StyledLandingButton>
     )
 

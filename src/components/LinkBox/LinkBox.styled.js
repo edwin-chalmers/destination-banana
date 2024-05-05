@@ -52,11 +52,11 @@ export const StyledLinkContainer = styled.div`
     align-items: center;
   }
 
-
   h4 {
     background-color: rgb(252,184,5);
     border-radius: 5px;
     font-size: 30px;
+    font-weight: 600;
     width: fit-content;
     padding: 1px 10px 3px 12px;
     margin: 17px 0 15px 0;

@@ -92,9 +92,10 @@ function LandingPage() {
                         backgroundColor="#e5fdfb"
                         boxShadow="#bdeafd"
                         setBtnDesc={setBtnDesc}
-                        description={"Everything you'll need to know!"}
+                        description={"Everything else you need to know!"}
                     />
                 </div>
+                <p className="disclaimer">🍌Some content in the game is randomly sourced from wikipedia and is uncensored. Enter at your own risk.🍌</p>
                 <div id='bananaContainer'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
                         <g id="a"/>
