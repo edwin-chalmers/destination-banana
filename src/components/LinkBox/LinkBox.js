@@ -31,7 +31,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     var element = document.querySelector('.outer-container')
     var currentWidth = element.offsetWidth
     let newWidth = currentWidth += 340
-    document.getElementById('linkTails').scrollTop = 0
+    document.getElementById('link-tails').scrollTop = 0
     element.style.width = `${newWidth}px`
   }
 
