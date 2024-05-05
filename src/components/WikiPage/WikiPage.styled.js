@@ -18,15 +18,19 @@ export const WikiPageContainer = styled.div`
     overflow-x: hidden;
     
     h5 {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 550;
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         margin: 0 0 20px 0;
         text-align: center;
-        font-size: x-large;
+        font-size: 1.7em;
         width: fit-content;
     }
 
     .click-num {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 600;
         position: absolute;
         right: 3px;
         top: 5px;

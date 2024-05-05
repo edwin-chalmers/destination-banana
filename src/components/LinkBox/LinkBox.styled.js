@@ -4,7 +4,7 @@ export const StyledLinkContainer = styled.div`
   /* background: linear-gradient(to left, rgb(252, 104, 5, .6), 80%, rgb(252, 184, 5, .6)); */
   /* background: linear-gradient(to left, rgb(176, 204, 246, .9), 80%, rgb(146, 204, 246, .5)); */
   /* background-image: url(/assets/banana-background-3-revise.png); */
-  background-size: 50%;
+  /* background-size: 50%; */
   /* background: linear-gradient(to left, rgb(252, 154, 5, 1), 80%, rgb(252, 184, 5, .6)); */
   background-color: rgb(155,234,255, .9);
   max-width: 322px;
@@ -25,10 +25,12 @@ export const StyledLinkContainer = styled.div`
   border-radius: 20px;
   margin-left: 10px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  /* mix-blend-mode: hard-light; */
+
+  font-family: "Fredoka", sans-serif;
+  font-weight: 550;
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: black;
     background-color: rgba(255, 255, 255, .9);
     width: fit-content;
@@ -36,17 +38,20 @@ export const StyledLinkContainer = styled.div`
     padding: 0px 5px 1px 5px;
     margin: 2px 4px 1.5px 4px;
     border-radius: 10px;
-    font-weight: 700;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    
     &:hover {
       cursor: pointer;
-      box-shadow: 0px 0px 9px 2px black;
-      position: relative;
-      top: 0px;
-      left: 5px;
-      z-index: 20;
+      background-color: rgb(252,184,5);
     }
   }
+
+  #link-tails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
   h4 {
     background-color: rgb(252,184,5);
@@ -57,21 +62,4 @@ export const StyledLinkContainer = styled.div`
     margin: 17px 0 15px 0;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
-  #linkTails{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: overlay;
-    width: 100%;
-  }
-  p{
-    font-weight: bold;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
-    overflow: hidden;
-  }
-  `
-
-
+`
