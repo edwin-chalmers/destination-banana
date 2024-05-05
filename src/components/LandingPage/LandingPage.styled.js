@@ -26,7 +26,7 @@ export const StyledLanding = styled.div`
         text-align: center;
         
         width: 500px;
-        padding: 50px 80px 50px 100px ; 
+        padding: 30px 80px 30px 100px ; 
         background-color: rgba(255,255,255,0.7);
         border-radius: 1000px;
 
