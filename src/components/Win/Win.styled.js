@@ -13,6 +13,8 @@ export const StyledWin = styled.div`
     height: 100%;
     text-align: center;
     ${centerElements};
+    font-family: "Fredoka", sans-serif;
+    font-weight: 550;
     
     h2 {
         background-color: rgba(254,209,0,1);

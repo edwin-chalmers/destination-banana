@@ -7,6 +7,8 @@ export const StyledError = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,1);
+    font-family: "Fredoka", sans-serif;
+
 
     display: flex;
     flex-direction: column;
@@ -20,7 +22,15 @@ export const StyledError = styled.div`
     }
 
     h2 {
-        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-style: italic;
     }
 
     #goHome {

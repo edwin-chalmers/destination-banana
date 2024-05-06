@@ -4,7 +4,7 @@ export const WikiPageContainer = styled.div`
     width: 300px;
     height: 83vh;
     border: 1px solid black;
-    padding: 25px 30px 25px 27px;
+    padding: 25px 20px 25px 17px;
     overflow: hidden;
     margin: 20px;
     min-width: 300px;
@@ -18,15 +18,19 @@ export const WikiPageContainer = styled.div`
     overflow-x: hidden;
     
     h5 {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 550;
         border-top: 1px solid black;
         border-bottom: 1px solid black;
         margin: 0 0 20px 0;
         text-align: center;
-        font-size: x-large;
+        font-size: 1.7em;
         width: fit-content;
     }
 
     .click-num {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 600;
         position: absolute;
         right: 3px;
         top: 5px;

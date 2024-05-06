@@ -19,7 +19,7 @@ function LandingPage() {
         setGameType,
       } = useGlobalProps();
 
-    const [btnDesc, setBtnDesc] = useState("Welcome to Destination: Bananas!")
+    const [btnDesc, setBtnDesc] = useState("The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??")
     const navigate = useNavigate()
     
     function playGame(e, type) {  
@@ -79,11 +79,11 @@ function LandingPage() {
                         boxShadow="#ff931e"
                         goToPage={(e) => playGame(e, 'click')} // Not sure how this works
                         setBtnDesc={setBtnDesc}
-                        description={"Standard Game"}
+                        description={"The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??"}
                     />
                     <DailyChallenge 
                         setBtnDesc={setBtnDesc}
-                        description={"Daily Challenge"}
+                        description={"A new start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
                     />
                     <LandingButton
                         className='helpButton' 
@@ -92,9 +92,10 @@ function LandingPage() {
                         backgroundColor="#e5fdfb"
                         boxShadow="#bdeafd"
                         setBtnDesc={setBtnDesc}
-                        description={"Everything you'll need to know!"}
+                        description={"Everything else you need to know!"}
                     />
                 </div>
+                <p className="disclaimer">🍌Some content in the game is randomly sourced from wikipedia and is uncensored. Enter at your own risk.🍌</p>
                 <div id='bananaContainer'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
                         <g id="a"/>

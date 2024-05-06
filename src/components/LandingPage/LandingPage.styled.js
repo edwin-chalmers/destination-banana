@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const StyledLanding = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
     width: 100%;
     height: 100vh;
     align-content: center;
@@ -14,16 +14,21 @@ export const StyledLanding = styled.div`
     background-position-y: 57%;
     position: fixed;
 
+    font-family: "Fredoka", sans-serif;
+    font-weight: 550;
+    font-size: 1.2em;
+
     section {
         position: absolute;
         z-index: 1;
-        top: 50%;
+        top: 33%;
         left: 50%;
-        transform: translate(-50%, -10%);
+        transform: translate(-50%, -8%);
         text-align: center;
+        margin-top: 10%;
         
         width: 500px;
-        padding: 50px 80px 50px 100px ; 
+        padding: 30px 80px 25px 100px ; 
         background-color: rgba(255,255,255,0.7);
         border-radius: 1000px;
 
@@ -73,7 +78,13 @@ export const StyledLanding = styled.div`
     }
 
     .landing-buttons {
-        margin-top: 400px;
+        margin-top: 580px;
+        display: flex;
+    }
+
+    .disclaimer {
+        font-weight: 300;
+        margin-top: 150px;
     }
 
 `

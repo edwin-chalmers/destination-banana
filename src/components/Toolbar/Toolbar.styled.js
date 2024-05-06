@@ -11,7 +11,9 @@ export const StyledToolbar = styled.nav`
     z-index: 2;
     position: absolute;
     width: 100%;
-    /* opacity: 0.8; */
+    font-family: "Fredoka", sans-serif;
+    font-weight: 400;
+
 
     .greedy-monkey {
         width: 80px;
@@ -33,7 +35,7 @@ export const StyledButton = styled.button`
     border: none;
     background-color: rgba(0,0,0,0);
     color: gray;
-    font-weight: bold;
+    font-weight: 600;
 `
 
 export const StyledLogo = styled.img`
@@ -50,11 +52,13 @@ export const StyledEndpoint = styled.div`
     h3 {
         margin: 0;
         font-size: 1.4em;
+        font-weight: 650;
     }
 
     p {
         margin: 0 0 0 10px;
         font-size: 1.2em;
+        font-weight: 500;
     }
 `
 
@@ -66,5 +70,6 @@ export const StyledCounter = styled.p `
     h2 {
         margin: 0;
         color: black;
+        font-weight: 600;
     }
 `

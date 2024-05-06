@@ -11,11 +11,11 @@ export const StyledNavButton = styled.button`
     --button-color: #bababa;
     --hover-color: rgb(254, 209, 0);
     width: 120px;
-        height: 40px;
-        background-color: var(--transparent);
-        border: 2px solid rgba(0,0,0,0.01);
-        border-radius: 3px;
-        ${centerElements}
+    height: 40px;
+    background-color: var(--transparent);
+    border: 2px solid rgba(0,0,0,0.01);
+    border-radius: 3px;
+    ${centerElements}
 
     ${centerElements};
     flex-direction: row;
@@ -28,10 +28,11 @@ export const StyledNavButton = styled.button`
     }
     
     p {
+        font-family: "Fredoka", sans-serif;
+        font-weight: 600;
         margin: 0;
         color: black; 
-        font-weight: bold;
-        font-size: large;
+        font-size: 1.6em;
     }
     
     &:hover {
