@@ -78,13 +78,13 @@ export const StyledLanding = styled.div`
     }
 
     .landing-buttons {
-        margin-top: 530px;
+        margin-top: 580px;
         display: flex;
     }
 
     .disclaimer {
         font-weight: 300;
-        margin-top: 100px;
+        margin-top: 150px;
     }
 
 `
