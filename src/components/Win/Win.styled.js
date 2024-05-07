@@ -12,34 +12,44 @@ export const StyledWin = styled.div`
     width: 100%;
     height: 100%;
     text-align: center;
-    ${centerElements};
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: "Fredoka", sans-serif;
     font-weight: 550;
     
-    h2 {
-        background-color: rgba(254,209,0,1);
-        padding: 100px;
+    h1, h2 {
+        font-size: 60px;
+        z-index: 1;
+        text-shadow:
+        -2px -2px 0 #fff,  
+        2px -2px 0 #fff,
+        -2px  2px 0 #fff,
+        2px  2px 0 #fff;
+    }
+    
+    h1 {
         font-size: 100px;
-        font-weight: 800;
-        color: black;
+        top: 180px;
         margin: 0;
-        border-radius: 40px;
     }
 
-    button {
-        padding: 20px 40px 20px 40px;
-        border: none;
-        font-weight: 800;
-
-        &:hover {
-            cursor: pointer;
-        }
+    h2 {
+        margin-top: 0;
     }
 
-    #monkeyBro{
-        width: 380px;
-        position: relative;
-        left: 150px;
-        filter: drop-shadow(2px 4px 6px black);
+    div {
+        z-index: 1;
     }
+
+    #islandBackground {
+        position: absolute;
+        width: 700px;
+
+        background-color: rgba(254,209,0,1);
+        border-radius: 20px;
+        border: 10px solid white;
+    }
+
 `

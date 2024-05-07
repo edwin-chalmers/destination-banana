@@ -78,7 +78,7 @@ export const StyledLanding = styled.div`
     }
 
     .landing-buttons {
-        margin-top: 580px;
+        margin-top: 620px;
         display: flex;
     }
 
