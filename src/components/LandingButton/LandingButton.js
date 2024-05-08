@@ -16,7 +16,11 @@ export default function LandingButton({
             onClick={goToPage}
             backgroundColor={backgroundColor} 
             boxShadow={boxShadow}
-            onMouseEnter={() => setBtnDesc(description)}
+            onMouseEnter={() => {
+                if (typeof setBtnDesc === 'function') {
+                  setBtnDesc(description);
+                }
+            }}
         >
             {/* <img src={`/assets/buttons/${buttonName}.svg`} alt={buttonAlt} /> */}
             <button>{buttonName}</button>

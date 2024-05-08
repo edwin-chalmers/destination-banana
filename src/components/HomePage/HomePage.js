@@ -135,7 +135,8 @@ function HomePage({}) {
 
   const fetchWikiData = async() => {
     if(!startTitle){
-      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+      // fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
         return rando.json()
       }).then(data => {
         const title = data.items[0].title.replaceAll('_', ' ').toString()
