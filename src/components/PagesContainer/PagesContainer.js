@@ -5,6 +5,8 @@ import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } f
 
 function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref) {
     const [linksReady, setLinksReady] = useState(false)
+    const slideLength = 378
+    
     setTimeout(() => {setLinksReady(true)}, 500)
 
     const containerRef = useRef(null)
@@ -28,8 +30,8 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
-                { left: '-63' },
-                { duration: 1, left: '340', ease: 'power3.out'}
+                { left: '63' },
+                { duration: 1, left: 340, ease: 'power3.out'}
             );
         }
     }, [pages.length]);
@@ -39,8 +41,8 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
-                { left: '660' },
-                { duration: 1, left: '340', ease: 'power3.out'}
+                { left: '0' },
+                { duration: 1, left: 340, ease: 'power3.out'}
             );
         }
     }, [pages.length - numDisplayedPages]);
@@ -49,8 +51,8 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
         const tl = gsap.timeline()
         tl.fromTo(
             containerRef.current, 
-            { left: '-250', opacity: 0 },
-            { duration: 1, left: '340', opacity: 1, delay: 1},
+            { left: '-340', opacity: 0 },
+            { duration: 1, left: 340, opacity: 1, delay: 1},
         )
     }, [])
 
@@ -64,7 +66,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                         containerRef.current, 
                         { 
                             duration: 1,
-                            left: '+=380', 
+                            left: `+=${slideLength}`, 
                             ease: 'power3.out',
                             onComplete: () => {setAllowClick(true)}
                         }
@@ -75,7 +77,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                         containerRef.current, 
                         { 
                             duration: 1, 
-                            left: '-=380', 
+                            left: `-=${slideLength}`, 
                             ease: 'power3.out',
                             onComplete: () => {setAllowClick(true)}
                         }

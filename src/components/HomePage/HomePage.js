@@ -61,11 +61,9 @@ function HomePage({}) {
     }, []); 
 
     useEffect(() => {
-      console.log(width, width/1920)
       if (navBar.current) {
         const style = window.getComputedStyle(navBar.current);
         const fontSize = style.fontSize;
-        console.log("Font Size:", fontSize);
         navBar.current.style.fontSize = `${width/1920*100}%`
       }
     }, [width])
@@ -173,25 +171,63 @@ function HomePage({}) {
     badLink.appendChild(linkMsg)
 
     tl.to(monkeyContainer, {
-      transform: 'translate(637px, -895px)',
+      transform: 'translate(-1460px, 80px)',
       duration: 0.5,
       ease: 'bounce',
     })
     
     tl.to(monkeyContainer, {
-      transform: 'translate(-1000px, -895px)',
+      transform: 'translate(1000px, -500px)',
       duration: 0.5,
       ease: 'bounce',
       onComplete: () => {
         homePage.removeChild(monkeyContainer)
 
       }
-    }, '+=2')
+    }, '+=4')
   }
 
   function updatePages(endpointText) {
-    console.log('endpoint text updatePages', endpointText)
     if(endpointText === 'Banana') {
+      setNextId(prev => prev += 1)
+      setPages((prev) => {
+        const updatedPages = prev.map((page) => {
+          page.isCurrent = false
+
+          return page
+      })
+      const newPage = {
+        id: nextId,
+        stringForDOM: '',
+        isCurrent: true,
+        isDisplayed: true,
+        title: endpointText
+      }
+
+      return [...updatedPages, newPage]
+    })
+
+      createLinkList(endpointText)
+    } else {
+    let htmlFilter
+    const parser = new DOMParser()
+    fetchHTML(endpointText).then(html => {
+      if(!html){
+        handleBrokenLink()
+        focusPage(0)
+        return
+      }
+  
+      htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+      const parsedHTML = parse(htmlFilter)
+      const newPage = {
+        id: nextId,
+        stringForDOM: parsedHTML,
+        isCurrent: true,
+        isDisplayed: true,
+        title: endpointText
+      }
+
       setNextId(prev => prev += 1)
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
@@ -427,20 +463,22 @@ function HomePage({}) {
       {dataReady ?
         <>
         <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+          <div id='pageSelection'>
+            <div id='leftButton'>{pages.length > 4 && rightClick > 1 && <div id='arrowContainer'><div id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}></div></div>}</div>
+            <div id='rightButton'>{pages.length > 4 && rightClick < allowedRight && <div id='arrowContainer'><div id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}></div></div>}</div>
+          </div>
           <div className="background-container">
             {linkReady &&
               <>
               {width > 720 && <>
                 <RunningMonkeys />
                 </>}
-                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} handleWin={handleWin} updatePages={updatePages} pages={pages} />
-                {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
+                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 <div className='outer-container'>
                   <main id='main-content'>
                     <PagesContainer id="page-container" clickAllowed={clickAllowed} setClickAllowed={handleClickAllowed} ref={pagesRef} pages={pages} focusPage={focusPage} />
                   </main>
                 </div>
-                {pages.length > 4 && rightClick < allowedRight && <img id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}/>}
               </>
             }
           </div>

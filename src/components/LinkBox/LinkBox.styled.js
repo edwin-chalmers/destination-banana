@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
 export const StyledLinkContainer = styled.div`
-  background-color: rgb(155,234,255, .9);
-  max-width: 322px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  min-width: 322px;
-  overflow-y: scroll;
-  margin-top: 30px;
-  z-index: 3;
-  scrollbar-color: rgb(53,98,201);
-  left: -330px;
-  height: 88.5vh;
-  border: 1px solid black;
-  position: fixed;
-  border-radius: 20px;
-  margin-left: 10px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-
-  font-family: "Fredoka", sans-serif;
-  font-weight: 550;
+    background-color: rgb(155, 234, 255, .9);
+    max-width: 322px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 322px;
+    overflow-y: scroll;
+    margin-top: 30px;
+    z-index: 3;
+    scrollbar-color: rgb(53, 98, 201);
+    left: -330px;
+    height: 88.5vh;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 10px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: "Fredoka", sans-serif;
+    font-weight: 550;
 
   a {
     text-decoration: none !important;
