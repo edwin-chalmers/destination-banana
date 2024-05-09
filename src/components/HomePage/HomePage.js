@@ -90,7 +90,6 @@ function HomePage({}) {
 
     if(startTitle){
     const now = new Date()
-    
     const formattedDate = now.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric', 
@@ -195,45 +194,6 @@ function HomePage({}) {
           page.isCurrent = false
 
           return page
-      })
-      const newPage = {
-        id: nextId,
-        stringForDOM: '',
-        isCurrent: true,
-        isDisplayed: true,
-        title: endpointText
-      }
-
-      return [...updatedPages, newPage]
-    })
-
-      createLinkList(endpointText)
-    } else {
-    let htmlFilter
-    const parser = new DOMParser()
-    fetchHTML(endpointText).then(html => {
-      if(!html){
-        handleBrokenLink()
-        focusPage(0)
-        return
-      }
-  
-      htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
-      const parsedHTML = parse(htmlFilter)
-      const newPage = {
-        id: nextId,
-        stringForDOM: parsedHTML,
-        isCurrent: true,
-        isDisplayed: true,
-        title: endpointText
-      }
-
-      setNextId(prev => prev += 1)
-      setPages((prev) => {
-        const updatedPages = prev.map((page) => {
-          page.isCurrent = false
-
-          return page
         })
         const newPage = {
           id: nextId,
@@ -246,54 +206,53 @@ function HomePage({}) {
         return [...updatedPages, newPage]
       })
 
-      createLinkList(endpointText)
+        createLinkList(endpointText)
     } else {
-      let htmlFilter
-      const parser = new DOMParser()
-      fetchHTML(endpointText).then(html => {
-        if(!html){
-          handleBrokenLink()
-          focusPage(0)
-          return
-        }
+        let htmlFilter
+        const parser = new DOMParser()
+        fetchHTML(endpointText).then(html => {
+          if(!html) {
+            handleBrokenLink()
+            focusPage(0)
+            return
+          }
 
-        htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+          htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
 
-        const parsedHTML = parse(htmlFilter)
-        const newPage = {
-          id: nextId,
-          stringForDOM: parsedHTML,
-          isCurrent: true,
-          isDisplayed: true,
-          title: endpointText
-        }
+          const parsedHTML = parse(htmlFilter)
+          const newPage = {
+            id: nextId,
+            stringForDOM: parsedHTML,
+            isCurrent: true,
+            isDisplayed: true,
+            title: endpointText
+          }
 
-        setNextId(prev => prev += 1)
-        setPages((prev) => {
-          const updatedPages = prev.map((page) => {
-            page.isCurrent = false
+          setNextId(prev => prev += 1)
+          setPages((prev) => {
+            const updatedPages = prev.map((page) => {
+              page.isCurrent = false
 
-            return page
+              return page
+            })
+
+            return [...updatedPages, newPage]
           })
 
-          return [...updatedPages, newPage]
-          
-        })
-
-        createLinkList(endpointText)
-        
-
-      }).catch(error => handleError(error))
-    }
-  }
-  
-  function cleanupHTML() {
-    document.querySelectorAll('img').forEach((img) => {
-      if (img.src.includes('Red_pog')) {
-        img.remove()
+          createLinkList(endpointText)
+        }).catch(error => handleError(error))
       }
-    })
-  }
+    }
+      
+    
+    function cleanupHTML() {
+      document.querySelectorAll('img').forEach((img) => {
+        if (img.src.includes('Red_pog')) {
+          img.remove()
+        }
+      })
+    }
+  
 
   function createLinkList(endpointText) {
     console.log('endpoint text createLinkList', endpointText)
@@ -487,7 +446,6 @@ function HomePage({}) {
         <LoadScreen />}
     </StyledHomepage>
   )
-
 }
 
 export { HomePage }
