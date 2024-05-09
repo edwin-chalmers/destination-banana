@@ -8,8 +8,8 @@ const centerElements = () => `
 
 export const StyledWin = styled.div`
     position: absolute;
-    z-index: 10;
-    width: 100%;
+    /* z-index: 10; */
+    width: 90%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -18,6 +18,10 @@ export const StyledWin = styled.div`
     align-items: center;
     font-family: "Fredoka", sans-serif;
     font-weight: 550;
+    background-color: rgba(254,209,0,1);
+    background-image: url(/assets/Island_with_Trees.svg);
+    background-repeat: no-repeat;
+    
     
     h1, h2 {
         font-size: 60px;
@@ -43,13 +47,21 @@ export const StyledWin = styled.div`
         z-index: 1;
     }
 
+
     #islandBackground {
+        position: absolute;
+        width: 700px;
+
+        
+    }
+
+    /* #islandBackground {
         position: absolute;
         width: 700px;
 
         background-color: rgba(254,209,0,1);
         border-radius: 20px;
         border: 10px solid white;
-    }
+    } */
 
 `

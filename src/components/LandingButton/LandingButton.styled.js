@@ -36,5 +36,6 @@ export const StyledLandingButton = styled.button`
         font-family: "Fredoka", sans-serif;
         font-weight: 650;
         font-size: 2.4em;
+        cursor: pointer;
     }
 `

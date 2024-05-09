@@ -31,7 +31,6 @@ export default function Win({ animateWin, pages }){
                     boxShadow="#61dbdb"
                 />
             </div>
-            <img id="islandBackground" src="./assets/Island_with_Trees.svg"/>
         </StyledWin>
     )
 }

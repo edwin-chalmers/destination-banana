@@ -4,13 +4,13 @@ import { gsap } from 'gsap'
 import React, { useRef, useEffect, forwardRef, useState } from 'react'
 import { getArticleCategories } from '../../ApiCalls'
 
-function LinkBox({ pages, linkList, updatePages, checkForWin }) {
-  let clickCount
-  let keyTicker = 0
-  let destTop, destLeft, bananaDest;
+function LinkBox({ pages, linkList, updatePages, checkForWin, handleWin }) {
+    let clickCount
+    let keyTicker = 0
+    let destTop, destLeft, bananaDest;
 
-  const linksContainer = useRef();
- const [clicks, setClicks] = useState()
+    const linksContainer = useRef();
+    const [clicks, setClicks] = useState()
 
   if (document.querySelector('#click-counter')) {
       clickCount = document.querySelector('#click-counter')
@@ -25,14 +25,16 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     gameData.clicks = clickCount.innerText.replace(' Clicks', '')
     gameData.links.push(event.target.href)
     localStorage.setItem('gameData', JSON.stringify(gameData))
-    checkForWin(event.target.textContent)
-    updatePages(event.target.textContent)
-    const addWidth = 300
-    var element = document.querySelector('.outer-container')
-    var currentWidth = element.offsetWidth
-    let newWidth = currentWidth += 340
-    document.getElementById('link-tails').scrollTop = 0
-    element.style.width = `${newWidth}px`
+    // if(checkForWin(event.target.textContent)) {
+        // updatePages(event.target.textContent)
+    // } else {
+        updatePages(event.target.textContent)
+    // }
+        var element = document.querySelector('.outer-container')
+        var currentWidth = element.offsetWidth
+        let newWidth = currentWidth += 340
+        document.getElementById('link-tails').scrollTop = 0
+        element.style.width = `${newWidth}px`
   }
 
   useEffect(() => {
@@ -77,29 +79,34 @@ function LinkBox({ pages, linkList, updatePages, checkForWin }) {
     
     let linkTails
     if(linkList) {
-        linkTails = linkList.map((link) => {
-            keyTicker += 1;
+        if (linkList === "Banana") {
+            linkTails = <p className="linkWin">You won!</p>
+        } else {
+            console.log('here now?')
+            linkTails = linkList.map((link) => {
+                keyTicker += 1;
 
-            return (
-                <>
-                    <a key={keyTicker} onClick={(event) => {
-                        event.preventDefault()
-                        handleClick(event)
-                    }} 
-                    href={link.url}
-                     id={`${link.title.toLowerCase()}_LL`}
-                     >{link.title}</a>
-                </>
-            )
-        })
+                return (
+                    <>
+                        <a key={keyTicker} onClick={(event) => {
+                            event.preventDefault()
+                            handleClick(event)
+                        }} 
+                        href={link.url}
+                        id={`${link.title.toLowerCase()}_LL`}
+                        >{link.title}</a>
+                    </>
+                )
+            })
+        }
     } else {
         linkTails = <p> No Links to display here! Click the back button. </p>
     }
 
     return (
         <StyledLinkContainer ref={linksContainer} id="links-container">
-            <header><h4>Destinations:</h4></header>
-            <div id='link-tails'>{linkTails}</div>
+                    <header><h4>Destinations:</h4></header>
+                    <div id='link-tails'>{linkTails}</div>
         </StyledLinkContainer>
     )
 }

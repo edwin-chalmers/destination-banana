@@ -190,28 +190,8 @@ function HomePage({}) {
   }
 
   function updatePages(endpointText) {
-
-    let htmlFilter
-
-    const parser = new DOMParser()
-    fetchHTML(endpointText).then(html => {
-      if(!html){
-        handleBrokenLink()
-        focusPage(0)
-        return
-      }
-
-      htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
-
-      const parsedHTML = parse(htmlFilter)
-      const newPage = {
-        id: nextId,
-        stringForDOM: parsedHTML,
-        isCurrent: true,
-        isDisplayed: true,
-        title: endpointText
-      }
-
+    console.log('endpoint text updatePages', endpointText)
+    if(endpointText === 'Banana') {
       setNextId(prev => prev += 1)
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
@@ -219,13 +199,56 @@ function HomePage({}) {
 
           return page
         })
+        const newPage = {
+          id: nextId,
+          stringForDOM: '',
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpointText
+        }
 
         return [...updatedPages, newPage]
       })
 
       createLinkList(endpointText)
+    } else {
+      let htmlFilter
+      const parser = new DOMParser()
+      fetchHTML(endpointText).then(html => {
+        if(!html){
+          handleBrokenLink()
+          focusPage(0)
+          return
+        }
 
-    }).catch(error => handleError(error))
+        htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+
+        const parsedHTML = parse(htmlFilter)
+        const newPage = {
+          id: nextId,
+          stringForDOM: parsedHTML,
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpointText
+        }
+
+        setNextId(prev => prev += 1)
+        setPages((prev) => {
+          const updatedPages = prev.map((page) => {
+            page.isCurrent = false
+
+            return page
+          })
+
+          return [...updatedPages, newPage]
+          
+        })
+
+        createLinkList(endpointText)
+        
+
+      }).catch(error => handleError(error))
+    }
   }
   
   function cleanupHTML() {
@@ -237,6 +260,10 @@ function HomePage({}) {
   }
 
   function createLinkList(endpointText) {
+    console.log('endpoint text createLinkList', endpointText)
+    if(endpointText === 'Banana') {
+      setLinkList('Banana')
+    }
     let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
     let filteredWikiLinks
     fetchPage(endpointText).then(linksArray => {
@@ -260,9 +287,7 @@ function HomePage({}) {
   }
 
   function checkForWin(text) {
-    if (text.toLowerCase() === targetTitle.toLowerCase()) {
-      handleWin()
-    }
+    return (text.toLowerCase() === targetTitle.toLowerCase())   
   }
 
   function handleWin() {
@@ -468,7 +493,7 @@ function HomePage({}) {
                   >
                 </motion.div>
                 </>}
-                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
+                <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} handleWin={handleWin} updatePages={updatePages} pages={pages} />
                 {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
                 <div className='outer-container'>
                   <main id='main-content'>
