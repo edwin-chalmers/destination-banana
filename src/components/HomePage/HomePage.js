@@ -172,24 +172,23 @@ function HomePage({}) {
     badLink.appendChild(linkMsg)
 
     tl.to(monkeyContainer, {
-      transform: 'translate(637px, -895px)',
+      transform: 'translate(-1460px, 80px)',
       duration: 0.5,
       ease: 'bounce',
     })
     
     tl.to(monkeyContainer, {
-      transform: 'translate(-1000px, -895px)',
+      transform: 'translate(1000px, -500px)',
       duration: 0.5,
       ease: 'bounce',
       onComplete: () => {
         homePage.removeChild(monkeyContainer)
 
       }
-    }, '+=2')
+    }, '+=4')
   }
 
   function updatePages(endpointText) {
-
     let htmlFilter
 
     const parser = new DOMParser()
@@ -199,9 +198,9 @@ function HomePage({}) {
         focusPage(0)
         return
       }
-
+      
+  
       htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
-
       const parsedHTML = parse(htmlFilter)
       const newPage = {
         id: nextId,

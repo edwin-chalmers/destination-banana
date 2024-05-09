@@ -147,7 +147,7 @@ export const StyledHomepage = styled.div `
 
     #monkey-container {
         transform: translate(287px, -488px);
-        z-index: 10;
+        z-index: 20;
     }
 
     #bad-link {
