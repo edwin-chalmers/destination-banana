@@ -61,11 +61,9 @@ function HomePage({}) {
     }, []); 
 
     useEffect(() => {
-      console.log(width, width/1920)
       if (navBar.current) {
         const style = window.getComputedStyle(navBar.current);
         const fontSize = style.fontSize;
-        console.log("Font Size:", fontSize);
         navBar.current.style.fontSize = `${width/1920*100}%`
       }
     }, [width])

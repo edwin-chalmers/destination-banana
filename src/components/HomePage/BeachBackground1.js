@@ -9,12 +9,12 @@ function BeachBackground1(props) {
     
     svgContainer.style.width = window.innerWidth + 'px';
     svgContainer.style.height = window.innerHeight + 'px';
-    
+    resizeSVG()
   });
 
   const resizeSVG = () => {
     const svgElement = document.querySelector('#beachBackground')
-    svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.5}`)
+    svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
     svgElement.style.width = window.innerWidth + 'px';
     svgElement.style.height = window.innerHeight + 'px';
   }
@@ -22,6 +22,8 @@ function BeachBackground1(props) {
   useEffect(() => {
     resizeSVG()
   }, [])
+
+
     const plantsDelay = () => Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
     const minDuration = 500; 
     const maxDuration = 2000; 

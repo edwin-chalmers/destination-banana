@@ -28,12 +28,12 @@ export const StyledHomepage = styled.div `
         align-items: center;
         justify-content: center;
         box-shadow: 2px 2px 7px black;
-        height: 35px;
+        height: 25px;
     }
 
     #pageSelection{
             width: 100vw;
-            height: 29px;
+            height: 13px;
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
