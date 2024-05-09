@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledLinkContainer = styled.div`
-  /* background: linear-gradient(to left, rgb(252, 104, 5, .6), 80%, rgb(252, 184, 5, .6)); */
-  /* background: linear-gradient(to left, rgb(176, 204, 246, .9), 80%, rgb(146, 204, 246, .5)); */
-  /* background-image: url(/assets/banana-background-3-revise.png); */
-  /* background-size: 50%; */
-  /* background: linear-gradient(to left, rgb(252, 154, 5, 1), 80%, rgb(252, 184, 5, .6)); */
   background-color: rgb(155,234,255, .9);
   max-width: 322px;
   text-align: center;
