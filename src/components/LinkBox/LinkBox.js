@@ -4,13 +4,12 @@ import { gsap } from 'gsap'
 import React, { useRef, useEffect, forwardRef, useState } from 'react'
 import { getArticleCategories } from '../../ApiCalls'
 
-function LinkBox({ pages, linkList, updatePages, checkForWin, handleWin }) {
+function LinkBox({ pages, linkList, updatePages }) {
     let clickCount
     let keyTicker = 0
     let destTop, destLeft, bananaDest;
 
     const linksContainer = useRef();
-    const [clicks, setClicks] = useState()
 
   if (document.querySelector('#click-counter')) {
       clickCount = document.querySelector('#click-counter')
@@ -25,11 +24,7 @@ function LinkBox({ pages, linkList, updatePages, checkForWin, handleWin }) {
     gameData.clicks = clickCount.innerText.replace(' Clicks', '')
     gameData.links.push(event.target.href)
     localStorage.setItem('gameData', JSON.stringify(gameData))
-    // if(checkForWin(event.target.textContent)) {
-        // updatePages(event.target.textContent)
-    // } else {
         updatePages(event.target.textContent)
-    // }
         var element = document.querySelector('.outer-container')
         var currentWidth = element.offsetWidth
         let newWidth = currentWidth += 340
@@ -79,10 +74,12 @@ function LinkBox({ pages, linkList, updatePages, checkForWin, handleWin }) {
     
     let linkTails
     if(linkList) {
+        console.log('here now?')
+        console.log('linkList is:', linkList)
         if (linkList === "Banana") {
-            linkTails = <p className="linkWin">You won!</p>
+            linkTails = Array(100).fill(<p>banana</p>);
+            // linkTails = [<a>congratulations, you win. the monkeys are saddened, but more motivated than ever to steal your bananas. thank you for playing, please play again.</a>];
         } else {
-            console.log('here now?')
             linkTails = linkList.map((link) => {
                 keyTicker += 1;
 
@@ -104,8 +101,8 @@ function LinkBox({ pages, linkList, updatePages, checkForWin, handleWin }) {
     }
 
     return (
-        <StyledLinkContainer ref={linksContainer} id="links-container">
-                    <header><h4>Destinations:</h4></header>
+        <StyledLinkContainer ref={linksContainer} id='links-container'>
+                    {linkList != 'Banana' && <header><h4>Destinations:</h4></header>}
                     <div id='link-tails'>{linkTails}</div>
         </StyledLinkContainer>
     )

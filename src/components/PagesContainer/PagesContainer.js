@@ -64,7 +64,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                         containerRef.current, 
                         { 
                             duration: 1,
-                            left: '+=391.531', 
+                            left: '+=380', 
                             ease: 'power3.out',
                             onComplete: () => {setAllowClick(true)}
                         }
@@ -75,7 +75,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                         containerRef.current, 
                         { 
                             duration: 1, 
-                            left: '-=391.531', 
+                            left: '-=380', 
                             ease: 'power3.out',
                             onComplete: () => {setAllowClick(true)}
                         }

@@ -33,8 +33,6 @@ export const StyledWin = styled.div`
         100% { background-color: rgba(254, 209, 0, 1);}
     }
 
-   
-    
     h5, h6 {
         font-size: 55px;
         z-index: 1;

@@ -263,27 +263,28 @@ function HomePage({}) {
     console.log('endpoint text createLinkList', endpointText)
     if(endpointText === 'Banana') {
       setLinkList('Banana')
+    } else {
+      let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
+      let filteredWikiLinks
+      fetchPage(endpointText).then(linksArray => {
+        filteredWikiLinks = linksArray.filter(link => {
+          return !charactersToRemove.some(character => link.title.includes(character));
+        })
+
+        const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
+        // const randomizedList = filteredWikiLinks.sort();
+
+        const bananaIndex = randomizedList.forEach((link, i) => {
+          i++
+          if(link.title.toLowerCase() === 'banana'){
+            const bananaLink = randomizedList.splice(i-1, 1)
+            randomizedList.unshift(bananaLink[0])
+          }
+        })
+        setLinkList(randomizedList)
+        setTimeout(() => {setDataReady(true)}, 1000)
+      })
     }
-    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
-    let filteredWikiLinks
-    fetchPage(endpointText).then(linksArray => {
-      filteredWikiLinks = linksArray.filter(link => {
-        return !charactersToRemove.some(character => link.title.includes(character));
-      })
-
-      const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-      // const randomizedList = filteredWikiLinks.sort();
-
-      const bananaIndex = randomizedList.forEach((link, i) => {
-        i++
-        if(link.title.toLowerCase() === 'banana'){
-          const bananaLink = randomizedList.splice(i-1, 1)
-          randomizedList.unshift(bananaLink[0])
-        }
-      })
-      setLinkList(randomizedList)
-      setTimeout(() => {setDataReady(true)}, 1000)
-    })
   }
 
   function checkForWin(text) {
@@ -330,13 +331,11 @@ function HomePage({}) {
       zIndex: '100',
     })
 
-  
     function removeDots() {
      document.querySelectorAll('.dot').forEach((dot) => dot.remove())
     }
   }
   
-
   function focusPage(id) {
     setBackClicks((prev) => {
       const newBacks = prev + 1

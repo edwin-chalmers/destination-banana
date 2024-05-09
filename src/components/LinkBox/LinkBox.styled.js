@@ -46,6 +46,26 @@ export const StyledLinkContainer = styled.div`
     }
   }
 
+  p {
+    text-decoration: none !important;
+    color: black;
+    background-color: rgba(255, 255, 255, .9);
+    width: fit-content;
+    padding: 0px 12px 1px 10px;
+    margin: 6px 4px 1.5px 4px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-size: 4em;
+    text-align: center;
+    /* animation: pulse-bananas .95s infinite; */
+  }
+
+  /* @keyframes pulse-bananas {
+      0%   { color: rgba(0, 0, 0, 1);}
+      50%  { color: rgba(254, 209, 0, 1);}
+      100% { color: rgba(0, 0, 0, 1);}
+  } */
+
   #link-tails {
     display: flex;
     flex-direction: column;
