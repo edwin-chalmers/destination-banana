@@ -1,9 +1,9 @@
-import './WordGame.css'
+import './HelpPage.css'
 import { getFeatured } from '../../ApiCalls'
 import { useEffect, useState } from 'react'
 import JungleScene from './JungleScene'
 
-export default function WordGame() {
+export default function HelpPage() {
 
 
     

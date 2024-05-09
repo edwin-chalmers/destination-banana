@@ -5,7 +5,8 @@ import {HomePage} from '../HomePage/HomePage'
 import {Error} from '../Error/Error'
 import {Route, Routes} from 'react-router-dom'
 import { useState } from 'react';
-import WordGame from '../WordGame/WordGame';
+import WordGame from '../HelpPage/HelpPage';
+import HelpPage from '../HelpPage/HelpPage';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Route path='*' element={<Error error='*'/>} />
         <Route path='/' element={<LandingPage />} />
         <Route path='/HomePage' element={<HomePage setError={setError}/>} />
-        <Route path='/WordGame' element={<WordGame/>} />      
+        <Route path='/Help' element={<HelpPage/>} />      
       </Routes>
     </div>
 

@@ -22,8 +22,8 @@ function LandingPage() {
     const [btnDesc, setBtnDesc] = useState("The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??")
     const navigate = useNavigate()
     
-    function playGame(e, type) {  
-        setGameType('Normal')
+    function playGame(e, type, mode) {  
+        setGameType(mode)
         if(e.code === 'Space' || e.code === 'Enter' || type === 'click') {
             e.preventDefault()
             e.currentTarget.blur()
@@ -63,6 +63,11 @@ function LandingPage() {
         }
     }
 
+    const goToHelp = (e) => {
+        console.log(e)
+        navigate('/Help')
+    }
+
     return ( 
         <main>
             <MonkeyThief />
@@ -77,15 +82,17 @@ function LandingPage() {
                         buttonAlt={"start"} 
                         backgroundColor="#fcb805"
                         boxShadow="#ff931e"
-                        goToPage={(e) => playGame(e, 'click')} // Not sure how this works
+                        goToPage={(e) => playGame(e, 'click', 'normal')} // Not sure how this works
                         setBtnDesc={setBtnDesc}
                         description={"The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??"}
                     />
                     <DailyChallenge 
+                        goToPage={(e) => playGame(e, 'click', 'daily_challenge')}
                         setBtnDesc={setBtnDesc}
                         description={"A new start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
                     />
                     <LandingButton
+                        goToPage={() => goToHelp()}
                         className='helpButton' 
                         buttonName={"help"} 
                         buttonAlt={"help"} 

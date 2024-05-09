@@ -40,6 +40,8 @@ function HomePage({}) {
   const [gameId, setgameId] = useState()
   const [width, setWidth] = useState();
   const navBar = useRef()
+  const [currentPage, setCurrentPage] = useState()
+
 
   const {
     startTitle,
@@ -47,18 +49,29 @@ function HomePage({}) {
     gameType,
   } = useGlobalProps();
 
-    useEffect(() => {
+  useEffect(() => {
 
+    if(currentPage === 'home'){
       function handleResize() {
-          setWidth(window.innerWidth);
-        }
-        
-      window.addEventListener('resize', handleResize);
-      handleResize();
-      return () => {
-          window.removeEventListener('resize', handleResize);
-      };
+      setWidth(window.innerWidth);
+    }
+    
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };}
+  }, [currentPage])
+
+    useEffect(() => {
+      setCurrentPage('home')
     }, []); 
+
+    useEffect(() => {
+      if(!startTitle){
+        setCurrentPage('')
+      }
+    }, [startTitle])
 
     useEffect(() => {
       if (navBar.current) {
@@ -417,7 +430,7 @@ function HomePage({}) {
 
   return (
     <StyledHomepage id='homepage'>
-      <BeachBackground1 />
+      <BeachBackground1 currentPage={currentPage}/>
       {win && <Win pages={pages} animateWin={animateWin} />}
       {dataReady ?
         <>
