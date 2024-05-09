@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { useRef } from 'react'
 import LandingButton from "../LandingButton/LandingButton"
 import PropTypes from 'prop-types'
+import RunningMonkeys from '../RunningMonkeys/RunningMonkeys';
 
 export default function Win({ animateWin, pages }){
     const winRef = useRef()
@@ -13,6 +14,7 @@ export default function Win({ animateWin, pages }){
       }
 
     return (
+        <>
         <StyledWin ref={winRef}>
             {/* <img id='monkeyBro' src='./assets/monkey_bro.svg'/> */}
 
@@ -20,8 +22,8 @@ export default function Win({ animateWin, pages }){
                 <button onClick={refreshPage}>New Game</button>
             </section> */}
 
-            <h1>YOU WIN!!!</h1>
-            <h2>{` In ${pages.length} clicks`}</h2>
+            <h5>YOU WIN!!!</h5>
+            <h6>{` In ${pages.length - 1} clicks`}</h6>
             <div>
                 <LandingButton 
                     className='newGame' 
@@ -31,7 +33,9 @@ export default function Win({ animateWin, pages }){
                     boxShadow="#61dbdb"
                 />
             </div>
-        </StyledWin>
+        <RunningMonkeys />
+      </StyledWin>
+      </>
     )
 }
 

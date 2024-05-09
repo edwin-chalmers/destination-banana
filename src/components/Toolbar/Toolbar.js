@@ -28,7 +28,7 @@ const Toolbar = React.forwardRef((props, navBar) => {
             <StyledLink onClick={resetStartTitle} to={'/'} alt='Destination: Banana site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter ref={linkRef}>
-                <h2 id='click-counter'>{`${pages.length + backClicks} Clicks`}</h2>
+                <h2 id='click-counter'>{`${pages.length - 1 + backClicks} Clicks`}</h2>
                 {`🍌`}
             </StyledCounter>
             {pages.length > 1 &&
