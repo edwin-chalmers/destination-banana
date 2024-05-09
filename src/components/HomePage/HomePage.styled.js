@@ -8,41 +8,82 @@ export const StyledHomepage = styled.div `
     height: 80vh;
 }
     .background-container {
-      /* background-image: url(/assets/beach_backdrop1.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: bottom; */
-      top: 50px;
-      overflow: visible;
-      position: relative;
-      width: 100%;
+        top: 50px;
+        overflow: visible;
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
     }
 
-      #leftNav{
-        z-index: 5;
-        scale: 0.14;
-        position: absolute;
-        left: 221px;
-        filter: drop-shadow(2px 4px 6px black);
-        top: 170px;
-        &:hover{
-          cursor: pointer;
-          filter: brightness(0.5);
-      }
+    #arrowContainer{
+        background-color: #fcb805;
+        width: 40px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 7px black;
+        height: 25px;
     }
 
-    #rightNav{
-      z-index: 5;
-      scale: 0.14;
-      position: absolute;
-      left: 1793px;
-      filter: drop-shadow(2px 4px 6px black);
-      top: 194px;
-      &:hover{
-        cursor: pointer;
-        filter: brightness(0.5);
-      }
+    #pageSelection{
+            width: 100vw;
+            height: 13px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 70px;
+            z-index: 10;
+        #leftButton{
+            width: 50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        #leftNav{
+            z-index: 5;
+            filter: drop-shadow(2px 4px 6px black);
+            clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+            width: 30px;
+            height: 30px;
+            background: black;
+                &:hover{
+                    cursor: pointer;
+                    filter: brightness(0.5);
+                }
+        }
     }
+
+    #rightButton{
+        width: 50vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        #rightNav{
+            z-index: 5;
+            filter: drop-shadow(2px 4px 6px black);
+            clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+            width: 30px;
+            height: 30px;
+            background: black;
+                &:hover{
+                cursor: pointer;
+                filter: brightness(0.5);
+                }
+            }
+    }
+}
 
     .running-monkey-1,
     .running-monkey-2,
@@ -106,7 +147,7 @@ export const StyledHomepage = styled.div `
 
     #monkey-container {
         transform: translate(287px, -488px);
-        z-index: 10;
+        z-index: 20;
     }
 
     #bad-link {
