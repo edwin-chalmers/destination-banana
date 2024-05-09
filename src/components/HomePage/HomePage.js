@@ -402,6 +402,10 @@ function HomePage({}) {
       {dataReady ?
         <>
         <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+          <div id='pageSelection'>
+            <div id='leftButton'>{pages.length > 4 && rightClick > 1 && <div id='arrowContainer'><div id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}></div></div>}</div>
+            <div id='rightButton'>{pages.length > 4 && rightClick < allowedRight && <div id='arrowContainer'><div id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}></div></div>}</div>
+          </div>
           <div className="background-container">
             {linkReady &&
               <>
@@ -468,13 +472,11 @@ function HomePage({}) {
                 </motion.div>
                 </>}
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
-                {pages.length > 4 && rightClick > 1 && <img id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}/>}
                 <div className='outer-container'>
                   <main id='main-content'>
                     <PagesContainer id="page-container" clickAllowed={clickAllowed} setClickAllowed={handleClickAllowed} ref={pagesRef} pages={pages} focusPage={focusPage} />
                   </main>
                 </div>
-                {pages.length > 4 && rightClick < allowedRight && <img id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}/>}
               </>
             }
           </div>

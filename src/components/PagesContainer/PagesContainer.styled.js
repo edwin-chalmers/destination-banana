@@ -13,4 +13,6 @@ export const StyledPagesContainer = styled.div`
     overflow-y: visible;
     width: 100%;
     margin-top: 10px;
+
+    
 `
