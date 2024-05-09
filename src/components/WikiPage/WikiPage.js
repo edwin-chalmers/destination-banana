@@ -1,11 +1,11 @@
-import LinkIcon from '../LinkIcon/LinkIcon'
+import Win from '../Win/Win'
 import { useEffect, useState } from 'react'
 import { WikiPageContainer} from './WikiPage.styled'
 import { fetchPhotos } from '../../ApiCalls'
 import PropTypes from 'prop-types'
 
 
-export default function WikiPage ( { id, stringForDOM, isDisplayed, title, focusPage }) {
+export default function WikiPage ( { id, stringForDOM, isDisplayed, title, pages, focusPage }) {
     const[photos, setPhotos]=useState()
     let photoList, photoEls
 
@@ -41,10 +41,16 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, focus
     }
     return isDisplayed && (
         <WikiPageContainer id='page-container'>
-                <h5>{title}</h5>
-                <p className="click-num">{`${id}`}</p>
-            <div id='pageContent'>{stringForDOM}</div>
-            {photoEls}
+            {title === "Banana" ?
+                <Win pages={pages}/>
+                :
+                <>
+                    <h5>{title}</h5>
+                    <p className="click-num">{`${id}`}</p>
+                    <div id='pageContent'>{stringForDOM}</div>
+                </>
+            }
+            {title != "Banana" && <>{photoEls}</>}
         </WikiPageContainer>
     )
 

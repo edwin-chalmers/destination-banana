@@ -104,6 +104,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                 isDisplayed={true}
                 title={page.title}
                 focusPage={focusPage}
+                pages={pages}
                 className='page-container'
             />
         )

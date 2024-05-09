@@ -1,4 +1,5 @@
 import PagesContainer from '../PagesContainer/PagesContainer';
+import RunningMonkeys from '../RunningMonkeys/RunningMonkeys';
 import LinkBox from '../LinkBox/LinkBox'
 import Toolbar from '../Toolbar/Toolbar'
 import Win from '../Win/Win'
@@ -13,7 +14,6 @@ import BeachBackground1 from './BeachBackground1';
 import { useGlobalProps } from '../..';
 import NavButtonLeft from './NavButtonLeft.png'
 import NavButtonRight from './NavButtonRight.png'
-import { motion } from 'framer-motion'
 import { postUser } from '../../ApiCalls';
 
 
@@ -188,8 +188,28 @@ function HomePage({}) {
   }
 
   function updatePages(endpointText) {
-    let htmlFilter
+    if(endpointText === 'Banana') {
+      setNextId(prev => prev += 1)
+      setPages((prev) => {
+        const updatedPages = prev.map((page) => {
+          page.isCurrent = false
 
+          return page
+      })
+      const newPage = {
+        id: nextId,
+        stringForDOM: '',
+        isCurrent: true,
+        isDisplayed: true,
+        title: endpointText
+      }
+
+      return [...updatedPages, newPage]
+    })
+
+      createLinkList(endpointText)
+    } else {
+    let htmlFilter
     const parser = new DOMParser()
     fetchHTML(endpointText).then(html => {
       if(!html){
@@ -197,7 +217,6 @@ function HomePage({}) {
         focusPage(0)
         return
       }
-      
   
       htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
       const parsedHTML = parse(htmlFilter)
@@ -216,13 +235,56 @@ function HomePage({}) {
 
           return page
         })
+        const newPage = {
+          id: nextId,
+          stringForDOM: '',
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpointText
+        }
 
         return [...updatedPages, newPage]
       })
 
       createLinkList(endpointText)
+    } else {
+      let htmlFilter
+      const parser = new DOMParser()
+      fetchHTML(endpointText).then(html => {
+        if(!html){
+          handleBrokenLink()
+          focusPage(0)
+          return
+        }
 
-    }).catch(error => handleError(error))
+        htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+
+        const parsedHTML = parse(htmlFilter)
+        const newPage = {
+          id: nextId,
+          stringForDOM: parsedHTML,
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpointText
+        }
+
+        setNextId(prev => prev += 1)
+        setPages((prev) => {
+          const updatedPages = prev.map((page) => {
+            page.isCurrent = false
+
+            return page
+          })
+
+          return [...updatedPages, newPage]
+          
+        })
+
+        createLinkList(endpointText)
+        
+
+      }).catch(error => handleError(error))
+    }
   }
   
   function cleanupHTML() {
@@ -234,32 +296,35 @@ function HomePage({}) {
   }
 
   function createLinkList(endpointText) {
-    let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
-    let filteredWikiLinks
-    fetchPage(endpointText).then(linksArray => {
-      filteredWikiLinks = linksArray.filter(link => {
-        return !charactersToRemove.some(character => link.title.includes(character));
-      })
+    console.log('endpoint text createLinkList', endpointText)
+    if(endpointText === 'Banana') {
+      setLinkList('Banana')
+    } else {
+      let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
+      let filteredWikiLinks
+      fetchPage(endpointText).then(linksArray => {
+        filteredWikiLinks = linksArray.filter(link => {
+          return !charactersToRemove.some(character => link.title.includes(character));
+        })
 
-      const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-      // const randomizedList = filteredWikiLinks.sort();
+        const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
+        // const randomizedList = filteredWikiLinks.sort();
 
-      const bananaIndex = randomizedList.forEach((link, i) => {
-        i++
-        if(link.title.toLowerCase() === 'banana'){
-          const bananaLink = randomizedList.splice(i-1, 1)
-          randomizedList.unshift(bananaLink[0])
-        }
+        const bananaIndex = randomizedList.forEach((link, i) => {
+          i++
+          if(link.title.toLowerCase() === 'banana'){
+            const bananaLink = randomizedList.splice(i-1, 1)
+            randomizedList.unshift(bananaLink[0])
+          }
+        })
+        setLinkList(randomizedList)
+        setTimeout(() => {setDataReady(true)}, 1000)
       })
-      setLinkList(randomizedList)
-      setTimeout(() => {setDataReady(true)}, 1000)
-    })
+    }
   }
 
   function checkForWin(text) {
-    if (text.toLowerCase() === targetTitle.toLowerCase()) {
-      handleWin()
-    }
+    return (text.toLowerCase() === targetTitle.toLowerCase())   
   }
 
   function handleWin() {
@@ -302,13 +367,11 @@ function HomePage({}) {
       zIndex: '100',
     })
 
-  
     function removeDots() {
      document.querySelectorAll('.dot').forEach((dot) => dot.remove())
     }
   }
   
-
   function focusPage(id) {
     setBackClicks((prev) => {
       const newBacks = prev + 1
@@ -408,66 +471,7 @@ function HomePage({}) {
             {linkReady &&
               <>
               {width > 720 && <>
-                <motion.div
-                  className="running-monkey-1"
-                  transition={{
-                    x: {duration: 1, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 8, repeatDelay: 3 },
-                    y: {duration: .05, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
-                  }}
-                  animate={{
-                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
-                    y: ['-100px', '-150px' ],
-                  }}
-                  >
-                </motion.div>
-                <motion.div
-                  className="running-monkey-2"
-                  transition={{
-                    x: {duration: 1.5, type: 'tween', delay: 1, ease: 'linear', repeat: Infinity, repeatType: 'reverse', repeatDelay: 2 },
-                    y: {duration: .10, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
-                  }}
-                  animate={{
-                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
-                    y: ['-100px', '-150px' ],
-                  }}
-                  >
-                </motion.div>
-                <motion.div
-                  className="running-monkey-3"
-                  transition={{
-                    x: {duration: 2, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 5, repeatDelay: 5 },
-                    y: {duration: .15, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
-                  }}
-                  animate={{
-                    x: ["100px", "300px","500px", "700px", "900px","1100px", "1300px", "1500px","1700px", "1900px", "2100px", "2300px" ],
-                    y: ['-100px', '-150px' ],
-                  }}
-                  >
-                </motion.div>
-                <motion.div
-                  className="running-monkey-4"
-                  transition={{
-                    x: {duration: 2, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 6, repeatDelay: 5 },
-                    y: {duration: .1, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
-                  }}
-                  animate={{
-                    x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
-                    y: ['-100px', '-150px' ],
-                  }}
-                  >
-                </motion.div>
-                <motion.div
-                  className="running-monkey-5"
-                  transition={{
-                    x: {duration: 1, type: 'tween', ease: 'linear', repeat: Infinity, repeatType: 'reverse', delay: 2, repeatDelay: 5 },
-                    y: {duration: .1, type: 'tween', repeat: Infinity, repeatType: 'reverse'},
-                  }}
-                  animate={{
-                    x: ["100px", "400px", "700px", "1000px", "1300px","1600px", "1900px", "2200px","2500px", "2800px", "3100px", "3400px" ],
-                    y: ['-100px', '-150px' ],
-                  }}
-                  >
-                </motion.div>
+                <RunningMonkeys />
                 </>}
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 <div className='outer-container'>

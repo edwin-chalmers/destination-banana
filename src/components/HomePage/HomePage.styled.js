@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 export const StyledHomepage = styled.div `
 #backgroundContainer{
     z-index: 0;
@@ -97,7 +98,7 @@ export const StyledHomepage = styled.div `
         height: 100px;
         position: absolute;
         left: -300px;
-        margin-top: 33%;
+        margin-top: 70vh;
     }
 
     /* .running-monkey-4 {
@@ -112,7 +113,7 @@ export const StyledHomepage = styled.div `
     }
 
     .running-monkey-3 {
-        margin-top: 36%;
+        margin-top: 75vh;
     }
 
     .running-monkey-4 {
