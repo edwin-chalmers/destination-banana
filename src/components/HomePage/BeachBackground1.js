@@ -1,27 +1,39 @@
 import * as React from "react"
 import { useState, useEffect } from "react";
-import { useSpring, animated, config, easings } from '@react-spring/web'
+import { useSpring, animated, config, easings,} from '@react-spring/web'
 
 function BeachBackground1(props) {
-  
-  window.addEventListener('resize', () => {
-    const svgContainer = document.querySelector('#backgroundContainer');
-    
-    svgContainer.style.width = window.innerWidth + 'px';
-    svgContainer.style.height = window.innerHeight + 'px';
-    resizeSVG()
-  });
-
-  const resizeSVG = () => {
-    const svgElement = document.querySelector('#beachBackground')
-    svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
-    svgElement.style.width = window.innerWidth + 'px';
-    svgElement.style.height = window.innerHeight + 'px';
-  }
 
   useEffect(() => {
+    if(props.currentPage === 'home'){
+      try{
+      window.addEventListener('resize', () => {
+        const svgContainer = document.querySelector('#backgroundContainer');
+      if(svgContainer){
+        svgContainer.style.width = window.innerWidth + 'px';
+        svgContainer.style.height = window.innerHeight + 'px';
+        resizeSVG()
+      }
+    })
+  }
+  catch {
+    console.log('error1')
+  }
+
+  }
+    const resizeSVG = () => {
+      try{
+        const svgElement = document.querySelector('#beachBackground')
+        svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
+        svgElement.style.width = window.innerWidth + 'px';
+        svgElement.style.height = window.innerHeight + 'px';
+    }
+    catch{
+        console.log('error2')
+    }
+  }
     resizeSVG()
-  }, [])
+  }, [props])
 
 
     const plantsDelay = () => Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;
@@ -61,7 +73,7 @@ function BeachBackground1(props) {
       },
       loop: { reverse: true, delay: plantsDelay }
     });
-  
+
     const { sun } = useSpring({
       from: { sun: 0 },
       to: { sun: 0.75 },
@@ -159,7 +171,7 @@ function BeachBackground1(props) {
           />
         </g>
         <animated.g
-transform={sun.to({ 
+    transform={sun.to({ 
     range: [0, 1], 
     output: ['translate(0,0)', 'translate(0,1000)'] 
     })}>

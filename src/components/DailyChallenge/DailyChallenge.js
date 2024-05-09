@@ -1,10 +1,11 @@
 import './DailyChallenge.css'
 import { getFeatured } from '../../ApiCalls'
-import { useEffect } from 'react'
 import { useGlobalProps } from '../..'
 import { useNavigate } from 'react-router-dom'
 import LandingButton from '../LandingButton/LandingButton'
-
+import { gsap } from 'gsap';
+import MonkeyThief from '../MonkeyThief/MonkeyThief'
+import { useEffect,} from 'react'
 
 export default function DailyChallenge({ setBtnDesc, description}) {
     const {startTitle, setStartTitle, setGameType} = useGlobalProps()
@@ -24,11 +25,38 @@ export default function DailyChallenge({ setBtnDesc, description}) {
 
     const setData = async () => {
         await setStartTitle(featuredArticles.tfa.title)
-        navigate('/HomePage')
+
+        const monkeyThief = document.getElementById('monkeyThief')
+        const tl = gsap.timeline();
+        tl.to(
+            monkeyThief,
+            { left: '-500', delay: 0, duration: .75 }
+        )
+        gsap.to('#c', {
+            delay: 0.25,
+            duration: 0.25,
+            x: -2000,
+        })
+        tl.to(
+            monkeyThief,
+            { left: '-3000', top: '1500', scale: '15', duration: '.5s' }, "+=.5"
+        )
+        tl.to(
+            monkeyThief,
+            {
+                left: '4000', duration: 2, onComplete: function () {
+                    if (document.getElementById('monkeyThief')) {
+                        document.getElementById('monkeyThief').remove()
+                        navigate('/HomePage')
+                    }
+                } 
+            }, "+=.5"
+        )
     }
 
     useEffect(() => {
         if(startTitle){
+
         }
     }, [startTitle])
             
