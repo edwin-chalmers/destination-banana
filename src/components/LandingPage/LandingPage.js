@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { StyledLanding } from './LandingPage.styled'
 import { gsap } from 'gsap';
 import { useGSAP } from "@gsap/react/dist";
@@ -89,7 +88,7 @@ function LandingPage() {
                     <DailyChallenge 
                         goToPage={(e) => playGame(e, 'click', 'daily_challenge')}
                         setBtnDesc={setBtnDesc}
-                        description={"A new start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
+                        description={"A new global start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
                     />
                     <LandingButton
                         goToPage={() => goToHelp()}
