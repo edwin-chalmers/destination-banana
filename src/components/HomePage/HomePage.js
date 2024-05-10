@@ -17,8 +17,9 @@ import NavButtonRight from './NavButtonRight.png'
 import { postUser } from '../../ApiCalls';
 
 
-function HomePage({}) {
+function HomePage({ }) {
   const [pages, setPages] = useState([])
+  console.log("🚀 ~ pages:", pages)
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
   const [targetTitle, setTargetTitle] = useState('banana')
@@ -42,6 +43,7 @@ function HomePage({}) {
   const navBar = useRef()
   const [currentPage, setCurrentPage] = useState()
 
+  
 
   const {
     startTitle,
@@ -51,35 +53,36 @@ function HomePage({}) {
 
   useEffect(() => {
 
-    if(currentPage === 'home'){
+    if (currentPage === 'home') {
       function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => {
+        setWidth(window.innerWidth);
+      }
+
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      return () => {
         window.removeEventListener('resize', handleResize);
-    };}
+      };
+    }
   }, [currentPage])
 
-    useEffect(() => {
-      setCurrentPage('home')
-    }, []); 
+  useEffect(() => {
+    setCurrentPage('home')
+  }, []);
 
-    useEffect(() => {
-      if(!startTitle){
-        setCurrentPage('')
-      }
-    }, [startTitle])
+  useEffect(() => {
+    if (!startTitle) {
+      setCurrentPage('')
+    }
+  }, [startTitle])
 
-    useEffect(() => {
-      if (navBar.current) {
-        const style = window.getComputedStyle(navBar.current);
-        const fontSize = style.fontSize;
-        navBar.current.style.fontSize = `${width/1920*100}%`
-      }
-    }, [width])
+  useEffect(() => {
+    if (navBar.current) {
+      const style = window.getComputedStyle(navBar.current);
+      const fontSize = style.fontSize;
+      navBar.current.style.fontSize = `${width / 1920 * 100}%`
+    }
+  }, [width])
 
   useEffect(() => {
     fetchWikiData()
@@ -92,7 +95,7 @@ function HomePage({}) {
   }, [])
 
   useEffect(() => {
-    if(win){
+    if (win) {
       const gameData = JSON.parse(localStorage.getItem('gameData'))
       postUser(gameData)
       localStorage.removeItem('gameData')
@@ -101,31 +104,31 @@ function HomePage({}) {
 
   useEffect(() => {
 
-    if(startTitle){
-    const now = new Date()
-    const formattedDate = now.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric'
-    })
-    
-    setDate(formattedDate)
-    const timestamp = Date.now();
-    const randomInt = Math.floor(Math.random() * 1000000)
-    
-    setgameId(`${timestamp}${randomInt}`)
-    const user = JSON.parse(localStorage.getItem('bananaUser'))
-    
-    if(user){
-      setUserProfile(user)
+    if (startTitle) {
+      const now = new Date()
+      const formattedDate = now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+
+      setDate(formattedDate)
+      const timestamp = Date.now();
+      const randomInt = Math.floor(Math.random() * 1000000)
+
+      setgameId(`${timestamp}${randomInt}`)
+      const user = JSON.parse(localStorage.getItem('bananaUser'))
+
+      if (user) {
+        setUserProfile(user)
+      }
     }
-  }
   }, [startTitle])
 
   useEffect(() => {
-    
-    if(userProfile && startTitle){
+
+    if (userProfile && startTitle) {
       const gameData = {
         id: userProfile.id,
         date: date,
@@ -143,10 +146,10 @@ function HomePage({}) {
     setAllowedRight(pages.length - 3)
   }, [pages.length])
 
-  const fetchWikiData = async() => {
-    if(!startTitle){
-      // fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
-      fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+  const fetchWikiData = async () => {
+    if (!startTitle) {
+      fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+      // fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
         return rando.json()
       }).then(data => {
         const title = data.items[0].title.replaceAll('_', ' ').toString()
@@ -154,21 +157,23 @@ function HomePage({}) {
         setStartTitle(title)
       }).catch(error => handleError(error))
     } else {
-        const formatTitle = startTitle.replaceAll('_', ' ').toString()
+      const formatTitle = startTitle.replaceAll('_', ' ').toString()
       updatePages(formatTitle)
     }
   }
-  
+
+
+
   function handleError(error) {
     navigate('/error')
   }
 
-  function handleBrokenLink(){
+  function handleBrokenLink() {
     let tl = gsap.timeline()
     const monkeyContainer = document.createElement('div')
     const monkeyBro = document.createElement('img')
     const badLink = document.createElement('div')
-    const linkMsg = document.createElement('h3') 
+    const linkMsg = document.createElement('h3')
 
     monkeyContainer.id = 'monkey-container'
     linkMsg.innerHTML = `Whoops! It looks like that banana won\'t banana <br/> Pick a new link`
@@ -187,7 +192,7 @@ function HomePage({}) {
       duration: 0.5,
       ease: 'bounce',
     })
-    
+
     tl.to(monkeyContainer, {
       transform: 'translate(1000px, -500px)',
       duration: 0.5,
@@ -200,7 +205,7 @@ function HomePage({}) {
   }
 
   function updatePages(endpointText) {
-    if(endpointText === 'Banana') {
+    if (endpointText === 'Banana') {
       setNextId(prev => prev += 1)
       setPages((prev) => {
         const updatedPages = prev.map((page) => {
@@ -219,57 +224,55 @@ function HomePage({}) {
         return [...updatedPages, newPage]
       })
 
-        createLinkList(endpointText)
+      createLinkList(endpointText)
     } else {
-        let htmlFilter
-        const parser = new DOMParser()
-        fetchHTML(endpointText).then(html => {
-          if(!html) {
-            handleBrokenLink()
-            focusPage(0)
-            return
-          }
+      let htmlFilter
+      const parser = new DOMParser()
+      fetchHTML(endpointText).then(html => {
+        if (!html) {
+          handleBrokenLink()
+          focusPage(0)
+          return
+        }
 
-          htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
+        htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
 
-          const parsedHTML = parse(htmlFilter)
-          const newPage = {
-            id: nextId,
-            stringForDOM: parsedHTML,
-            isCurrent: true,
-            isDisplayed: true,
-            title: endpointText
-          }
+        const parsedHTML = parse(htmlFilter)
+        const newPage = {
+          id: nextId,
+          stringForDOM: parsedHTML,
+          isCurrent: true,
+          isDisplayed: true,
+          title: endpointText
+        }
 
-          setNextId(prev => prev += 1)
-          setPages((prev) => {
-            const updatedPages = prev.map((page) => {
-              page.isCurrent = false
+        setNextId(prev => prev += 1)
+        setPages((prev) => {
+          const updatedPages = prev.map((page) => {
+            page.isCurrent = false
 
-              return page
-            })
-
-            return [...updatedPages, newPage]
+            return page
           })
 
-          createLinkList(endpointText)
-        }).catch(error => handleError(error))
+          return [...updatedPages, newPage]
+        })
+
+        createLinkList(endpointText)
+      }).catch(error => handleError(error))
+    }
+  }
+
+  function cleanupHTML() {
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.src.includes('Red_pog')) {
+        img.remove()
       }
-    }
-      
-    
-    function cleanupHTML() {
-      document.querySelectorAll('img').forEach((img) => {
-        if (img.src.includes('Red_pog')) {
-          img.remove()
-        }
-      })
-    }
-  
+    })
+  }
 
   function createLinkList(endpointText) {
     console.log('endpoint text createLinkList', endpointText)
-    if(endpointText === 'Banana') {
+    if (endpointText === 'Banana') {
       setLinkList('Banana')
     } else {
       let charactersToRemove = ['_', '-', '%', ":", 'Help', 'Template', 'Portal']
@@ -284,23 +287,31 @@ function HomePage({}) {
 
         const bananaIndex = randomizedList.forEach((link, i) => {
           i++
-          if(link.title.toLowerCase() === 'banana'){
-            const bananaLink = randomizedList.splice(i-1, 1)
+          if (link.title.toLowerCase() === 'banana') {
+            const bananaLink = randomizedList.splice(i - 1, 1)
             randomizedList.unshift(bananaLink[0])
           }
         })
         setLinkList(randomizedList)
-        setTimeout(() => {setDataReady(true)}, 1000)
+        setTimeout(() => { setDataReady(true) }, 1000)
       })
     }
   }
 
   function checkForWin(text) {
-    return (text.toLowerCase() === targetTitle.toLowerCase())   
+    return (text.toLowerCase() === targetTitle.toLowerCase())
   }
 
   function handleWin() {
     setWin(true)
+  }
+
+  function resetGame() {
+    setNextId(1);          // Resets the nextId to 1 
+    setPages([]);          // Clears the pages array
+    fetchWikiData();       // Fetch new data for the new game
+    setStartTitle('');     // Clears the start title to trigger new game 
+    setWin(false);         // Reset the win state
   }
 
   function animateWin(ref) {
@@ -321,29 +332,29 @@ function HomePage({}) {
       rotate: "random(0,180)",
       transform: 'translate(50%, 50%)'
     })
-  
-    let tl = gsap.timeline({ repeat: 100})
+
+    let tl = gsap.timeline({ repeat: 100 })
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
-  
+
     // tl.to(dots, {
     //   duration: 0.5,
     //   delay: "0"
     // })
 
-    let tl2 = gsap.timeline({onComplete: removeDots})
+    let tl2 = gsap.timeline({ onComplete: removeDots })
     tl2.to(dots, {
-      duration: 5, 
-      y: '+=5000', 
-      ease: 'easeInOutQuad', 
+      duration: 5,
+      y: '+=5000',
+      ease: 'easeInOutQuad',
       delay: "0.5",
       zIndex: '100',
     })
 
     function removeDots() {
-     document.querySelectorAll('.dot').forEach((dot) => dot.remove())
+      document.querySelectorAll('.dot').forEach((dot) => dot.remove())
     }
   }
-  
+
   function focusPage(id) {
     setBackClicks((prev) => {
       const newBacks = prev + 1
@@ -362,7 +373,7 @@ function HomePage({}) {
 
         return prevPage
       }, {})
-      
+
       selectedPage = previousPage
     } else {
       selectedPage = pages.find((page) => {
@@ -387,38 +398,39 @@ function HomePage({}) {
   }
 
   const handleScroll = (direction) => {
-   if(clickAllowed){
-    let left = leftClick
-    let right = rightClick
-    let allowedLeftClicks = allowedLeft
+    if (clickAllowed) {
+      let left = leftClick
+      let right = rightClick
+      let allowedLeftClicks = allowedLeft
 
-    switch(direction) {
-      case 'left':
-        
-        if(allowedLeft > 0){
-        setLeftClick(left +1)
-        setRightClick(right -1)
-        pagesRef.current.childFunction('left')}
-        break
-        
-        case 'right' : 
-        if(rightClick < allowedRight){
-          setRightClick(right +1)
-          setAllowedLeft(allowedLeftClicks +1)
-          pagesRef.current.childFunction('right')      
-        }
-        break
+      switch (direction) {
+        case 'left':
+
+          if (allowedLeft > 0) {
+            setLeftClick(left + 1)
+            setRightClick(right - 1)
+            pagesRef.current.childFunction('left')
+          }
+          break
+
+        case 'right':
+          if (rightClick < allowedRight) {
+            setRightClick(right + 1)
+            setAllowedLeft(allowedLeftClicks + 1)
+            pagesRef.current.childFunction('right')
+          }
+          break
       }
-}
     }
-    
-    const handleClickAllowed = (newValue) => {
-      setClickAllowed(newValue);
-    };
+  }
+
+  const handleClickAllowed = (newValue) => {
+    setClickAllowed(newValue);
+  };
 
   useEffect(() => {
-    if(dataReady){
-      setTimeout(() => {setLinkReady(true)}, 1000)
+    if (dataReady) {
+      setTimeout(() => { setLinkReady(true) }, 1000)
     }
   }, [dataReady])
 
@@ -430,11 +442,11 @@ function HomePage({}) {
 
   return (
     <StyledHomepage id='homepage'>
-      <BeachBackground1 currentPage={currentPage}/>
-      {win && <Win pages={pages} animateWin={animateWin} />}
+      <BeachBackground1 currentPage={currentPage} />
+      {win && <Win pages={pages} resetGame={resetGame} />}
       {dataReady ?
         <>
-        <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
+          <Toolbar ref={navBar} setStartTitle={setStartTitle} startTitle={startTitle} pages={pages} focusPage={focusPage} backClicks={backClicks} />
           <div id='pageSelection'>
             <div id='leftButton'>{pages.length > 4 && rightClick > 1 && <div id='arrowContainer'><div id='leftNav' src={NavButtonLeft} onClick={() => handleScroll("left")}></div></div>}</div>
             <div id='rightButton'>{pages.length > 4 && rightClick < allowedRight && <div id='arrowContainer'><div id='rightNav' src={NavButtonRight} onClick={() => handleScroll("right")}></div></div>}</div>
@@ -442,13 +454,13 @@ function HomePage({}) {
           <div className="background-container">
             {linkReady &&
               <>
-              {width > 720 && <>
-                <RunningMonkeys />
+                {width > 720 && <>
+                  <RunningMonkeys />
                 </>}
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 <div className='outer-container'>
                   <main id='main-content'>
-                    <PagesContainer id="page-container" clickAllowed={clickAllowed} setClickAllowed={handleClickAllowed} ref={pagesRef} pages={pages} focusPage={focusPage} />
+                    <PagesContainer id="page-container" clickAllowed={clickAllowed} setClickAllowed={handleClickAllowed} ref={pagesRef} resetGame={resetGame} pages={pages} focusPage={focusPage} />
                   </main>
                 </div>
               </>

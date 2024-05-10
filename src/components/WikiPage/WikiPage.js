@@ -5,7 +5,7 @@ import { fetchPhotos } from '../../ApiCalls'
 import PropTypes from 'prop-types'
 
 
-export default function WikiPage ( { id, stringForDOM, isDisplayed, title, pages, focusPage }) {
+export default function WikiPage ( { id, stringForDOM, isDisplayed, title, pages, focusPage, resetGame }) {
     const[photos, setPhotos]=useState()
     let photoList, photoEls
 
@@ -42,7 +42,7 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, pages
     return isDisplayed && (
         <WikiPageContainer id='page-container'>
             {title === "Banana" ?
-                <Win pages={pages}/>
+                <Win pages={pages} resetGame={resetGame}/>
                 :
                 <>
                     <h5>{title}</h5>

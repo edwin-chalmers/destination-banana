@@ -24,7 +24,7 @@ const Toolbar = React.forwardRef((props, navBar) => {
     }
 
     return (
-        <StyledToolbar ref={navBar}>
+        <StyledToolbar id='navBar' ref={navBar}>
             <StyledLink onClick={resetStartTitle} to={'/'} alt='Destination: Banana site logo'/>
             <NavButton buttonText="back" focusPage={focusPage} pages={pages} />
             <StyledCounter ref={linkRef}>

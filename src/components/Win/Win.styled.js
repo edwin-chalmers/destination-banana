@@ -8,10 +8,8 @@ const centerElements = () => `
 
 export const StyledWin = styled.div`
     position: absolute;
-    /* z-index: 10; */
     width: 100%;
     height: 102%;
-    /* overflow: hidden !important; */
     text-align: center;
     display: flex;
     justify-content: center;
@@ -19,13 +17,11 @@ export const StyledWin = styled.div`
     align-items: center;
     font-family: "Fredoka", sans-serif;
     font-weight: 550;
-    /* background-color: rgba(254,209,0,1); */
     background-image: url(/assets/Island_with_Trees.svg);
     background-repeat: no-repeat;
     background-position: top 4% right 0%;
     margin-top: -10%;
     animation: pulsate .95s infinite;
-
 
     @keyframes pulsate {
         0%   { background-color: rgba(254, 209, 0, 1);}
@@ -53,23 +49,6 @@ export const StyledWin = styled.div`
         line-height: .9;
     }
 
-    /* .running-monkey-2 {
-        margin-top: 40%;
-        width: 120px !important;
-        height: 120px !important;
-    }
-
-    .running-monkey-3 {
-        margin-top: 16%;
-    }
-
-    .running-monkey-4 {
-        width: 850px;
-        height: 850px;
-        left: -1000px;
-        margin-top: 85%;
-    } */
-
     h6 {
         margin-top: 0;
     }
@@ -88,14 +67,5 @@ export const StyledWin = styled.div`
 
         
     }
-
-    /* #islandBackground {
-        position: absolute;
-        width: 700px;
-
-        background-color: rgba(254,209,0,1);
-        border-radius: 20px;
-        border: 10px solid white;
-    } */
 
 `
