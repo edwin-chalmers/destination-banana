@@ -3,7 +3,7 @@ import { StyledPagesContainer } from './PagesContainer.styled'
 import { gsap } from 'gsap'
 import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 
-function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref) {
+function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed, resetGame}, ref) {
     const [linksReady, setLinksReady] = useState(false)
     const slideLength = 378
     
@@ -105,6 +105,7 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed}, ref)
                 title={page.title}
                 focusPage={focusPage}
                 pages={pages}
+                resetGame={resetGame}
                 className='page-container'
             />
         )

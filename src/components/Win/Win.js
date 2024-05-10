@@ -5,9 +5,8 @@ import LandingButton from "../LandingButton/LandingButton"
 import PropTypes from 'prop-types'
 import RunningMonkeys from '../RunningMonkeys/RunningMonkeys';
 
-export default function Win({ animateWin, pages }){
+export default function Win({ resetGame, pages }){
     const winRef = useRef()
-    // animateWin(winRef)
 
     function refreshPage() {
         window.location.reload();
@@ -16,11 +15,6 @@ export default function Win({ animateWin, pages }){
     return (
         <>
         <StyledWin ref={winRef}>
-            {/* <img id='monkeyBro' src='./assets/monkey_bro.svg'/> */}
-
-            {/* <section>
-                <button onClick={refreshPage}>New Game</button>
-            </section> */}
 
             <h5>YOU WIN!!!</h5>
             <h6>{` In ${pages.length - 1} clicks`}</h6>
@@ -31,6 +25,8 @@ export default function Win({ animateWin, pages }){
                     buttonAlt={"new game"} 
                     backgroundColor="#7ff1f4"
                     boxShadow="#61dbdb"
+                    goToPage={() => resetGame()}
+
                 />
             </div>
         <RunningMonkeys />
