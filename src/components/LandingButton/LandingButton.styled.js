@@ -23,7 +23,8 @@ export const StyledLandingButton = styled.button`
 
     &:hover {
         cursor: pointer;
-        /* filter: drop-shadow(0 0 10px white); */
+        filter: brightness(95%);
+        /* filter: saturate(125%); */
     }
 
     img {
