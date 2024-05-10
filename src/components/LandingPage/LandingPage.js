@@ -71,37 +71,6 @@ function LandingPage() {
         <main>
             <MonkeyThief />
             <StyledLanding id='landingPage'>
-                <section>
-                    <p>{btnDesc}</p>
-                </section>
-                <div className='landing-buttons'>
-                    <LandingButton
-                        className='startButton' 
-                        buttonName={"start"} 
-                        buttonAlt={"start"} 
-                        backgroundColor="#fcb805"
-                        boxShadow="#ff931e"
-                        goToPage={(e) => playGame(e, 'click', 'normal')} // Not sure how this works
-                        setBtnDesc={setBtnDesc}
-                        description={"The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??"}
-                    />
-                    <DailyChallenge 
-                        goToPage={(e) => playGame(e, 'click', 'daily_challenge')}
-                        setBtnDesc={setBtnDesc}
-                        description={"A new global start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
-                    />
-                    <LandingButton
-                        goToPage={() => goToHelp()}
-                        className='helpButton' 
-                        buttonName={"help"} 
-                        buttonAlt={"help"} 
-                        backgroundColor="#e5fdfb"
-                        boxShadow="#bdeafd"
-                        setBtnDesc={setBtnDesc}
-                        description={"Everything else you need to know!"}
-                    />
-                </div>
-                <p className="disclaimer">🍌Some content in the game is randomly sourced from wikipedia and is uncensored. Enter at your own risk.🍌</p>
                 <div id='bananaContainer'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
                         <g id="a"/>
@@ -135,6 +104,37 @@ function LandingPage() {
                         </g>
                     </svg>
                 </div>
+                <section>
+                    <p>{btnDesc}</p>
+                </section>
+                <div className='landing-buttons'>
+                    <LandingButton
+                        className='startButton' 
+                        buttonName={"start"} 
+                        buttonAlt={"start"} 
+                        backgroundColor="#fcb805"
+                        boxShadow="#ff931e"
+                        goToPage={(e) => playGame(e, 'click', 'normal')} // Not sure how this works
+                        setBtnDesc={setBtnDesc}
+                        description={"The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??"}
+                    />
+                    <DailyChallenge 
+                        goToPage={(e) => playGame(e, 'click', 'daily_challenge')}
+                        setBtnDesc={setBtnDesc}
+                        description={"A new global start point each day. Get to “banana” in the fewest clicks possible. Can you out-monkey your friends?"}
+                    />
+                    <LandingButton
+                        goToPage={() => goToHelp()}
+                        className='helpButton' 
+                        buttonName={"help"} 
+                        buttonAlt={"help"} 
+                        backgroundColor="#e5fdfb"
+                        boxShadow="#bdeafd"
+                        setBtnDesc={setBtnDesc}
+                        description={"Everything else you need to know!"}
+                    />
+                </div>
+                <p className="disclaimer">🍌Some content in the game is randomly sourced from wikipedia and is uncensored. Enter at your own risk.🍌</p>
             </StyledLanding >
         </main>
     )
