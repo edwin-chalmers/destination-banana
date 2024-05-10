@@ -52,7 +52,7 @@ function HomePage({ }) {
   } = useGlobalProps();
 
   useEffect(() => {
-
+//what is this next line?
     if (currentPage === 'home') {
       function handleResize() {
         setWidth(window.innerWidth);
@@ -103,7 +103,6 @@ function HomePage({ }) {
   }, [win])
 
   useEffect(() => {
-
     if (startTitle) {
       const now = new Date()
       const formattedDate = now.toLocaleDateString('en-US', {
@@ -127,7 +126,6 @@ function HomePage({ }) {
   }, [startTitle])
 
   useEffect(() => {
-
     if (userProfile && startTitle) {
       const gameData = {
         id: userProfile.id,
@@ -236,7 +234,6 @@ function HomePage({ }) {
         }
 
         htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
-
         const parsedHTML = parse(htmlFilter)
         const newPage = {
           id: nextId,
@@ -283,8 +280,6 @@ function HomePage({ }) {
         })
 
         const randomizedList = filteredWikiLinks.sort(() => Math.random() - 0.5);
-        // const randomizedList = filteredWikiLinks.sort();
-
         const bananaIndex = randomizedList.forEach((link, i) => {
           i++
           if (link.title.toLowerCase() === 'banana') {
@@ -314,6 +309,7 @@ function HomePage({ }) {
     setWin(false);         // Reset the win state
   }
 
+  //DELETE this??
   function animateWin(ref) {
     let dots = [],
       bg = document.getElementById('main-content'),
@@ -363,7 +359,6 @@ function HomePage({ }) {
     })
 
     let selectedPage;
-
     if (!id) {
       const currentPage = pages.find(page => page.isCurrent)
       const previousPage = pages.reduce((prevPage, page) => {
@@ -454,9 +449,12 @@ function HomePage({ }) {
           <div className="background-container">
             {linkReady &&
               <>
-                {width > 720 && <>
-                  <RunningMonkeys />
-                </>}
+                {
+                  width > 720 &&
+                    <>
+                      <RunningMonkeys />
+                    </>
+                }
                 <LinkBox id="links-container" linkList={linkList} checkForWin={checkForWin} updatePages={updatePages} pages={pages} />
                 <div className='outer-container'>
                   <main id='main-content'>
