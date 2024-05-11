@@ -23,13 +23,14 @@ export const StyledHomepage = styled.div `
         background-color: #fcb805;
         width: 40px;
         border-radius: 10px;
+        padding: 3px;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
         box-shadow: 2px 2px 7px black;
-        height: 25px;
+        height: 22px;
     }
 
     #pageSelection{
