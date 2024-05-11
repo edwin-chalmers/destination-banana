@@ -48,13 +48,15 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed, reset
     }, [pages.length - numDisplayedPages]);
 
     useEffect(() => {
-        const tl = gsap.timeline()
-        tl.fromTo(
-            containerRef.current, 
-            { left: '-340', opacity: 0 },
-            { duration: 1, left: 340, opacity: 1, delay: 1},
-        )
-    }, [])
+        if(pages.length === 1) {
+            const tl = gsap.timeline()
+            tl.fromTo(
+                containerRef.current, 
+                { left: '-340', opacity: 0 },
+                { duration: 1, left: 340, opacity: 1, delay: 1},
+            )
+        }
+    }, [pages])
 
     const childFunction = (arg) => {
         if(allowClick) {

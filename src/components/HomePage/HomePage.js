@@ -43,8 +43,6 @@ function HomePage({ }) {
   const navBar = useRef()
   const [currentPage, setCurrentPage] = useState()
 
-  
-
   const {
     startTitle,
     setStartTitle,
@@ -202,7 +200,7 @@ function HomePage({ }) {
     }, '+=4')
   }
 
-  function updatePages(endpointText) {
+  function updatePages(endpointText, isNew) {
     if (endpointText === 'Banana') {
       setNextId(prev => prev += 1)
       setPages((prev) => {
@@ -235,12 +233,23 @@ function HomePage({ }) {
 
         htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
         const parsedHTML = parse(htmlFilter)
-        const newPage = {
-          id: nextId,
-          stringForDOM: parsedHTML,
-          isCurrent: true,
-          isDisplayed: true,
-          title: endpointText
+        let newPage
+        if(isNew){
+          newPage = {
+            id: isNew,
+            stringForDOM: parsedHTML,
+            isCurrent: true,
+            isDisplayed: true,
+            title: endpointText
+          }
+        } else {
+          newPage = {
+            id: nextId,
+            stringForDOM: parsedHTML,
+            isCurrent: true,
+            isDisplayed: true,
+            title: endpointText
+          }
         }
 
         setNextId(prev => prev += 1)
@@ -302,11 +311,18 @@ function HomePage({ }) {
   }
 
   function resetGame() {
-    setNextId(1);          // Resets the nextId to 1 
-    setPages([]);          // Clears the pages array
-    fetchWikiData();       // Fetch new data for the new game
-    setStartTitle('');     // Clears the start title to trigger new game 
-    setWin(false);         // Reset the win state
+    const isNew = 1
+    setPages([])
+    setNextId(1)
+    fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+      // fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+        return rando.json()
+      }).then(data => {
+        const title = data.items[0].title.replaceAll('_', ' ').toString()  
+        setWin(false)
+        updatePages(title, isNew)
+        setStartTitle(title)
+      })
   }
 
   //DELETE this??

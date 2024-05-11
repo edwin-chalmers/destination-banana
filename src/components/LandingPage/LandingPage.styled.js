@@ -12,7 +12,6 @@ export const StyledLanding = styled.div`
     background-image: url(/assets/beach_light.svg);
     background-size: cover;
     background-position-y: 57%;
-    /* position: fixed; */
     font-family: "Fredoka", sans-serif;
     font-weight: 550;
     font-size: 1.2em;

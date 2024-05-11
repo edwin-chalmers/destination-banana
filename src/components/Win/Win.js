@@ -26,7 +26,6 @@ export default function Win({ resetGame, pages }){
                     backgroundColor="#7ff1f4"
                     boxShadow="#61dbdb"
                     goToPage={() => resetGame()}
-
                 />
             </div>
         <RunningMonkeys />

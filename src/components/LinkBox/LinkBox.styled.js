@@ -9,7 +9,6 @@ export const StyledLinkContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     min-width: 322px;
-    overflow-y: scroll;
     margin-top: 30px;
     z-index: 3;
     scrollbar-color: rgb(53, 98, 201);
@@ -21,6 +20,7 @@ export const StyledLinkContainer = styled.div`
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     font-family: "Fredoka", sans-serif;
     font-weight: 550;
+    position: fixed;
 
   a {
     text-decoration: none !important;
@@ -63,6 +63,7 @@ export const StyledLinkContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
   }
 
   h4 {
