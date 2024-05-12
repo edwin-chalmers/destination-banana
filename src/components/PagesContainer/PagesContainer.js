@@ -41,8 +41,8 @@ function PagesContainer({ pages, focusPage, clickAllowed, setClickAllowed, reset
             const tl = gsap.timeline()
             tl.fromTo(
                 containerRef.current, 
-                { left: '0' },
-                { duration: 1, left: 340, ease: 'power3.out'}
+                { left: '660' },
+                { duration: 1, left: '330', ease: 'power3.out'}
             );
         }
     }, [pages.length - numDisplayedPages]);
