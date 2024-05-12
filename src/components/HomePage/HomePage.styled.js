@@ -195,11 +195,11 @@ export const StyledHomepage = styled.div `
      }
 
         #banana_LL::before{
-            content: '🍌🍌🍌🍌🍌'
+            content: '🍌🍌🍌🍌'
         }
 
         #banana_LL::after{
-            content: '🍌🍌🍌🍌🍌'
+            content: '🍌🍌🍌🍌'
         }
 
      .dot{
