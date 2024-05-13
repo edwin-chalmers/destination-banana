@@ -19,7 +19,6 @@ import { postUser } from '../../ApiCalls';
 
 function HomePage({ }) {
   const [pages, setPages] = useState([])
-  console.log("🚀 ~ pages:", pages)
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
   const [targetTitle, setTargetTitle] = useState('banana')
@@ -224,12 +223,17 @@ function HomePage({ }) {
     } else {
       let htmlFilter
       const parser = new DOMParser()
+
       fetchHTML(endpointText).then(html => {
         if (!html) {
           handleBrokenLink()
           focusPage(0)
           return
         }
+        const regex = /<a\b[^>]*>(.*?)<\/a>/gi;
+        html = html.replace(regex, '<p class="replaced-link">$1</p>');
+
+        console.log(html)
 
         htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
         const parsedHTML = parse(htmlFilter)
@@ -277,7 +281,6 @@ function HomePage({ }) {
   }
 
   function createLinkList(endpointText) {
-    console.log('endpoint text createLinkList', endpointText)
     if (endpointText === 'Banana') {
       setLinkList('Banana')
     } else {
@@ -325,7 +328,7 @@ function HomePage({ }) {
       })
   }
 
-  //DELETE this??
+
   function animateWin(ref) {
     let dots = [],
       bg = document.getElementById('main-content'),
@@ -347,11 +350,6 @@ function HomePage({ }) {
 
     let tl = gsap.timeline({ repeat: 100 })
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
-
-    // tl.to(dots, {
-    //   duration: 0.5,
-    //   delay: "0"
-    // })
 
     let tl2 = gsap.timeline({ onComplete: removeDots })
     tl2.to(dots, {

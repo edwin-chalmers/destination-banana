@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Define your global props
+
 const defaultGlobalProps = {
     
 };
@@ -40,5 +40,4 @@ root.render(
     </BrowserRouter>
 );
 
-// Optional: report Web Vitals
 reportWebVitals();

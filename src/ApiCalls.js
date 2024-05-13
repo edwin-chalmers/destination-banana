@@ -21,7 +21,7 @@ function fetchPage(pageTitle) {
         page: pageTitle,
         prop: 'links',
         format: 'json',
-        origin: '*' // Necessary for CORS
+        origin: '*' 
     };
 
     url.search = new URLSearchParams(params).toString();
@@ -56,12 +56,10 @@ const fetchPhotos = async (endpoint) => {
 const getFeatured = async (endpoint) => {
     const fetchFeat = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/featured/${endpoint}`)
     .then(response => response.json())
-    console.log(fetchFeat)
     return fetchFeat
 }
 
 const postUser = async (gameData) => {
-    console.log(gameData)
     try {
         const response = await fetch(`${externalServer}/api/v1/banana/users/${gameData.id}`);
         if (!response.ok) {
@@ -69,7 +67,6 @@ const postUser = async (gameData) => {
         }
         const data = await response.json();
         if (data) {
-            console.log(data);
             return postUserData(gameData); // Ensure you return here to catch any errors from postUserData
         } else {
             console.log("No data received:", data);

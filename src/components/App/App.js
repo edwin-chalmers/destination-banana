@@ -1,5 +1,4 @@
 import './App.css';
-// import WikiPage from '../WikiPage/WikiPage'
 import {LandingPage} from '../LandingPage/LandingPage'
 import {HomePage} from '../HomePage/HomePage'
 import {Error} from '../Error/Error'

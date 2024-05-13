@@ -48,13 +48,9 @@ export const WikiPageContainer = styled.div`
         margin-top: 0;
     }
 
-    a {
-        margin-top: 1px;
-        margin-bottom: 1px;
-        text-decoration: none;
-        color: rgb(53,98,201);
-        pointer-events: none;
-    }
+
+
+
 
     .trow {
         display: flex;
