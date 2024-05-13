@@ -24,16 +24,21 @@ export const StyledLandingButton = styled.button`
         /* filter: saturate(125%); */
     }
 
+    &:focus {
+        outline: 2px solid blue;
+    }
+
     img {
         height: 40px;
     }
 
-    button {
+    p {
         background: none;
         border: none;
         font-family: "Fredoka", sans-serif;
         font-weight: 650;
         font-size: 3.75vh;
         cursor: pointer;
+        margin-top: 5px;
     }
 `
