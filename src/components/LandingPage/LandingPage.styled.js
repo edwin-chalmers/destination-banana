@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const StyledLanding = styled.div`
     display: flex;
     flex-direction: column;
@@ -13,7 +14,7 @@ export const StyledLanding = styled.div`
     background-size: cover;
     background-position-y: 57%;
     font-family: "Fredoka", sans-serif;
-    font-weight: 550;
+    font-weight: 550;   
     font-size: 1.2em;
 
     #bananaContainer {
@@ -22,7 +23,7 @@ export const StyledLanding = styled.div`
         margin-top: -10vh;
             width: 54vh;
             overflow: visible;
-            &:focus{
+            &:active{
                 outline: none;
             }
         }

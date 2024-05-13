@@ -23,7 +23,7 @@ export default function LandingButton({
             }}
         >
             {/* <img src={`/assets/buttons/${buttonName}.svg`} alt={buttonAlt} /> */}
-            <button>{buttonName}</button>
+            <p>{buttonName}</p>
         </StyledLandingButton>
     )
 
