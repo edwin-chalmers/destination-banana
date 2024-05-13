@@ -33,11 +33,6 @@ export default function WikiPage ( { id, stringForDOM, isDisplayed, title, pages
                 </div>
             )}
         })
-    //  photos.items.forEach((photo) => {
-    //     if(photo.caption){
-    //     console.log('photo',photo.srcset[photo.srcset.length-1])
-    // }
-    // })
     }
     return isDisplayed && (
         <WikiPageContainer id='page-container'>

@@ -2,6 +2,16 @@ import styled from 'styled-components'
 
 
 export const StyledHomepage = styled.div `
+
+  .replaced-link {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        text-decoration: none;
+        color: rgb(53,98,201);
+        pointer-events: none;
+        color: blue;
+    }
+
 #backgroundContainer{
     z-index: 0;
     position: fixed;

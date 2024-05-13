@@ -82,7 +82,6 @@ function LinkBox({ pages, linkList, updatePages }) {
     if(linkList) {
         if (linkList === "Banana") {
             linkTails = Array(100).fill(<p>banana</p>);
-            // linkTails = [<a>congratulations, you win. the monkeys are saddened, but more motivated than ever to steal your bananas. thank you for playing, please play again.</a>];
         } else {
             linkTails = linkList.map((link) => {
                 keyTicker += 1;
