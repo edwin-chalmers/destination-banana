@@ -33,10 +33,15 @@ function LinkBox({ pages, linkList, updatePages }) {
   }
 
   useEffect(() => {
-    console.log('here now')
-    let tl = gsap.timeline()
-    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' })
-  }, [])
+    if(pages.length === 1) {
+        let tl = gsap.timeline()
+        tl.fromTo(
+            '#links-container', 
+            { left: '-330' },
+            { duration: 1, ease: 'bounce', left: 0 },
+        )
+    }
+  }, [pages])
 
     useEffect(() => {
         if(pages.length > 1) {

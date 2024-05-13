@@ -64,6 +64,7 @@ export const StyledLinkContainer = styled.div`
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    width: 100%;
   }
 
   h4 {
