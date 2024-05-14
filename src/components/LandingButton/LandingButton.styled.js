@@ -10,12 +10,12 @@ export const StyledLandingButton = styled.button`
     margin: 0 10px;
     border-radius: 100px;
     transition: all ease 0.05s;
-    background-color: ${props => props.backgroundColor};
-    box-shadow: 0px 15px 0px 0px ${props => props.boxShadow};
+    background-color: ${props => props.backgroundcolor};
+    box-shadow: 0px 15px 0px 0px ${props => props.boxshadow};
 
     &:active {
         transform: translateY(15px);
-        box-shadow: 0px 0px 0px 0px ${props => props.boxShadow};
+        box-shadow: 0px 0px 0px 0px ${props => props.boxshadow};
     }
 
     &:hover {

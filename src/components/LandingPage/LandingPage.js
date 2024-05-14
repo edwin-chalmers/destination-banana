@@ -106,9 +106,9 @@ function LandingPage() {
                         className='startButton' 
                         buttonName={"start"} 
                         buttonAlt={"start"} 
-                        backgroundColor="#fcb805"
-                        boxShadow="#ff931e"
-                        goToPage={(e) => playGame(e, 'click', 'normal')}
+                        backgroundcolor="#fcb805"
+                        boxshadow="#ff931e"
+                        goToPage={(e) => playGame(e, 'click', 'normal')} // Not sure how this works
                         setBtnDesc={setBtnDesc}
                         description={"The greedy Monkeys are after our bananas again. And this time they are taking them one link at a time. Can you make it to destination: “banana” to get them back??"}
                     />
@@ -122,8 +122,8 @@ function LandingPage() {
                         className='helpButton' 
                         buttonName={"help"} 
                         buttonAlt={"help"} 
-                        backgroundColor="#e5fdfb"
-                        boxShadow="#bdeafd"
+                        backgroundcolor="#e5fdfb"
+                        boxshadow="#bdeafd"
                         setBtnDesc={setBtnDesc}
                         description={"Everything else you need to know!"}
                     />

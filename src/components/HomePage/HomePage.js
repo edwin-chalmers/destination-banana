@@ -157,8 +157,6 @@ function HomePage({ }) {
     }
   }
 
-
-
   function handleError(error) {
     navigate('/error')
   }
@@ -326,6 +324,7 @@ function HomePage({ }) {
         updatePages(title, isNew)
         setStartTitle(title)
       })
+
   }
 
 

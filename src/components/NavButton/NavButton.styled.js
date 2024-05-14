@@ -41,10 +41,10 @@ export const StyledNavButton = styled.button`
     }
 `
 
-const boxMixin = (size = '100px', backgroundColor = 'lightblue') => `
+const boxMixin = (size = '100px', backgroundcolor = 'lightblue') => `
   width: ${size};
   height: ${size};
-  background-color: ${backgroundColor};
+  background-color: ${backgroundcolor};
   display: flex;
   justify-content: center;
   align-items: center;

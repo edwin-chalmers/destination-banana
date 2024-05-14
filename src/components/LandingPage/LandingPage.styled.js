@@ -21,10 +21,9 @@ export const StyledLanding = styled.div`
         z-index: 2;
         position: relative;
         margin-top: -10vh;
-            width: 54vh;
-            overflow: visible;
-            &:active{
-                outline: none;
+        width: 54vh;
+        overflow: visible;
+        outline: none;
             }
         }
 
@@ -61,5 +60,4 @@ export const StyledLanding = styled.div`
         font-weight: 300;
         bottom: 3vh;
     }
-
 `

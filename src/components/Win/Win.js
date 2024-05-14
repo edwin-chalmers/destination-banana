@@ -23,8 +23,8 @@ export default function Win({ resetGame, pages }){
                     className='newGame' 
                     buttonName={"new game"} 
                     buttonAlt={"new game"} 
-                    backgroundColor="#7ff1f4"
-                    boxShadow="#61dbdb"
+                    backgroundcolor="#7ff1f4"
+                    boxshadow="#61dbdb"
                     goToPage={() => resetGame()}
                 />
             </div>
