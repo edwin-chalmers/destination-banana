@@ -17,8 +17,8 @@ function Error() {
                     <LandingButton 
                         buttonName={"home"} 
                         buttonAlt={"go home"} 
-                        backgroundColor="#fcb805"
-                        boxShadow="#ff931e"
+                        backgroundcolor="#fcb805"
+                        boxshadow="#ff931e"
                         setBtnDesc={setBtnDesc}
                         description={"Standard Game"}
                     />

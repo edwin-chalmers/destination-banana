@@ -83,8 +83,8 @@ export const StyledHelp = styled.div`
     .jungle-scene {
         z-index: 0;
         position: absolute;
-        /* width: 100%; */
-        height: 100%;
+        width: 100%;
+        /* height: 100%; */
         top: 0px;
         left: 0px;
     }

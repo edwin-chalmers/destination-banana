@@ -24,7 +24,7 @@ export const StyledLanding = styled.div`
             width: 54vh;
             overflow: visible;
             &:focus{
-                outline: none;
+                outline: none !important;
             }
         }
 
@@ -61,5 +61,4 @@ export const StyledLanding = styled.div`
         font-weight: 300;
         bottom: 3vh;
     }
-
 `

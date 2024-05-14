@@ -160,8 +160,6 @@ function HomePage({ }) {
     }
   }
 
-
-
   function handleError(error) {
     navigate('/error')
   }
@@ -302,11 +300,11 @@ function HomePage({ }) {
   }
 
   function resetGame() {
-    setNextId(1);          // Resets the nextId to 1 
-    setPages([]);          // Clears the pages array
-    fetchWikiData();       // Fetch new data for the new game
-    setStartTitle('');     // Clears the start title to trigger new game 
-    setWin(false);         // Reset the win state
+    setNextId(1)           // Resets the nextId to 1 
+    setPages([])           // Clears the pages array
+    setStartTitle('')      // Clears the start title to trigger new game 
+    fetchWikiData()        // Fetch new data for the new game
+    setWin(false)          // Reset the win state
   }
 
   //DELETE this??

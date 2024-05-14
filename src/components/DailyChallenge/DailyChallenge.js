@@ -67,8 +67,8 @@ export default function DailyChallenge({ setBtnDesc, description}) {
                 className='dailyChallengeButton' 
                 buttonName={"daily-challenge"} 
                 buttonAlt={"daily challenge"} 
-                backgroundColor="#7ff1f4"
-                boxShadow="#61dbdb"
+                backgroundcolor="#7ff1f4"
+                boxshadow="#61dbdb"
                 goToPage={playDailyChallenge}
                 setBtnDesc={setBtnDesc}
                 description={description}

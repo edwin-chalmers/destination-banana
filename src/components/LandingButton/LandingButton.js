@@ -5,8 +5,8 @@ export default function LandingButton({
     goToPage, 
     buttonName, 
     buttonAlt, 
-    backgroundColor, 
-    boxShadow,
+    backgroundcolor, 
+    boxshadow,
     setBtnDesc,
     description
 }) {
@@ -14,8 +14,8 @@ export default function LandingButton({
     return (
         <StyledLandingButton 
             onClick={goToPage}
-            backgroundColor={backgroundColor} 
-            boxShadow={boxShadow}
+            backgroundcolor={backgroundcolor} 
+            boxshadow={boxshadow}
             onMouseEnter={() => {
                 if (typeof setBtnDesc === 'function') {
                   setBtnDesc(description);
