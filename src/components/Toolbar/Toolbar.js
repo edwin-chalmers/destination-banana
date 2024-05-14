@@ -8,8 +8,6 @@ import React, { useEffect, useRef, useState } from 'react'
 
 const Toolbar = React.forwardRef((props, navBar) => {
     const { focusPage, pages, backClicks, startTitle, setStartTitle } = props;
-    // const [monkeyState, setMonkeyState] = useState(pages)
-
     const resetStartTitle = () => {
         setStartTitle('')
     }

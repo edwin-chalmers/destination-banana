@@ -19,7 +19,6 @@ import { postUser } from '../../ApiCalls';
 
 function HomePage({ }) {
   const [pages, setPages] = useState([])
-  console.log("🚀 ~ pages:", pages)
   const [linkList, setLinkList] = useState([])
   const [nextId, setNextId] = useState(1)
   const [targetTitle, setTargetTitle] = useState('banana')
@@ -42,8 +41,6 @@ function HomePage({ }) {
   const [width, setWidth] = useState();
   const navBar = useRef()
   const [currentPage, setCurrentPage] = useState()
-
-  
 
   const {
     startTitle,
@@ -200,7 +197,7 @@ function HomePage({ }) {
     }, '+=4')
   }
 
-  function updatePages(endpointText) {
+  function updatePages(endpointText, isNew) {
     if (endpointText === 'Banana') {
       setNextId(prev => prev += 1)
       setPages((prev) => {
@@ -224,21 +221,37 @@ function HomePage({ }) {
     } else {
       let htmlFilter
       const parser = new DOMParser()
+
       fetchHTML(endpointText).then(html => {
         if (!html) {
           handleBrokenLink()
           focusPage(0)
           return
         }
+        const regex = /<a\b[^>]*>(.*?)<\/a>/gi;
+        html = html.replace(regex, '<p class="replaced-link">$1</p>');
+
+        console.log(html)
 
         htmlFilter = parser.parseFromString(html, 'text/html').querySelector('body > section').outerHTML
         const parsedHTML = parse(htmlFilter)
-        const newPage = {
-          id: nextId,
-          stringForDOM: parsedHTML,
-          isCurrent: true,
-          isDisplayed: true,
-          title: endpointText
+        let newPage
+        if(isNew){
+          newPage = {
+            id: isNew,
+            stringForDOM: parsedHTML,
+            isCurrent: true,
+            isDisplayed: true,
+            title: endpointText
+          }
+        } else {
+          newPage = {
+            id: nextId,
+            stringForDOM: parsedHTML,
+            isCurrent: true,
+            isDisplayed: true,
+            title: endpointText
+          }
         }
 
         setNextId(prev => prev += 1)
@@ -266,7 +279,6 @@ function HomePage({ }) {
   }
 
   function createLinkList(endpointText) {
-    console.log('endpoint text createLinkList', endpointText)
     if (endpointText === 'Banana') {
       setLinkList('Banana')
     } else {
@@ -300,14 +312,22 @@ function HomePage({ }) {
   }
 
   function resetGame() {
-    setNextId(1)           // Resets the nextId to 1 
-    setPages([])           // Clears the pages array
-    setStartTitle('')      // Clears the start title to trigger new game 
-    fetchWikiData()        // Fetch new data for the new game
-    setWin(false)          // Reset the win state
+    const isNew = 1
+    setPages([])
+    setNextId(1)
+    fetch('https://en.wikipedia.org/api/rest_v1/page/random/title').then(rando => {
+      // fetch('https://en.wikipedia.org/api/rest_v1/page/title/Musa_(genus)').then(rando => {
+        return rando.json()
+      }).then(data => {
+        const title = data.items[0].title.replaceAll('_', ' ').toString()  
+        setWin(false)
+        updatePages(title, isNew)
+        setStartTitle(title)
+      })
+
   }
 
-  //DELETE this??
+
   function animateWin(ref) {
     let dots = [],
       bg = document.getElementById('main-content'),
@@ -329,11 +349,6 @@ function HomePage({ }) {
 
     let tl = gsap.timeline({ repeat: 100 })
     tl.to(ref.current, 0.1, { alpha: 1, filter: 'invert(1)', delay: 1 }, 0).to(ref.current, 0.1, { alpha: 1, filter: 'invert(0)', delay: 0 })
-
-    // tl.to(dots, {
-    //   duration: 0.5,
-    //   delay: "0"
-    // })
 
     let tl2 = gsap.timeline({ onComplete: removeDots })
     tl2.to(dots, {

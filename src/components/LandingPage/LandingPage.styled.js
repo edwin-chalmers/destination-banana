@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const StyledLanding = styled.div`
     display: flex;
     flex-direction: column;
@@ -12,19 +13,17 @@ export const StyledLanding = styled.div`
     background-image: url(/assets/beach_light.svg);
     background-size: cover;
     background-position-y: 57%;
-    /* position: fixed; */
     font-family: "Fredoka", sans-serif;
-    font-weight: 550;
+    font-weight: 550;   
     font-size: 1.2em;
 
     #bananaContainer {
         z-index: 2;
         position: relative;
         margin-top: -10vh;
-            width: 54vh;
-            overflow: visible;
-            &:focus{
-                outline: none !important;
+        width: 54vh;
+        overflow: visible;
+        outline: none;
             }
         }
 

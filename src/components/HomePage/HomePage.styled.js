@@ -2,6 +2,16 @@ import styled from 'styled-components'
 
 
 export const StyledHomepage = styled.div `
+
+  .replaced-link {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        text-decoration: none;
+        color: rgb(53,98,201);
+        pointer-events: none;
+        color: blue;
+    }
+
 #backgroundContainer{
     z-index: 0;
     position: fixed;
@@ -23,13 +33,14 @@ export const StyledHomepage = styled.div `
         background-color: #fcb805;
         width: 40px;
         border-radius: 10px;
+        padding: 3px;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
         box-shadow: 2px 2px 7px black;
-        height: 25px;
+        height: 22px;
     }
 
     #pageSelection{
@@ -194,11 +205,11 @@ export const StyledHomepage = styled.div `
      }
 
         #banana_LL::before{
-            content: '🍌🍌🍌🍌🍌'
+            content: '🍌🍌🍌🍌'
         }
 
         #banana_LL::after{
-            content: '🍌🍌🍌🍌🍌'
+            content: '🍌🍌🍌🍌'
         }
 
      .dot{

@@ -32,16 +32,9 @@ function LandingPage() {
                 monkeyThief,
                 { left: '-500', delay: 0, duration: .75 }
             )
-            // tl.to('#c', {
-            //     duration: 0.25, // Duration of the animation in seconds
-            //     rotation: 90, // Rotate the path by 360 degrees
-            //     repeat: 0, // Repeat indefinitely
-            //     ease: "none", // Linear easing
-            //     transformOrigin:"left 50%"
-            // })
             gsap.to('#c', {
                 delay: 0.25,
-                duration: 0.25, // Duration of the animation in seconds
+                duration: 0.25,
                 x: -2000,
             })
             tl.to(
@@ -63,16 +56,17 @@ function LandingPage() {
     }
 
     const goToHelp = (e) => {
-        console.log(e)
         navigate('/Help')
     }
+
+
 
     return ( 
         <main>
             <MonkeyThief />
             <StyledLanding id='landingPage'>
                 <div id='bananaContainer'>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2" tabIndex='0'>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509.54 325.2">
                         <g id="a"/>
                         <g id="b">
                         <g id="c">

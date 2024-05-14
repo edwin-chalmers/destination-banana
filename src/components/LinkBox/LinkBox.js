@@ -33,9 +33,15 @@ function LinkBox({ pages, linkList, updatePages }) {
   }
 
   useEffect(() => {
-    let tl = gsap.timeline()
-    tl.to('#links-container', { duration: 1, ease: 'bounce', left: '0' })
-  }, [])
+    if(pages.length === 1) {
+        let tl = gsap.timeline()
+        tl.fromTo(
+            '#links-container', 
+            { left: '-330' },
+            { duration: 1, ease: 'bounce', left: 0 },
+        )
+    }
+  }, [pages])
 
     useEffect(() => {
         if(pages.length > 1) {
@@ -74,11 +80,8 @@ function LinkBox({ pages, linkList, updatePages }) {
     
     let linkTails
     if(linkList) {
-        console.log('here now?')
-        console.log('linkList is:', linkList)
         if (linkList === "Banana") {
             linkTails = Array(100).fill(<p>banana</p>);
-            // linkTails = [<a>congratulations, you win. the monkeys are saddened, but more motivated than ever to steal your bananas. thank you for playing, please play again.</a>];
         } else {
             linkTails = linkList.map((link) => {
                 keyTicker += 1;

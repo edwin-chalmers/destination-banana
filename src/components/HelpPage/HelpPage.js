@@ -1,15 +1,12 @@
 import { StyledHelp } from './HelpPage.styled'
 import { getFeatured } from '../../ApiCalls'
 import { useEffect, useState } from 'react'
-import JungleScene from './JungleScene'
 import { Link } from 'react-router-dom'
-
+import jungleScene from './jungleScene.jpg'
 export default function HelpPage() {
-
-
-    
     return (
         <StyledHelp>
+          <img id='backgroundImage' src={jungleScene}></img>
             <Link to="/">
                 <button>back</button>
             </Link>
@@ -35,7 +32,6 @@ export default function HelpPage() {
                     </ul>
                 </section>
             </div>
-            <JungleScene className='jungle-scene'/>
         </StyledHelp>
     )
 }
