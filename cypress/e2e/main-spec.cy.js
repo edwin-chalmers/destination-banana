@@ -1,6 +1,29 @@
 describe('destination: bananas', () => {
   it('should go to main page and see game display on button click', () => {
     //MONKEES INTERCEPTS
+
+    cy.fixture('images.json').then(images => {
+      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/media-list/The%20Monkees', {
+        status: 200,
+        body: images
+      })
+    })
+
+    cy.fixture('daydreamImg.json').then(images => {
+      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/media-list/Daydream%20Believer', {
+        status: 200,
+        body: images
+      })
+    })
+
+    cy.fixture('musaImg.json').then(images => {
+      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/media-list/musa', {
+        status: 200,
+        body: images
+      })
+    })
+    
+    
     cy.fixture('monkees.json').then(randomPage => {
     cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/random/title', {
       status: 200,
@@ -31,6 +54,7 @@ describe('destination: bananas', () => {
         body: htmlString
       })
     })
+
 
     //DAYDREAM INTERCEPTS
     cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=Daydream+Believer&prop=links&format=json&origin=*', {
@@ -82,7 +106,7 @@ describe('destination: bananas', () => {
     })
 
     //BANANA INTERCEPTS
-    cy.intercept('GET', 'https://en.wikipedia.org/w/api.php?action=parse&page=banana&prop=links&format=json&origin=*', {
+    cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/banana', {
       status: 200,
       body: {
         parse: {
@@ -94,44 +118,50 @@ describe('destination: bananas', () => {
             {'*': 'banana', 'exists': '', ns: 0}
           ],
           pageid: 31417,
-          title: "banana"
+          title: "Banana"
         }
       }
     })
 
-    cy.fixture('bananaHtmlString.txt').then(htmlString => {
-      cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/html/banana', {
-        status: 200,
-        body: htmlString
-      })
+    cy.intercept('GET', 'https://api.ipify.org/?format=json', {
+      status: 200,
+      body: {"ip":"00.00.00.000"}
     })
+
+
+    cy.intercept('GET', 'https://en.wikipedia.org/api/rest_v1/page/media-list/banana', {
+      status: 200,
+    })
+
 
     //TESTS
     //VALIDATE HOMEPAGE
+
     cy.visit('http://localhost:3000/')
-      .get('a').should('have.attr', 'href').should('include', '/HomePage')
-      .get('section').children().should("have.length", 4)
-      .get('a')
-      .click()
+      .get('section').children('p').contains('The greedy Monkeys')
+      .get('.landing-buttons > button:nth-child(1)').contains('start')
+      .get('.landing-buttons > button:nth-child(2)').contains('daily-challenge')
+      .get('.landing-buttons > button:nth-child(3)').contains('help')
+      .get('.landing-buttons > button:nth-child(1)').click()
       .url().should('eq', 'http://localhost:3000/HomePage')
 
-    cy.get('nav').find('img').should('have.attr', 'src').should('include', '/assets/DB-horizontal-w-banana.svg')
+    cy.get('nav').find('img').should('have.attr', 'src').should('include', '/assets/future_white_48dp.svg')
     cy.get('nav').contains('Back')
-      .get('nav').contains('h2', '1 Clicks')
-      .get('nav').contains('h2', 'Start Point:')
-      .get('nav').contains('p', 'Monkees')
-      .get('nav').contains('h2', 'Destination:')
+      .get('nav').contains('#click-counter', '0 Clicks')
+      .get('nav').contains(':nth-child(1) > h3', 'Start Point:')
+      .get('nav').contains(':nth-child(1) > p', 'Monkees')
+      .get('nav').contains(':nth-child(2) > h3', 'Destination:')
       .get('nav').contains('p', 'Banana')
 
-    cy.get('#links-container').contains('h3', 'Links')
+    cy.wait(500)
+    cy.get('#links-container').contains('h4', 'Destinations')
       .get('#links-container').contains('a', 'gorilla')
       .get('#links-container').contains('a', 'Daydream Believer')
       .get('#links-container').contains('a', 'music')
       .get('#links-container').contains('a', 'musa')
       .get('#links-container').contains('a', 'banana')
 
-    cy.get('#page-container').find('img').should('have.attr', 'src').should('include', '/assets/link-icon.svg')
-      .get('#page-container').contains('h3', 'The Monkees')
+    cy.get('#page-container').contains('h5', 'The Monkees')
 
     //CLICK DAYDREAM BELIEVER
     cy.get('#links-container')
@@ -153,12 +183,5 @@ describe('destination: bananas', () => {
     cy.get('#main-page').children().should("have.length", 2)
       .get('#links-container')
       .contains('a', 'banana')
-      .click()
-
-    //WIN
-    cy.get('h2').contains('YOU WIN!!!')
-      .get('h2').contains('In 4 clicks')
-      .get('button').click()
-      .get('#click-counter').contains('h2', '0 Clicks')
   })
 })

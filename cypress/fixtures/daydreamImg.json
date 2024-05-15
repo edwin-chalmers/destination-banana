@@ -1,0 +1,48 @@
+{
+    "revision": "1214538409",
+    "tid": "7b6d23c2-e606-11ee-98e8-3f0f01d407a9",
+    "items": [
+        {
+            "title": "File:The_Monkees_single_05_Daydream_Believer.jpg",
+            "leadImage": false,
+            "section_id": 0,
+            "type": "image",
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/thumb/b/be/The_Monkees_single_05_Daydream_Believer.jpg/220px-The_Monkees_single_05_Daydream_Believer.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/b/be/The_Monkees_single_05_Daydream_Believer.jpg",
+                    "scale": "1.5x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/b/be/The_Monkees_single_05_Daydream_Believer.jpg",
+                    "scale": "2x"
+                }
+            ]
+        },
+        {
+            "title": "File:Daydreambelieverannemurray.jpg",
+            "leadImage": false,
+            "section_id": 9,
+            "type": "image",
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/thumb/f/f5/Daydreambelieverannemurray.jpg/220px-Daydreambelieverannemurray.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/f/f5/Daydreambelieverannemurray.jpg",
+                    "scale": "1.5x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/en/f/f5/Daydreambelieverannemurray.jpg",
+                    "scale": "2x"
+                }
+            ]
+        }
+    ]
+}

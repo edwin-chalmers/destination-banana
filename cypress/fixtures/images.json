@@ -1,0 +1,181 @@
+{
+    "revision": "1223999777",
+    "tid": "5da7030f-12df-11ef-a674-5b0faac91ec7",
+    "items": [
+        {
+            "title": "File:The_Monkees_1966.JPG",
+            "leadImage": true,
+            "section_id": 0,
+            "type": "image",
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The_Monkees_1966.JPG/640px-The_Monkees_1966.JPG",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The_Monkees_1966.JPG/960px-The_Monkees_1966.JPG",
+                    "scale": "1.5x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The_Monkees_1966.JPG/1280px-The_Monkees_1966.JPG",
+                    "scale": "2x"
+                }
+            ]
+        },
+        {
+            "title": "File:The_Monkees.jpg",
+            "leadImage": false,
+            "section_id": 4,
+            "type": "image",
+            "caption": {
+                "html": "The Monkees' chairs",
+                "text": "The Monkees' chairs"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ed/The_Monkees.jpg/640px-The_Monkees.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ed/The_Monkees.jpg/960px-The_Monkees.jpg",
+                    "scale": "1.5x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ed/The_Monkees.jpg/1280px-The_Monkees.jpg",
+                    "scale": "2x"
+                }
+            ]
+        },
+        {
+            "title": "File:Davy_Jones_Peter_Tork_The_Monkees_1966.jpg",
+            "leadImage": false,
+            "section_id": 5,
+            "type": "image",
+            "caption": {
+                "html": "<a rel=\"mw:WikiLink\" href=\"./Davy_Jones_(musician)\" title=\"Davy Jones (musician)\" id=\"mwrA\">Davy Jones</a> and <a rel=\"mw:WikiLink\" href=\"./Peter_Tork\" title=\"Peter Tork\" id=\"mwrQ\">Peter Tork</a> in 1966",
+                "text": "Davy Jones and Peter Tork in 1966"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Davy_Jones_Peter_Tork_The_Monkees_1966.jpg/320px-Davy_Jones_Peter_Tork_The_Monkees_1966.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Davy_Jones_Peter_Tork_The_Monkees_1966.jpg/480px-Davy_Jones_Peter_Tork_The_Monkees_1966.jpg",
+                    "scale": "1.5x"
+                }
+            ]
+        },
+        {
+            "title": "File:The_Monkees_1967.jpg",
+            "leadImage": false,
+            "section_id": 7,
+            "type": "image",
+            "caption": {
+                "html": "The Monkees in 1965",
+                "text": "The Monkees in 1965"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ee/The_Monkees_1967.jpg/640px-The_Monkees_1967.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/e/ee/The_Monkees_1967.jpg/960px-The_Monkees_1967.jpg",
+                    "scale": "1.5x"
+                }
+            ]
+        },
+        {
+            "title": "File:The_Monkees_March_1967.jpg",
+            "leadImage": false,
+            "section_id": 8,
+            "type": "image",
+            "caption": {
+                "html": "Publicity shot in 1967",
+                "text": "Publicity shot in 1967"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_Monkees_March_1967.jpg/640px-The_Monkees_March_1967.jpg",
+                    "scale": "1x"
+                }
+            ]
+        },
+        {
+            "title": "File:Monkees_Television_special_1969.jpg",
+            "leadImage": false,
+            "section_id": 12,
+            "type": "image",
+            "caption": {
+                "html": "1969 television special <i id=\"mwAcU\"><a rel=\"mw:WikiLink\" href=\"./33⅓_Revolutions_per_Monkee\" title=\"33⅓ Revolutions per Monkee\" id=\"mwAcY\">33 1/3 Revolutions Per Monkee</a></i>",
+                "text": "1969 television special 33 1/3 Revolutions Per Monkee"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/5/51/Monkees_Television_special_1969.jpg/640px-Monkees_Television_special_1969.jpg",
+                    "scale": "1x"
+                }
+            ]
+        },
+        {
+            "title": "File:Monkees_1969_Joey_Bishop_Show.jpg",
+            "leadImage": false,
+            "section_id": 13,
+            "type": "image",
+            "caption": {
+                "html": "The Monkees (without Tork) performing on <i id=\"mwAe8\"><a rel=\"mw:WikiLink\" href=\"./The_Joey_Bishop_Show_(talk_show)\" title=\"The Joey Bishop Show (talk show)\" id=\"mwAfA\">The Joey Bishop Show</a></i>, backed by the Goodtimers, in 1969. The images of Jones and Dolenz were re-used for the cover art of the 1970 Monkees album <i id=\"mwAfE\"><a rel=\"mw:WikiLink\" href=\"./Changes_(The_Monkees_album)\" title=\"Changes (The Monkees album)\" id=\"mwAfI\">Changes</a></i>.",
+                "text": "The Monkees (without Tork) performing on The Joey Bishop Show, backed by the Goodtimers, in 1969. The images of Jones and Dolenz were re-used for the cover art of the 1970 Monkees album Changes."
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Monkees_1969_Joey_Bishop_Show.jpg/640px-Monkees_1969_Joey_Bishop_Show.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Monkees_1969_Joey_Bishop_Show.jpg/960px-Monkees_1969_Joey_Bishop_Show.jpg",
+                    "scale": "1.5x"
+                }
+            ]
+        },
+        {
+            "title": "File:Dolenz_&_Band_2022.jpg",
+            "leadImage": false,
+            "section_id": 27,
+            "type": "image",
+            "caption": {
+                "html": "Dolenz performing on \"The Monkees Celebrated by Micky Dolenz\" tour, 2022",
+                "text": "Dolenz performing on \"The Monkees Celebrated by Micky Dolenz\" tour, 2022"
+            },
+            "showInGallery": true,
+            "srcset": [
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/5/52/Dolenz_%26_Band_2022.jpg/640px-Dolenz_%26_Band_2022.jpg",
+                    "scale": "1x"
+                },
+                {
+                    "src": "//upload.wikimedia.org/wikipedia/commons/thumb/5/52/Dolenz_%26_Band_2022.jpg/960px-Dolenz_%26_Band_2022.jpg",
+                    "scale": "1.5x"
+                }
+            ]
+        },
+        {
+            "leadImage": false,
+            "section_id": 39,
+            "type": "image",
+            "showInGallery": false,
+            "original": {
+                "source": "//upload.wikimedia.org/wikipedia/en/timeline/fq5l0ojzqymc67o0pnfo3vc38mpgmrp.png",
+                "mime": "image/png"
+            }
+        }
+    ]
+}
+
