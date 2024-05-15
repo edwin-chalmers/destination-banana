@@ -7,6 +7,7 @@ function fetchHTML(endpoint) {
             if (!response.ok) {
                 throw new Error(`Failed to fetch ${endpoint}`)
             }
+            console.log(response.text)
             return response.text()
         })
         .catch(error => {
@@ -60,51 +61,51 @@ const getFeatured = async (endpoint) => {
 }
 
 const postUser = async (gameData) => {
-    try {
-        const response = await fetch(`${externalServer}/api/v1/banana/users/${gameData.id}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        if (data) {
-            return postUserData(gameData); // Ensure you return here to catch any errors from postUserData
-        } else {
-            console.log("No data received:", data);
-        }
-    } catch (error) {
-        console.error("Error fetching user data:", error.message);
-    }
+    // try {
+    //     const response = await fetch(`${externalServer}/api/v1/banana/users/${gameData.id}`);
+    //     if (!response.ok) {
+    //         throw new Error(`HTTP error! Status: ${response.status}`);
+    //     }
+    //     const data = await response.json();
+    //     if (data) {
+    //         return postUserData(gameData); // Ensure you return here to catch any errors from postUserData
+    //     } else {
+    //         console.log("No data received:", data);
+    //     }
+    // } catch (error) {
+    //     console.error("Error fetching user data:", error.message);
+    // }
 };
 
 
 const postUserData = async (gameData) => {
-        const userData = {
-            "user_id": gameData.id,
-            "date": gameData.date,
-            "gameId": gameData.gameId,
-            "gameType": gameData.gameType,
-            "topic": gameData.topic,
-            "clicks": gameData.clicks,
-            "links": gameData.links
-        }
-    try {
-        const response = await fetch(`${externalServer}/api/v1/banana/users/${gameData.id}`, {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json' 
-            },
-            body: JSON.stringify(userData) 
-        });
-        const data = await response.json();
+    //     const userData = {
+    //         "user_id": gameData.id,
+    //         "date": gameData.date,
+    //         "gameId": gameData.gameId,
+    //         "gameType": gameData.gameType,
+    //         "topic": gameData.topic,
+    //         "clicks": gameData.clicks,
+    //         "links": gameData.links
+    //     }
+    // try {
+    //     const response = await fetch(`${externalServer}/api/v1/banana/users/${gameData.id}`, {
+    //         method: 'POST', 
+    //         headers: {
+    //             'Content-Type': 'application/json' 
+    //         },
+    //         body: JSON.stringify(userData) 
+    //     });
+    //     const data = await response.json();
 
-        if (response.ok) {
-            return data;
-        } else {
-            throw new Error(`Failed to create user: ${response.status} ${data.message}`);
-        }
-    } catch (error) {
-        console.error('Error creating user:', error.message);
-    }
+    //     if (response.ok) {
+    //         return data;
+    //     } else {
+    //         throw new Error(`Failed to create user: ${response.status} ${data.message}`);
+    //     }
+    // } catch (error) {
+    //     console.error('Error creating user:', error.message);
+    // }
 }
 
 function getAlphanumericCharacters(input) {

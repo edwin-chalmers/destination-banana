@@ -12,7 +12,7 @@ function Error() {
         <StyledError>
                 <h1>Error🍌404</h1>
                 <h2>Destination: (not) Banana</h2>
-                <p>The address could be misstyped or the page has been moved.</p>
+                <p>The address could be mistyped or the page has been moved.</p>
                 <Link id='goHome' to='/HomePage'>
                     <LandingButton 
                         buttonName={"home"} 
