@@ -87,7 +87,8 @@ export const StyledHelp = styled.div`
         /* height: 100%; */
         top: 0px;
         left: 0px;
-
+    }
+    
     #backgroundImage{
         width: 100vw;
         height: 100vh;

@@ -3,37 +3,42 @@ import { useState, useEffect } from "react";
 import { useSpring, animated, config, easings,} from '@react-spring/web'
 
 function BeachBackground1(props) {
+  const [windowDims, setWindowDims] = useState({
+    width: 0,
+    height: 0
+  })
+
+  const handleResize = () => {
+    setWindowDims({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }
 
   useEffect(() => {
-    if(props.currentPage === 'home'){
-      try{
-      window.addEventListener('resize', () => {
-        const svgContainer = document.querySelector('#backgroundContainer');
-      if(svgContainer){
-        svgContainer.style.width = window.innerWidth + 'px';
-        svgContainer.style.height = window.innerHeight + 'px';
-        resizeSVG()
-      }
-    })
-  }
-  catch {
-    console.log('error1')
-  }
+    window.addEventListener('resize', handleResize);
 
-  }
-    const resizeSVG = () => {
-      try{
-        const svgElement = document.querySelector('#beachBackground')
-        svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
-        svgElement.style.width = window.innerWidth + 'px';
-        svgElement.style.height = window.innerHeight + 'px';
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [props.currentPage]);
+
+  const resizeSVG = () => {
+    try{
+      const svgElement = document.querySelector('#beachBackground')
+      svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
+      svgElement.style.width = window.innerWidth + 'px';
+      svgElement.style.height = window.innerHeight + 'px';
     }
     catch{
         console.log('error2')
     }
   }
+
+  useEffect(() =>{
+    console.log(windowDims)
     resizeSVG()
-  }, [props])
+  }, [windowDims])
 
 
     const plantsDelay = () => Math.floor(Math.random() * (4000 - 2000 + 1)) + 2000;

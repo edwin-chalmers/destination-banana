@@ -217,7 +217,7 @@ function HomePage({ }) {
         return [...updatedPages, newPage]
       })
 
-      createLinkList(endpointText)
+      createLinkList(endpointText) 
     } else {
       let htmlFilter
       const parser = new DOMParser()
