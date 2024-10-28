@@ -48,12 +48,6 @@ function fetchPage(pageTitle) {
         });
 }
 
-const fetchPhotos = async (endpoint) => {
-    const getPics = await fetch(`https://en.wikipedia.org/api/rest_v1/page/media-list/${endpoint}`)
-    .then(response => response.json())
-    return getPics
-}
-
 const getFeatured = async (endpoint) => {
     const fetchFeat = await fetch(`https://en.wikipedia.org/api/rest_v1/feed/featured/${endpoint}`)
     .then(response => response.json())
@@ -171,4 +165,4 @@ checkUser().then((encrIP) => {
     console.error('Error during user check:', error);
 });
   
-export { fetchPage, fetchHTML, fetchPhotos, getFeatured, postUser}
+export { fetchPage, fetchHTML, getFeatured, postUser}
