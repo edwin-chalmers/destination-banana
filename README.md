@@ -39,7 +39,7 @@ We used Cypress to simulate user interactions to identify issues early. Cypress 
 Our testing approach, emphasizing coverage of both existing and new features, aligns with our objectives of mastering React and creating an intuitive user experience with Router.
 
 ### Preview
-<img width="1421" alt="image" src="https://github.com/edwin-chalmers/WikiLinks/assets/149631946/8e0d7c03-a96b-450d-9d88-aa3fd59215a3">
+<img width="1422" alt="image" src="https://github.com/user-attachments/assets/64641e37-0247-4b2c-99f4-e41d0e7107ca">
 <img width="1421" alt="image" src="https://github.com/edwin-chalmers/WikiLinks/assets/149631946/5fe2b651-1372-49c1-a779-c27c5efaf56c">
 
 
