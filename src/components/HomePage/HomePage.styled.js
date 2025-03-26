@@ -12,17 +12,18 @@ export const StyledHomepage = styled.div `
         color: blue;
     }
 
-#backgroundContainer{
-    z-index: 0;
-    position: fixed;
-    width: 100vw;
-    height: 80vh;
-}
+    #backgroundContainer{
+        z-index: 0;
+        position: fixed;
+        width: 100vw;
+        height: 80vh;
+    }
+
     .background-container {
         top: 50px;
         overflow: visible;
         position: relative;
-        width: 100%;
+        /* width: 100vw; */
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;

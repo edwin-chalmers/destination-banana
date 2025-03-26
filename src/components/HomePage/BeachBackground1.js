@@ -26,7 +26,7 @@ function BeachBackground1(props) {
   const resizeSVG = () => {
     try{
       const svgElement = document.querySelector('#beachBackground')
-      svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 2.8} ${window.innerHeight / 2.8}`)
+      svgElement.setAttribute('viewBox', `50 50 ${window.innerWidth / 3.2} ${window.innerHeight / 2.8}`)
       svgElement.style.width = window.innerWidth + 'px';
       svgElement.style.height = window.innerHeight + 'px';
     }

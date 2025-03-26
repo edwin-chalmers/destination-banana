@@ -98,7 +98,7 @@ function LandingPage() {
                         </g>
                     </svg>
                 </div>
-                <section>
+                <section className='logline'>
                     <p>{btnDesc}</p>
                 </section>
                 <div className='landing-buttons'>
