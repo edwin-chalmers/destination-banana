@@ -48,10 +48,6 @@ export const WikiPageContainer = styled.div`
         margin-top: 0;
     }
 
-
-
-
-
     .trow {
         display: flex;
         flex-direction: column;
@@ -70,6 +66,7 @@ export const WikiPageContainer = styled.div`
 
         section{
             width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;

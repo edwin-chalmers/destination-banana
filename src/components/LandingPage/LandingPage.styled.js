@@ -24,10 +24,9 @@ export const StyledLanding = styled.div`
         width: 54vh;
         overflow: visible;
         outline: none;
-            }
-        }
+    }
 
-    section {
+    .logline {
         position: relative;
         z-index: 1;
         display: flex;
